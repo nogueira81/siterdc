@@ -4,8 +4,8 @@
   http://go.microsoft.com/fwlink/?LinkId=152368
   -->
 <configuration>
-  <connectionStrings> 
-    <add name="sistemardcEntities" connectionString="metadata=res://*/Models.Modelrdc.csdl|res://*/Models.Modelrdc.ssdl|res://*/Models.Modelrdc.msl;provider=MySql.Data.MySqlClient;provider connection string='server=328fd051-e521-437a-8031-a1fc0160459d.mysql.sequelizer.com;database=db328fd051e521437a8031a1fc0160459d;uid=kkvibhukqvzbeify;pwd=xDfG24wHKCmJiUCSBNKdWM5BP5JLhFQTTpJyZgHDcqRHfnpZumJDQjjTGK25sSAd'" providerName="System.Data.EntityClient" />
+  <connectionStrings>
+    <add name="sistemardcEntities" connectionString="metadata=res://*/Models.Modelrdc.csdl|res://*/Models.Modelrdc.ssdl|res://*/Models.Modelrdc.msl;provider=MySql.Data.MySqlClient;provider connection string=&quot;server=127.0.0.1;User Id=root;password=imek0905;database=sistemardc;Persist Security Info=True&quot;" providerName="System.Data.EntityClient" />
     <!--
     <add name="ConnString" connectionString="server=127.0.0.1;User Id=root;password=imek0905;database=sistemardc;Persist Security Info=True" providerName="System.Data.EntityClient"/>
 
