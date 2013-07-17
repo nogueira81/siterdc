@@ -1,0 +1,171 @@
+﻿@model IEnumerable<rdc.Models.Reclamacao>
+@using rdc.Models
+@using rdc.Controllers
+@{
+    ViewBag.Title = "Reclamações";
+}
+
+<h2>Lista de Reclamações</h2>
+
+<p>
+    @Html.ActionLink("Novo Fornecedor", "Create")
+</p>
+@using(Html.BeginForm(null, null, FormMethod.Get))
+{
+    <fieldset>
+        <legend>Criterios de Busca</legend>
+        @Html.Label("buscar", "Descrição Reclamação: ")
+        @Html.TextBox("buscar", null, new { title="Entre com a Descrição ou parte da Descrição" }) 
+        <input type="submit" class="button" value="Buscar" />
+    </fieldset>
+}
+@{	 
+    WebGrid grid = new WebGrid(source: Model, canPage: true, canSort: true, rowsPerPage: 5);    
+}
+@grid.GetHtml(
+    tableStyle: "webgrid",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    selectedRowStyle: "webgrid-selected-row",
+    rowStyle: "webgrid-row-style",
+    displayHeader: true,
+    columns: grid.Columns(
+        grid.Column("datacompra",
+                    ModelMetadata.FromLambdaExpression(x => x.datacompra, new ViewDataDictionary<Reclamacao>(new Reclamacao())).DisplayName,
+                    style: "text-align-center",
+                    format: (item) =>
+                    {
+                        if (item.datacompra == null)
+                        {
+                            return string.Format("{0:dd/MM/yyyy}", "");
+                        }
+                        else
+                        {
+                            return string.Format("{0:dd/MM/yyyy}", item.datacompra);
+                        }
+                    }
+        ),
+        grid.Column("titulo", ModelMetadata.FromLambdaExpression(x => x.titulo, new ViewDataDictionary<Reclamacao>(new Reclamacao())).DisplayName, style: "text-align-center"),
+        grid.Column("tiposolucao",
+                    ModelMetadata.FromLambdaExpression(x => x.tiposolucao, new ViewDataDictionary<Reclamacao>(new Reclamacao())).DisplayName, 
+                    style: "text-align-left",
+                    format: (item) =>
+                        {
+                            if (item.tiposolucao == "I")
+                                return Html.Raw("<div class=\"insuccess\"><b>" + Html.Label("Resolvido e Usuário Insatisfeito") + "</b></div>");
+                            else if (item.tiposolucao == "C")
+                                return Html.Raw("<div class=\"success\"><b>" + Html.Label("Resolvido e Usuário Satisfeito") + "</b></div>");
+                            else
+                                return Html.Raw("<div class=\"error\"><b>" + Html.Label("Sem Solução do Fornecedor") + "</b></div>");
+                        }
+        ),
+        grid.Column("datasolucao",
+                    ModelMetadata.FromLambdaExpression(x => x.datasolucao, new ViewDataDictionary<Reclamacao>(new Reclamacao())).DisplayName,
+                    style: "text-align-center",
+                    format: (item) =>
+                    {
+                        if (item.datasolucao == null)
+                        {
+                            return string.Format("{0:dd/MM/yyyy}", "");
+                        }
+                        else
+                        {
+                            return string.Format("{0:dd/MM/yyyy}", item.datasolucao);
+                        }
+                    }
+        ),        
+        grid.Column("IDCLIENTE",
+                    ModelMetadata.FromLambdaExpression(x => x.IDCLIENTE, new ViewDataDictionary<Reclamacao>(new Reclamacao())).DisplayName, 
+                    style: "text-align-left",
+                    format: (item) =>
+                    {
+                        sistemardcEntities dbrec = new sistemardcEntities();
+                        int idcli = item.IDCLIENTE;
+                        var RecCli = from clientes in dbrec.clientes where clientes.IDCLIENTE == idcli select clientes;
+                        string selectedTextcidade = RecCli.First().NOME;
+                        dbrec.Dispose();
+                        return selectedTextcidade;
+                    }
+        ),
+        grid.Column("IDFORNECEDOR",
+                    ModelMetadata.FromLambdaExpression(x => x.IDFORNECEDOR, new ViewDataDictionary<Reclamacao>(new Reclamacao())).DisplayName,
+                    style: "text-align-left",
+                    format: (item) =>
+                    {
+                        sistemardcEntities dbrec = new sistemardcEntities();
+                        int idfor = item.IDFORNECEDOR;
+                        var RecFor = from fornecedores in dbrec.fornecedores where fornecedores.IDFORNECEDOR == idfor select fornecedores;
+                        string selectedTextfornec = RecFor.First().razaosocial;
+                        dbrec.Dispose();
+                        return selectedTextfornec;
+                    }
+        ),
+        grid.Column("fonecontato", ModelMetadata.FromLambdaExpression(x => x.fonecontato, new ViewDataDictionary<Reclamacao>(new Reclamacao())).DisplayName),
+        grid.Column(columnName: "idreclamacao", header: "Acões",
+                    format: (item) =>
+                    {
+                        var links = Html.ActionLink("Editar", "Edit", new { id = item.idreclamacao }) + "  <br />" +
+                                    Html.ActionLink("Detalhes", "Details", new { id = item.idreclamacao }) + "  <br />" +
+                                    Html.ActionLink("Excluir", "Delete", new { id = item.idreclamacao });
+                        return Html.Raw(links);
+                    },
+                    canSort: false
+        )
+    )
+)
+<!--Comentado para o novo grid acima
+<table>
+    <tr>
+        <th>
+            titulo
+        </th>
+        <th>
+            descricao
+        </th>
+        <th>
+            tiposolucao
+        </th>
+        <th>
+            cliente
+        </th>
+        <th>
+            fornecedore
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    sistemardcEntities dbrec = new sistemardcEntities();
+    var RecCli = from clientes in dbrec.clientes where clientes.IDCLIENTE == item.IDCLIENTE select clientes;
+    var RecFor = from fornecedores in dbrec.fornecedores where fornecedores.IDFORNECEDOR == item.IDFORNECEDOR select fornecedores;
+    item.cliente = RecCli.First();
+    item.fornecedore = RecFor.First();
+    dbrec.Dispose();
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tiposolucao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cliente.NOME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fornecedore.razaosocial)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.idreclamacao }) |
+            @Html.ActionLink("Details", "Details", new { id = item.idreclamacao }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.idreclamacao })
+        </td>
+    </tr>
+}
+
+</table>
+-->

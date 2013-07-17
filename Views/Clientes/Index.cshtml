@@ -1,0 +1,211 @@
+﻿@model IEnumerable<rdc.Models.Cliente>
+@using rdc.Models
+@{
+    ViewBag.Title = "Clientes";
+}
+
+<h2>Lista de Clientes</h2>
+
+<p>
+    @Html.ActionLink("Novo Cliente", "Create")
+</p>
+@using(Html.BeginForm(null, null, FormMethod.Get))
+{
+    <fieldset>
+        <legend>Criterios de Busca</legend>
+        @Html.Label("buscar", "Nome do Cliente: ")
+        @Html.TextBox("buscar", null, new { title="Entre com o Nome ou parte do Nome do Cliente" }) 
+        <input type="submit" class="button" value="Buscar" />
+    </fieldset>
+}
+@{
+	 
+    WebGrid grid = new WebGrid(source: Model, canPage: true, canSort: true, rowsPerPage: 5);
+    
+}
+@grid.GetHtml(
+    tableStyle: "webgrid",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    selectedRowStyle: "webgrid-selected-row",
+    rowStyle: "webgrid-row-style",
+    /*tableStyle: "webgrid",
+    headerStyle: "head",
+    alternatingRowStyle: "alt",
+    caption: "Clientes",*/
+    displayHeader: true,
+    //mode: WebGridPagerModes.All, firstText:"Primeiro", previousText: "Anterior", nextText: "Próxima", lastText:"Último",
+    columns: grid.Columns(
+        grid.Column("NOME", ModelMetadata.FromLambdaExpression(x => x.NOME, new ViewDataDictionary<Cliente>(new Cliente())).DisplayName, style: "text-align-center"),
+        grid.Column("TIPOCLIENTE",
+                    ModelMetadata.FromLambdaExpression(x => x.TIPOCLIENTE, new ViewDataDictionary<Cliente>(new Cliente())).DisplayName, 
+                    style: "text-align-left",
+                    format: (item) =>
+                        {
+                            if (item.TIPOCLIENTE == "ADM")
+                                return Html.Label("Administrador");
+                            else
+                                return Html.Label("Normal");
+                        }
+        ),
+        grid.Column("IDCIDADE",
+                    ModelMetadata.FromLambdaExpression(x => x.IDCIDADE, new ViewDataDictionary<Cliente>(new Cliente())).DisplayName, 
+                    style: "text-align-left",
+                    format: (item) =>
+                    {
+                        SelectListItem[] itemscid = new SelectList(CidadeRepositorio.ListaCidades(), "Value", "Text").ToArray();
+                        SelectListItem selectedItemcid = itemscid.FirstOrDefault(i => i.Value == item.IDCIDADE.ToString())
+                            ?? itemscid[0];
+                        string selectedTextcidade = selectedItemcid.Text;
+                        return Html.Label(selectedTextcidade);
+                    }
+        ),
+        grid.Column("ESTADO",
+                    ModelMetadata.FromLambdaExpression(x => x.ESTADO, new ViewDataDictionary<Cliente>(new Cliente())).DisplayName, 
+                    style: "text-align-center",
+                    format: (item) =>
+                    {
+                        SelectListItem[] items = new SelectList(EstadoRepositorio.ListaEstados(), "Value", "Text").ToArray();
+                        SelectListItem selectedItem = items.FirstOrDefault(i => i.Value == item.ESTADO)
+                            ?? items[0];
+                        string selectedTextestado = selectedItem.Text;
+                        return Html.Label(selectedTextestado);
+                    }
+        ),
+        grid.Column("CPF", ModelMetadata.FromLambdaExpression(x => x.CPF, new ViewDataDictionary<Cliente>(new Cliente())).DisplayName),
+        grid.Column("RG", ModelMetadata.FromLambdaExpression(x => x.RG, new ViewDataDictionary<Cliente>(new Cliente())).DisplayName),
+        grid.Column("ENDERECO", ModelMetadata.FromLambdaExpression(x => x.ENDERECO, new ViewDataDictionary<Cliente>(new Cliente())).DisplayName),
+        grid.Column("CEP", ModelMetadata.FromLambdaExpression(x => x.CEP, new ViewDataDictionary<Cliente>(new Cliente())).DisplayName),
+        grid.Column("FONECELULAR", ModelMetadata.FromLambdaExpression(x => x.FONECELULAR, new ViewDataDictionary<Cliente>(new Cliente())).DisplayName),
+        grid.Column("IDFORNECEDOR",
+                    ModelMetadata.FromLambdaExpression(x => x.IDFORNECEDOR, new ViewDataDictionary<Cliente>(new Cliente())).DisplayName,
+                    style: "text-align-left",
+                    format: (item) =>
+                    {
+                        string selectedTextfornec = "Não é Fornecedor";
+                        if (item.IDFORNECEDOR != null)
+                        {
+                            sistemardcEntities dbfor = new sistemardcEntities();
+                            int idfor = item.IDFORNECEDOR;
+                            var RecFor = from fornecedores in dbfor.fornecedores where fornecedores.IDFORNECEDOR == idfor select fornecedores;
+                            selectedTextfornec = RecFor.First().razaosocial;
+                            dbfor.Dispose();
+                        }
+                        return selectedTextfornec;
+                    }
+        ),      
+        grid.Column(columnName: "IDCLIENTE", header: "Acões",
+                    format: (item) =>
+                    {
+                        var links = Html.ActionLink("Editar", "Edit", new { id = item.IDCLIENTE }) + "  <br />" +
+                                    Html.ActionLink("Detalhes", "Details", new { id = item.IDCLIENTE }) + "  <br />" +
+                                    Html.ActionLink("Excluir", "Delete", new { id = item.IDCLIENTE });
+                        return Html.Raw(links);
+                    },
+                    canSort: false
+        )
+    )
+)
+<!--Comentado para alterar para o código acima webgrid
+<table>
+    <tr>
+        <th>
+            @Html.LabelFor(x => x.ToList().ElementAt(0).NOME)
+        </th>
+        <th>
+            @Html.LabelFor(x => x.ToList().ElementAt(0).TIPOCLIENTE)
+        </th>
+        <th>
+            @Html.LabelFor(x => x.ToList().ElementAt(0).IDCIDADE)
+        </th>
+        <th>
+            @Html.LabelFor(x => x.ToList().ElementAt(0).ESTADO)
+        </th>
+        <th>
+            @Html.LabelFor(x => x.ToList().ElementAt(0).CPF)
+        </th>
+        <th>
+            @Html.LabelFor(x => x.ToList().ElementAt(0).RG)
+        </th>
+        <th>
+            @Html.LabelFor(x => x.ToList().ElementAt(0).ENDERECO)
+        </th>
+        <th>
+            @Html.LabelFor(x => x.ToList().ElementAt(0).CEP)
+        </th>
+        <th>
+            @Html.LabelFor(x => x.ToList().ElementAt(0).FONECELULAR)
+        </th>
+        <th>
+            @Html.LabelFor(x => x.ToList().ElementAt(0).EMAIL)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOME)
+        </td>
+        <td>
+            @{switch (item.TIPOCLIENTE)
+              {
+                  case "ADM":
+                      @Html.Label("Administrador");
+                                                  break;
+                  case "NOR":
+                      @Html.Label("Normal");
+                                           break;
+                  default:
+                                           break;
+              }
+             }
+        </td>
+        <td>
+            @{
+              SelectListItem[] itemscid = new SelectList(CidadeRepositorio.ListaCidades(), "Value", "Text").ToArray();
+              SelectListItem selectedItemcid = itemscid.FirstOrDefault(i => i.Value == item.IDCIDADE.ToString())
+                  ?? itemscid[0];
+              string selectedTextcidade = selectedItemcid.Text;    
+            }
+            @selectedTextcidade
+        </td>
+        <td>
+            @{
+              SelectListItem[] items = new SelectList(EstadoRepositorio.ListaEstados(), "Value", "Text").ToArray();
+              SelectListItem selectedItem = items.FirstOrDefault(i => i.Value == item.ESTADO)
+                  ?? items[0];
+              string selectedTextestado = selectedItem.Text;    
+            }
+            @selectedTextestado
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CPF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ENDERECO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CEP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FONECELULAR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMAIL)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.IDCLIENTE }) |
+            @Html.ActionLink("Detalhes", "Details", new { id = item.IDCLIENTE }) |
+            @Html.ActionLink("Excluir", "Delete", new { id = item.IDCLIENTE })
+        </td>
+    </tr>
+}
+
+</table>
+-->

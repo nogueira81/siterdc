@@ -1,0 +1,172 @@
+﻿@model IEnumerable<rdc.Models.Fornecedor>
+@using rdc.Models
+@{
+    ViewBag.Title = "Fornecedores";
+}
+
+<h2>Lista de Fornecedores</h2>
+
+<p>
+    @Html.ActionLink("Novo Fornecedor", "Create")
+</p>
+
+@using(Html.BeginForm(null, null, FormMethod.Get))
+{
+    <fieldset>
+        <legend>Criterios de Busca</legend>
+        @Html.Label("buscar", "Razão Social: ")
+        @Html.TextBox("buscar", null, new { title = "Entre com a Razão Social ou parte do Nome da Razão Social" }) 
+        <input type="submit" class="button" value="Buscar" />
+    </fieldset>
+}
+@{
+    WebGrid grid = new WebGrid(source: Model, canPage: true, canSort: true, rowsPerPage: 5);  
+}
+@grid.GetHtml(
+    tableStyle: "webgrid",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    selectedRowStyle: "webgrid-selected-row",
+    rowStyle: "webgrid-row-style",
+    displayHeader: true,
+    columns: grid.Columns(
+        grid.Column("razaosocial", ModelMetadata.FromLambdaExpression(x => x.razaosocial, new ViewDataDictionary<Fornecedor>(new Fornecedor())).DisplayName, style: "text-align-center"),
+        grid.Column("nomefantasia", ModelMetadata.FromLambdaExpression(x => x.nomefantasia, new ViewDataDictionary<Fornecedor>(new Fornecedor())).DisplayName, style: "text-align-center"),
+        grid.Column("IDCIDADE",
+                    ModelMetadata.FromLambdaExpression(x => x.IDCIDADE, new ViewDataDictionary<Fornecedor>(new Fornecedor())).DisplayName, 
+                    style: "text-align-left",
+                    format: (item) =>
+                    {
+                        if (item.IDCIDADE != null)
+                        {
+                            SelectListItem[] itemscid = new SelectList(CidadeRepositorio.ListaCidades(), "Value", "Text").ToArray();
+                            SelectListItem selectedItemcid = itemscid.FirstOrDefault(i => i.Value == item.IDCIDADE.ToString())
+                                ?? itemscid[0];
+                            string selectedTextcidade = selectedItemcid.Text;
+                            return Html.Label(selectedTextcidade);
+                        }
+                        else return Html.Label("");
+                    }
+        ),
+        grid.Column("ESTADO",
+                    ModelMetadata.FromLambdaExpression(x => x.ESTADO, new ViewDataDictionary<Fornecedor>(new Fornecedor())).DisplayName, 
+                    style: "text-align-center",
+                    format: (item) =>
+                    {
+                        SelectListItem[] items = new SelectList(EstadoRepositorio.ListaEstados(), "Value", "Text").ToArray();
+                        SelectListItem selectedItem = items.FirstOrDefault(i => i.Value == item.ESTADO)
+                            ?? items[0];
+                        string selectedTextestado = selectedItem.Text;
+                        return Html.Label(selectedTextestado);
+                    }
+        ),
+        grid.Column("cnpj", ModelMetadata.FromLambdaExpression(x => x.cnpj, new ViewDataDictionary<Fornecedor>(new Fornecedor())).DisplayName),
+        grid.Column("endereco", ModelMetadata.FromLambdaExpression(x => x.endereco, new ViewDataDictionary<Fornecedor>(new Fornecedor())).DisplayName),
+        grid.Column("cep", ModelMetadata.FromLambdaExpression(x => x.cep, new ViewDataDictionary<Fornecedor>(new Fornecedor())).DisplayName),
+        grid.Column("fonefixo", ModelMetadata.FromLambdaExpression(x => x.fonefixo, new ViewDataDictionary<Fornecedor>(new Fornecedor())).DisplayName),
+        grid.Column("auxativo",
+                    ModelMetadata.FromLambdaExpression(x => x.auxativo, new ViewDataDictionary<Fornecedor>(new Fornecedor())).DisplayName,
+                    style: "text-align-center",
+                    format: (item) =>
+                    {
+                        if (item.auxativo)
+                        {
+                            return Html.Label("Sim");
+                        }
+                        else
+                        {
+                            return Html.Label("Não");
+                        }
+                    }
+            ),
+        grid.Column(columnName: "IDFORNECEDOR", header: "Acões",
+                    format: (item) =>
+                    {
+                        var links = Html.ActionLink("Editar", "Edit", new { id = item.IDFORNECEDOR }) + "  <br />" +
+                                    Html.ActionLink("Detalhes", "Details", new { id = item.IDFORNECEDOR }) + "  <br />" +
+                                    Html.ActionLink("Excluir", "Delete", new { id = item.IDFORNECEDOR });
+                        return Html.Raw(links);
+                    },
+                    canSort: false
+        )
+    )
+)
+<!--
+<table>
+    <tr>
+        <th>
+            razaosocial
+        </th>
+        <th>
+            nomefantasia
+        </th>
+        <th>
+            email
+        </th>
+        <th>
+            cnpj
+        </th>
+        <th>
+            endereco
+        </th>
+        <th>
+            cep
+        </th>
+        <th>
+            fonefixo
+        </th>
+        <th>
+            fonefixo2
+        </th>
+        <th>
+            ESTADO
+        </th>
+        <th>
+            informacoes
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.razaosocial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nomefantasia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cnpj)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.endereco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fonefixo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fonefixo2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ESTADO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.informacoes)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDFORNECEDOR }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDFORNECEDOR }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDFORNECEDOR })
+        </td>
+    </tr>
+}
+
+</table>
+-->

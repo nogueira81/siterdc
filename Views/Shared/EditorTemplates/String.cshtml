@@ -1,0 +1,57 @@
+﻿@model object
+@{
+    @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, new { @class = "text-box single-line" })
+
+    if (ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName("").ToUpper().IndexOf("CEP") >= 0)
+    {
+        string id = ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#@id").mask("99999-999");
+            });
+        </script>
+    }
+    else if (ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName("").ToUpper().IndexOf("CPF") >= 0)
+    {
+        string id = ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+        <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#@id").mask("999.999.999-99");
+                });
+        </script>
+    }
+    else if (ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName("").ToUpper().IndexOf("CNPJ") >= 0)
+    {
+        string id = ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#@id").mask("99.999.999/9999-99");
+            });
+        </script>
+    }
+    else if (ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName("").ToUpper().IndexOf("FONE") >= 0)
+    {
+        string id = ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+        <script type="text/javascript">
+            //$(document).ready(function () {
+            //    $("#id").mask("(99) 9999-9999?9");
+            //});
+
+            $("#@id")
+                .mask("(99) 9999-9999?9")
+                .live('focusout', function (event) {
+                    var target, phone, element;
+                    target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+                    phone = target.value.replace(/\D/g, '');
+                    element = $(target);
+                    element.unmask();
+                    if (phone.length > 5 && phone.substr(0, 3) > "115" && phone.substr(0, 3) <= "119") { //ele só vai colocar no formato de SP quando for ddd 11 e iniciar entre 6 e 9.  
+                        element.mask("(99) 99999-999?9");
+                    } else {
+                        element.mask("(99) 9999-9999?9");
+                    }
+                });
+        </script> 
+    }
+    
+}

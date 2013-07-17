@@ -1,0 +1,672 @@
+﻿/*----------------------------------------------------------
+The base color for this template is #5c87b2. If you'd like
+to use a different color start by replacing all instances of
+#5c87b2 with your new color.
+----------------------------------------------------------*/
+body
+{
+    background-color: #5c87b2;
+    font-size: 75%;
+    font-family: Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+    color: #696969;
+}
+
+a:link
+{
+    color: #034af3;
+    text-decoration: underline;
+}
+a:visited
+{
+    color: #505abc;
+}
+a:hover
+{
+    color: #1d60ff;
+    text-decoration: none;
+}
+a:active
+{
+    color: #12eb87;
+}
+
+p, ul
+{
+    margin-bottom: 20px;
+    line-height: 1.6em;
+}
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6
+{
+    font-size: 1.5em;
+    color: #000;
+}
+
+h1
+{
+    font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+h2
+{
+    padding: 0 0 10px 0;
+}
+h3
+{
+    font-size: 1.2em;
+}
+h4
+{
+    font-size: 1.1em;
+}
+h5, h6
+{
+    font-size: 1em;
+}
+
+/* this rule styles <h2> tags that are the 
+first child of the left and right table columns */
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+{
+    margin-top: 0;
+}
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+/* you can specify a greater or lesser percentage for the 
+page width. Or, you can specify an exact pixel width. */
+.page
+{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header
+{
+    position: relative;
+    margin-bottom: 0px;
+    color: #000;
+    padding: 0;
+}
+
+#header h1
+{
+    font-weight: bold;
+    padding: 5px 0;
+    margin: 0;
+    color: #fff;
+    border: none;
+    line-height: 2em;
+    font-size: 32px !important;
+}
+
+#main
+{
+    padding: 30px 30px 15px 30px;
+    background-color: #fff;
+    margin-bottom: 30px;
+    _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
+}
+
+#footer
+{
+    color: #999;
+    padding: 10px 0;
+    text-align: center;
+    line-height: normal;
+    margin: 0;
+    font-size: .9em;
+}
+
+/* TAB MENU   
+----------------------------------------------------------*/
+ul#menu
+{
+    border-bottom: 1px #5C87B2 solid;
+    padding: 0 0 2px 0px;
+    position: relative;
+    margin: 0;
+    text-align: right;
+    left: -10%;
+    width:110%;
+}
+
+ul#menu li
+{
+    display: inline;
+    list-style: none;
+}
+
+ul#menu li#greeting
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    color: #fff;
+}
+
+ul#menu li a
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #e8eef4;
+    color: #034af3;
+}
+
+ul#menu li#lired a
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #e8eef4;
+    color: Red;
+}
+
+ul#menu li a:hover
+{
+    background-color: #fff;
+    text-decoration: none;
+}
+
+ul#menu li#lired a:hover
+{
+    background-color: #fff;
+    text-decoration: none;
+}
+
+ul#menu li a:active
+{
+    background-color: #a6e2a6;
+    text-decoration: none;
+}
+
+ul#menu li.selected a
+{
+    background-color: #fff;
+    color: #000;
+}
+ 
+/* SUB TAB MENU    
+----------------------------------------------------------*/ 
+ul#submenu 
+{ 
+    border-bottom: 1px #5C87B2 solid;
+    padding: 0 0 2px;
+    position: relative;
+    margin: 0;
+    text-align: left;    
+} 
+ 
+ul#submenu li 
+{ 
+    display: inline; 
+    list-style: none; 
+} 
+ 
+ul#submenu li a 
+{ 
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #e8eef4;
+    color: #034af3;
+} 
+ 
+ul#submenu li#submenuitemselected a 
+{ 
+    padding: 2px 10px; 
+    font-weight: bold; 
+    text-decoration: none; 
+    line-height: 1.8em; 
+    background-color: #fff; 
+    color: #034af3; 
+} 
+ 
+ul#submenu li a:hover 
+{ 
+    background-color: #fff; 
+    text-decoration: none; 
+} 
+ 
+ul#submenu li a:active 
+{ 
+    background-color: #a6e2a6; 
+    text-decoration: none; 
+} 
+ 
+ul#submenu li.selected a 
+{ 
+    background-color: #fff; 
+    color: #000; 
+}
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset 
+{
+    border:1px solid #ddd;
+    padding:0 1.4em 1.4em 1.4em;
+    margin:0 0 1.5em 0;
+}
+
+legend 
+{
+    font-size:1.2em;
+    font-weight: bold;
+}
+
+textarea 
+{
+    min-height: 75px;
+}
+
+input[type="text"] 
+{
+    width: 200px;
+    border: 1px solid #CCC;
+}
+
+input[type="password"] 
+{
+    width: 200px;
+    border: 1px solid #CCC;
+}
+
+/* TABLE
+----------------------------------------------------------*/
+
+table 
+{
+  border: solid 1px #e8eef4;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td 
+{
+  padding: 5px;   
+  border: solid 1px #e8eef4;
+}
+
+table th
+{
+  padding: 6px 5px;
+  text-align: left;
+  background-color: #e8eef4; 
+  border: solid 1px #e8eef4;   
+}
+
+/* TABLE
+----------------------------------------------------------*/
+
+.tableinteracao 
+{
+  border: solid 1px #e8eef4;
+  border-collapse: collapse;
+}
+
+.tdinteracaoleft 
+{
+  width: 30%;
+  padding: 5px;   
+  border: solid 1px #e8eef4;
+}
+
+.tdinteracaorigth
+{
+  width: 70%;
+  padding: 5px;   
+  border: solid 1px #e8eef4;
+}
+
+.tableinteracao th
+{
+  padding: 6px 5px;
+  text-align: left;
+  background-color: #e8eef4; 
+  border: solid 1px #e8eef4;   
+}
+
+.tdRanking
+{
+    margin: 0px;
+    padding: 6px 5px;
+    text-align: center;
+    background-color: #e8eef4;
+    border: solid 1px #e8eef4;
+    vertical-align: text-top;
+}
+
+.tableRanking {
+    width: 100%;
+    border: 0px;
+    border-collapse: collapse;
+}
+
+.tableHomeRec {
+    width: 100%;
+    border: 0px;
+    border-collapse: collapse;
+}
+
+.tdHomeRec
+{
+    width: 50%;
+    margin: 0px;
+    padding: 6px 5px;
+    text-align: center;
+    background-color: #e8eef4;
+    border: solid 1px #e8eef4;
+    vertical-align: text-top;
+}
+.tdHomeGraRec
+{
+    width: 50%;
+    margin: 0px;
+    padding: 6px 5px;
+    text-align: center;
+    background-color: #e8eef4;
+    border: solid 1px #e8eef4;
+    vertical-align: top;
+}
+/* MISC  
+----------------------------------------------------------*/
+.selectedrow  
+{  
+    background-color: #EEEEEE;  
+}
+
+.clear
+{
+    clear: both;
+}
+
+.error
+{
+    color:Red;
+}
+
+.success
+{
+    color:Blue;
+}
+
+.black
+{
+    color:Black;
+}
+
+.Oil
+{
+    color: #3B3131;
+}
+
+.insuccess
+{
+    color: #CC6600;
+}
+
+#menucontainer
+{
+    margin-top: 40px;
+    width: 100%;
+}
+
+#submenucontainer
+{
+    margin-top:-25px;
+}
+
+div#title
+{
+    display:block;
+    float:left;
+    text-align:left;
+}
+
+#logindisplay
+{
+    font-size:1.1em;
+    display:block;
+    text-align:right;
+    margin:10px;
+    color:White;
+}
+
+#logindisplay a:link
+{
+    color: white;
+    text-decoration: underline;
+}
+
+#logindisplay a:visited
+{
+    color: white;
+    text-decoration: underline;
+}
+
+#logindisplay a:hover
+{
+    color: white;
+    text-decoration: none;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+.display-label,
+.editor-label
+{
+    margin: 1em 0 0 0;
+}
+
+.display-field,
+.editor-field
+{
+    margin:0.5em 0 0 0;
+}
+
+.text-box
+{
+    width: 30em;
+}
+
+.text-box.multi-line
+{
+    height: 6.5em;
+}
+
+.tri-state
+{
+    width: 6em;
+}
+
+.button
+{
+    width: 150px;
+    display: inline-block;
+    height: auto;
+    padding: 10px 10px 10px 10px;
+    font: normal 12px/1.1em arial;
+    border: 1px solid #d0d0d0;
+    border-top-color: #ececec;
+    border-bottom-color: #909090;
+    color: #034af3;
+    background: #fff;
+    background: -moz-linear-gradient(top, #fff 60%, #e7e7e7);
+    background: -webkit-linear-gradient(top, #fff 60%, #e7e7e7);
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    -moz-box-shadow: 0 10px 10px rgba(0,0,0,.2), 0 7px 0px rgba(0,0,0,.4), 0 2px 3px rgba(0,0,0,.2);
+    -webkit-box-shadow: 0 10px 10px rgba(0,0,0,.2), 0 7px 0px rgba(0,0,0,.4), 0 2px 3px rgba(0,0,0,.2);
+    background-color: #e8eef4;
+    font-weight: bold;
+}
+.button:hover
+{
+    width: 150px;
+    position: relative;
+    top: 5px;
+    border-top-color: #909090;
+    border-bottom-color: #ececec;
+    -moz-box-shadow: 0 0 0 #fff;
+    -moz-box-shadow: inset 0 2px 20px rgba(0,0,0,.2);
+    -webkit-box-shadow: 0 0 0 #fff;
+    -webkit-box-shadow: inset 0 2px 20px rgba(0,0,0,.2);
+    background-color: #E6F0F7;
+}
+
+.button02 {
+  display: inline-block;
+  height:auto;
+  padding: 10px 10px;
+  font:normal 36px/1.1em arial;
+  border:1px solid #d0d0d0;
+  border-top-color:#ececec;
+  border-bottom-color:#909090;
+  color:#fff;
+  background: #D5EFF7;
+  background: -moz-linear-gradient(top, #D5EFF7 0px, #5AA2B9 51%, #4F92A7 47%, #94C9DA);
+  background: -webkit-linear-gradient(top, #D5EFF7 0px, #5AA2B9 51%, #4F92A7 47%, #94C9DA);
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  -moz-box-shadow: 0 2px 3px rgba(0,0,0,.2);
+  -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.2);
+}
+.button02:hover {
+  background:#e3f4fa;
+  background:-moz-linear-gradient(top, #e3f4fa 0px, #68b0c2 51%, #68b0c2 47%, #b1dce7);
+  background:-webkit-linear-gradient(top, #e3f4fa 0px, #68b0c2 51%, #68b0c2 47%, #b1dce7);
+}
+
+.button03 {
+  display: inline-block;
+  height:auto;
+  padding: 10px 10px;
+  font:normal 36px/1.1em arial;
+  border:1px solid #d0d0d0;
+  border-top-color:#ececec;
+  border-bottom-color:#909090;
+  color:#909090;
+  background:#ffff00;
+  background: -moz-linear-gradient(top, #fff 60%, #e7e7e7);
+  background: -webkit-linear-gradient(top, #fff 60%, #e7e7e7);
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  -moz-box-shadow: 0 2px 3px rgba(0,0,0,.2);
+  -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.2);
+}
+.button03:hover {
+  background:#fff;
+}
+
+/* webgrid
+-------------------------------------------------*/
+
+.webgrid {
+    width: 100%;
+    border: 0px;
+    border-collapse: collapse;
+}
+
+.webgrid a {
+    color: #000;
+    text-align: center;
+}
+
+.webgrid-header {
+    padding: 6px 5px;
+    text-align: center;
+    background-color: #e8eef4;
+    border-bottom: 2px solid #3966A2;
+    height: 40px;
+    border-top: 2px solid #D6E8FF;
+    border-left: 2px solid #D6E8FF;
+    border-right: 2px solid #D6E8FF;
+}
+
+.webgrid-footer {
+    padding: 6px 5px;
+    text-align: center;
+    background-color: #e8eef4;
+    border-top: 2px solid #3966A2;
+    height: 30px;
+    border-bottom: 2px solid #D6E8FF;
+    border-left: 2px solid #D6E8FF;
+    border-right: 2px solid #D6E8FF;
+}
+
+.webgrid-alternating-row {
+    height: 30px;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #d2d2d2;
+    border-left: 2px solid #D6E8FF;
+    border-right: 2px solid #D6E8FF;
+}
+
+.webgrid-row-style {
+    height: 30px;
+    border-bottom: 1px solid #d2d2d2;
+    border-left: 2px solid #D6E8FF;
+    border-right: 2px solid #D6E8FF;
+}
+
+.webgrid-selected-row {
+    font-weight: bold;
+}
+
+/* Customizando grid Home como Relatório
+-------------------------------------------------*/
+div.ct {width:100%; height:auto; background:#fff; clear:both; float:left; margin:0;  padding:0; display:block;}
+
+
+/*Tratamento imagens*/
+#imgcontrra
+{
+    position: relative;
+    width: 100%;
+}

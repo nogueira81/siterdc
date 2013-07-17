@@ -1,0 +1,122 @@
+﻿@model rdc.Models.Cliente
+@using rdc.Models
+@{
+    ViewBag.Title = "Excluir";
+}
+
+<div class="error">@ViewBag.MsgDB</div>
+
+<h3>Tem certeza que deseja excluir esse Registro?</h3>
+<fieldset>
+    <legend>Excluir Cliente</legend>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.NOME) : @Html.DisplayFor(model => model.NOME)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.CPF) : @Html.DisplayFor(model => model.CPF)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.RG) : @Html.DisplayFor(model => model.RG)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.ESTADO) : 
+        @{
+            SelectListItem[] items = new SelectList(EstadoRepositorio.ListaEstados(), "Value", "Text").ToArray();
+            SelectListItem selectedItem = items.FirstOrDefault(i => i.Value == Model.ESTADO)
+                ?? items[0];
+            string selectedTextestado = selectedItem.Text;    
+        }
+        @selectedTextestado
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.IDCIDADE) : 
+        @{
+            SelectListItem[] itemscid = new SelectList(CidadeRepositorio.ListaCidades(), "Value", "Text").ToArray();
+            SelectListItem selectedItemcid = itemscid.FirstOrDefault(i => i.Value == Model.IDCIDADE.ToString())
+                ?? itemscid[0];
+            string selectedTextcidade = selectedItemcid.Text;    
+        }
+        @selectedTextcidade
+
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.ENDERECO) : @Html.DisplayFor(model => model.ENDERECO)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.CEP) : @Html.DisplayFor(model => model.CEP)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.FONEFIXO) : @Html.DisplayFor(model => model.FONEFIXO)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.FONECELULAR) : @Html.DisplayFor(model => model.FONECELULAR)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.NASCIMENTO) : @string.Format("{0:dd/MM/yyyy}", Model.NASCIMENTO)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.EMAIL) : @Html.DisplayFor(model => model.EMAIL)
+    </div>
+
+    <div class="display-label">
+    @Html.LabelFor(model => model.TIPOCLIENTE) :
+    @{switch (Model.TIPOCLIENTE)
+      {
+          case "ADM":
+              @Html.Label("Administrador");
+                                          break;
+          case "NOR":
+              @Html.Label("Normal");
+                                   break;
+          default:
+                                   break;
+      }
+     }
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.IDFORNECEDOR) :
+        @{
+            string selectedTextfornec = "Não é Fornecedor";
+            if (Model.IDFORNECEDOR != null)
+            {
+                sistemardcEntities dbfor = new sistemardcEntities();
+                int? idfor = Model.IDFORNECEDOR;
+                var RecFor = from fornecedores in dbfor.fornecedores where fornecedores.IDFORNECEDOR == idfor select fornecedores;
+                selectedTextfornec = RecFor.First().razaosocial;
+                dbfor.Dispose();
+            
+            }
+            <b>@Html.LabelFor(modelItem => Model.IDFORNECEDOR, selectedTextfornec)</b>
+        }
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.LOGIN) : @Html.DisplayFor(model => model.LOGIN)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.SENHA) : @Html.DisplayFor(model => model.SENHA)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.INFORMACOES) : @Html.DisplayFor(model => model.INFORMACOES)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" class="button" name="Delete" value="Excluir" /> |
+        @Html.ActionLink("Voltar para Lista", "Index")
+    </p>
+}

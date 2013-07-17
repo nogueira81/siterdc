@@ -1,0 +1,39 @@
+﻿@model rdc.Models.LoginModel
+@{
+    ViewBag.Title = "Recuperar Login";
+}
+<div>
+    @Html.ActionLink("Voltar", "Index")
+</div>
+<h2>Recuperação de Login e Senha</h2>
+@{
+    if (!string.IsNullOrEmpty(ViewBag.RecLoginSenha))
+    {
+        <div class="success">@ViewBag.RecLoginSenha</div>
+        <br />
+    }
+}
+
+@using (Html.BeginForm()){
+    @Html.ValidationSummary(true, "Verifique abaixo os Erros :")
+    <fieldset>
+        <legend>Para recuperar seu Login e Senha, favor preencher com seu CPF ou E-MAIL em um dos campos abaixo:</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.cpf)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.cpf)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.email)
+        </div>
+        <p>
+            <input type="submit" class="button" value="Recuperar" />
+        </p>
+    </fieldset>
+}

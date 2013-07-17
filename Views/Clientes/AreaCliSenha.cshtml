@@ -1,0 +1,56 @@
+﻿@model rdc.Models.Cliente
+@{
+    ViewBag.Title = "Alterar Senha";
+}
+
+<h2>Alterar Senha</h2>
+
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true, "Senha não alterada com sucesso. Favor corrigir os erros e tentar novamente.")
+    <div>
+        <fieldset>
+            <legend>Informações da Conta</legend>
+
+            @Html.HiddenFor(model => Model.IDCLIENTE)
+            @Html.HiddenFor(model => model.NOME)
+            @Html.HiddenFor(model => model.CPF)
+            @Html.HiddenFor(model => model.RG)
+            @Html.HiddenFor(model => model.CEP)
+            @Html.HiddenFor(model => model.ENDERECO)
+            @Html.HiddenFor(model => Model.ESTADO)
+            @Html.HiddenFor(model => model.IDCIDADE)
+            @Html.HiddenFor(model => model.IDFORNECEDOR)
+            @Html.HiddenFor(model => model.NASCIMENTO)
+            @Html.HiddenFor(model => model.FONEFIXO)
+            @Html.HiddenFor(model => model.FONECELULAR)
+            @Html.HiddenFor(model => Model.INFORMACOES)
+            @Html.HiddenFor(model => model.TIPOCLIENTE)
+            @Html.HiddenFor(model => model.LOGIN)
+            @Html.HiddenFor(model => model.EMAIL)
+
+            <div class="editor-label">
+                @Html.LabelFor(m => m.SENHA)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(m => m.SENHA)
+                @Html.ValidationMessageFor(m => m.SENHA)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(m => m.CONFIRMASENHA)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(m => m.CONFIRMASENHA)
+                @Html.ValidationMessageFor(m => m.CONFIRMASENHA)
+            </div>
+
+            <p>
+                <input type="submit" class="button" value="Alterar Senha" />
+            </p>
+        </fieldset>
+    </div>
+}
+<div>
+    @Html.ActionLink("Voltar", "AreaCliente")
+</div>

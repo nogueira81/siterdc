@@ -1,0 +1,62 @@
+﻿@model rdc.Models.Reclamacao
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<fieldset>
+    <legend>Detalhes da Reclamação</legend>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.datacompra) : @string.Format("{0:dd/MM/yyyy}", Model.datacompra)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.titulo) : @Html.DisplayFor(model => model.titulo)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.descricao) : @Html.DisplayFor(model => model.descricao)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.fonecontato) : @Html.DisplayFor(model => model.fonecontato)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.tiposolucao) : 
+
+        @{switch (Model.tiposolucao)
+            {
+                case "N": 
+                    <span class="error"><b>@Html.Label("Sem Solução do Fornecedor")</b></span>
+                    break;
+                case "I":
+                    <span class="insuccess"><b>@Html.Label("Resolvido e continuo Insatisfeito")</b></span>
+                    <br /> <br /> @Html.Label("Data da Solução :") @string.Format("{0:dd/MM/yyyy}", Model.datasolucao);
+                    break;
+                case "C":
+                    <span class="success"><b>@Html.Label("Resolvido e estou Satisfeito")</b></span>
+                    <br /> <br />  @Html.Label("Data da Solução :") @string.Format("{0:dd/MM/yyyy}", Model.datasolucao);
+                   break;
+            }
+        }
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.IDCLIENTE) : @Html.DisplayFor(model => model.cliente.NOME)
+    </div>
+
+    <div class="display-label">
+        @Html.Label("E-mail") : @Html.DisplayFor(model => model.cliente.EMAIL)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.IDFORNECEDOR) : @Html.DisplayFor(model => model.fornecedore.razaosocial)
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Editar Reclamação", "Edit", new { id=Model.idreclamacao }) |
+    @Html.ActionLink("Voltar para Lista", "Index")
+</p>

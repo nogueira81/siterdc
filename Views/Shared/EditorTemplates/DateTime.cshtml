@@ -1,0 +1,24 @@
+﻿@model Nullable<DateTime>
+
+@if (Model.HasValue && (Model.Value.Year > 1900))
+{
+    @Html.TextBox("", string.Format("{0:dd/MM/yyyy}", Model.Value))
+}
+else if (ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName("").ToUpper().IndexOf("DATAINTERACAO") >= 0)
+{
+    @Html.TextBox("", string.Format("{0:dd/MM/yyyy}", DateTime.Now))
+}
+else
+{
+    @Html.TextBox("", string.Format("{0:dd/MM/yyyy}", ""))
+}
+ 
+@{
+    string id = ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+}
+ 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#@id").mask("99/99/9999");
+    });
+</script>

@@ -1,0 +1,129 @@
+﻿@model rdc.Models.Cliente
+
+@{
+    ViewBag.Title = "Editar Cliente";
+    var ListGruCli = new[]{
+     new {value="ADM", text="Administrador"},
+     new {value="NOR", text="Normal"},   
+    };
+    var SelectListGruCli = new SelectList(ListGruCli, "value", "text", Model);
+}
+
+<h2>Editar o Usuário Cliente</h2>
+
+<script src="@Url.Content("~/Scripts/jquery-cep-rdc-1.0.0.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/CustomValidation.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Editar Cliente</legend>
+
+        @Html.HiddenFor(model => model.IDCLIENTE)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.NOME)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.NOME)
+            @Html.ValidationMessageFor(model => Model.NOME)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.CPF)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.CPF)
+            @Html.ValidationMessageFor(model => Model.CPF)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.RG)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.RG)
+            @Html.ValidationMessageFor(model => Model.RG)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.CEP)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.CEP)
+            @Html.ValidationMessageFor(model => Model.CEP)
+            <input class="button" type="button" value="Procurar Endereço" onclick="find();" />
+            <p id="produto" />
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.ESTADO)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ESTADO", "[Selecione o Estado]")
+            @Html.ValidationMessageFor(model => Model.ESTADO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.IDCIDADE)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IDCIDADE", "[Selecione o Estado para Buscar a Cidade]")
+            @Html.ValidationMessageFor(model => Model.IDCIDADE)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.ENDERECO)
+        </div>
+        <div class="editor-field"> 
+            @Html.EditorFor(model => Model.ENDERECO)
+            @Html.ValidationMessageFor(model => Model.ENDERECO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.FONEFIXO)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.FONEFIXO)
+            @Html.ValidationMessageFor(model => Model.FONEFIXO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.FONECELULAR)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.FONECELULAR)
+            @Html.ValidationMessageFor(model => Model.FONECELULAR)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.NASCIMENTO)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.NASCIMENTO)
+            @Html.ValidationMessageFor(model => Model.NASCIMENTO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.EMAIL)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.EMAIL)
+            @Html.ValidationMessageFor(model => Model.EMAIL)
+        </div>
+
+            @Html.HiddenFor(model => Model.INFORMACOES)
+            @Html.HiddenFor(model => model.TIPOCLIENTE)
+            @Html.HiddenFor(model => model.IDFORNECEDOR)
+            @Html.HiddenFor(model => model.LOGIN)
+            @Html.HiddenFor(model => model.SENHA)
+            @Html.HiddenFor(model => model.CONFIRMASENHA)
+
+        <p>
+            <input type="submit" class="button" value="Salvar" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "AreaCliente")
+</div>

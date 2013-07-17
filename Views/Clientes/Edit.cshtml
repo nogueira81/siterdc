@@ -1,0 +1,171 @@
+﻿@model rdc.Models.Cliente
+
+@{
+    ViewBag.Title = "Edit";
+    var ListGruCli = new[]{
+     new {value="ADM", text="Administrador"},
+     new {value="NOR", text="Normal"},   
+    };
+    var SelectListGruCli = new SelectList(ListGruCli, "value", "text", Model);
+}
+
+<h2>Editar o Usuário Cliente</h2>
+
+<script src="@Url.Content("~/Scripts/jquery-cep-rdc-1.0.0.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/CustomValidation.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Editar Cliente</legend>
+
+        @Html.HiddenFor(model => model.IDCLIENTE)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.NOME)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.NOME)
+            @Html.ValidationMessageFor(model => Model.NOME)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.CPF)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.CPF)
+            @Html.ValidationMessageFor(model => Model.CPF)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.RG)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.RG)
+            @Html.ValidationMessageFor(model => Model.RG)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.CEP)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.CEP)
+            @Html.ValidationMessageFor(model => Model.CEP)
+            <input class="button" type="button" value="Procurar Endereço" onclick="find();" />
+            <p id="produto" />
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.ESTADO)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ESTADO", "[Selecione o Estado]")
+            @Html.ValidationMessageFor(model => Model.ESTADO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.IDCIDADE)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IDCIDADE", "[Selecione o Estado para Buscar a Cidade]")
+            @Html.ValidationMessageFor(model => Model.IDCIDADE)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.ENDERECO)
+        </div>
+        <div class="editor-field"> 
+            @Html.EditorFor(model => Model.ENDERECO)
+            @Html.ValidationMessageFor(model => Model.ENDERECO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.FONEFIXO)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.FONEFIXO)
+            @Html.ValidationMessageFor(model => Model.FONEFIXO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.FONECELULAR)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.FONECELULAR)
+            @Html.ValidationMessageFor(model => Model.FONECELULAR)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.NASCIMENTO)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.NASCIMENTO)
+            @Html.ValidationMessageFor(model => Model.NASCIMENTO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.EMAIL)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.EMAIL)
+            @Html.ValidationMessageFor(model => Model.EMAIL)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.INFORMACOES)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => Model.INFORMACOES, new { style = "width: 100%", @rows = "8" })
+            @Html.ValidationMessageFor(model => Model.INFORMACOES)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TIPOCLIENTE)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.TIPOCLIENTE,SelectListGruCli, "[Selecione]")
+            @Html.ValidationMessageFor(model => model.TIPOCLIENTE)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IDFORNECEDOR)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IDFORNECEDOR", "[Selecione]")
+            @Html.ValidationMessageFor(model => model.IDFORNECEDOR)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LOGIN)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LOGIN)
+            @Html.ValidationMessageFor(model => model.LOGIN)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SENHA)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.SENHA)
+            @Html.ValidationMessageFor(model => model.SENHA)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CONFIRMASENHA)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.CONFIRMASENHA)
+            @Html.ValidationMessageFor(model => model.CONFIRMASENHA)
+        </div>
+
+        <p>
+            <input type="submit" class="button" value="Salvar" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar para Lista", "Index")
+</div>

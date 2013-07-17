@@ -1,0 +1,43 @@
+﻿@model rdc.Models.reclamaco
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>reclamaco</legend>
+
+    <div class="display-label">titulo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.titulo)
+    </div>
+
+    <div class="display-label">descricao</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.descricao)
+    </div>
+
+    <div class="display-label">tiposolucao</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tiposolucao)
+    </div>
+
+    <div class="display-label">cliente</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cliente.NOME)
+    </div>
+
+    <div class="display-label">fornecedore</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fornecedore.razaosocial)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" class="button" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

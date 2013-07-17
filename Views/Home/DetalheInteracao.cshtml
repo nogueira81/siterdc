@@ -1,0 +1,20 @@
+﻿@model rdc.Models.Reclamacao
+@{
+    ViewBag.Title = "Interacões da Reclamação";
+    if (TempData["msgInteracao"] == "True")
+    {
+        <div class="success">Nova Interação registrada na Reclamação com sucesso!</div><br />
+    }
+    else if (TempData["msgInteracao"] == "False")
+    {
+        <div class="error">Somente Usuários Logados no sistema podem interagir na Reclamação.<br />
+        Clique em @Html.ActionLink("Entrar", "Index", "Login") para Login no sistema ou 
+        @Html.ActionLink("Registre-se", "Registro", "Login"). É rápido e não possui custo algum! </div><br />        
+    }
+}
+
+@Html.Partial("ReclamacaoInteracoes", Model)
+
+<p>
+    @Html.ActionLink("Voltar", "Index")
+</p>

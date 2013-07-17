@@ -1,0 +1,155 @@
+﻿@model rdc.Models.Cliente
+
+@{
+    ViewBag.Title = "Registro";
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index")
+</div>
+
+<h2>Registre-se no Reclame Agora</h2>
+
+<script src="@Url.Content("~/Scripts/jquery-cep-rdc-1.0.0.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/CustomValidation.js")" type="text/javascript"></script>
+
+
+@using (Html.BeginForm()){
+    @Html.ValidationSummary(true,"Verifique abaixo os campos com Erros :")
+    <fieldset>
+        <legend>Os campos marcados com (*) são de preenchimento obrigatório.</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.NOME) <span class="success"><b>*</b></span>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.NOME)
+            @Html.ValidationMessageFor(model => Model.NOME)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.CPF) <span class="success"><b>*</b></span>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.CPF)
+            @Html.ValidationMessageFor(model => Model.CPF)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.RG)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.RG)
+            @Html.ValidationMessageFor(model => Model.RG)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.CEP)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.CEP)
+            @Html.ValidationMessageFor(model => Model.CEP)
+            <input class="button" type="button" value="Procurar Endereço" onclick="find();" />
+            <p id="produto" />
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.ESTADO) <span class="success"><b>*</b></span>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ESTADO", "[Selecione o Estado]")
+            @Html.ValidationMessageFor(model => Model.ESTADO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.IDCIDADE) <span class="success"><b>*</b></span>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IDCIDADE", "[Selecione o Estado para Buscar a Cidade]")
+            @Html.ValidationMessageFor(model => Model.IDCIDADE)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.ENDERECO)
+        </div>
+        <div class="editor-field"> 
+            @Html.EditorFor(model => Model.ENDERECO)
+            @Html.ValidationMessageFor(model => Model.ENDERECO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.FONEFIXO)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.FONEFIXO)
+            @Html.ValidationMessageFor(model => Model.FONEFIXO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.FONECELULAR)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.FONECELULAR)
+            @Html.ValidationMessageFor(model => Model.FONECELULAR)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.NASCIMENTO)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.NASCIMENTO)
+            @Html.ValidationMessageFor(model => Model.NASCIMENTO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.EMAIL) <span class="success"><b>*</b></span>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.EMAIL)
+            @Html.ValidationMessageFor(model => Model.EMAIL)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.INFORMACOES)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => Model.INFORMACOES, new { style = "width: 100%", @rows = "8", @readonly = true })
+            @Html.ValidationMessageFor(model => Model.INFORMACOES)
+        </div>
+
+        <div class="editor-field">
+            <span class="success"><b>*</b></span>
+            @Html.CheckBoxFor(model => Model.auxpoliticauso, false) <b>@Html.LabelFor(model => Model.auxpoliticauso)</b>
+            <br />
+            @Html.ValidationMessageFor(model => Model.auxpoliticauso)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.LOGIN) <span class="success"><b>*</b></span>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.LOGIN)
+            @Html.ValidationMessageFor(model => Model.LOGIN)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.SENHA) <span class="success"><b>*</b></span>
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => Model.SENHA)
+            @Html.ValidationMessageFor(model => Model.SENHA)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.CONFIRMASENHA) <span class="success"><b>*</b></span>
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => Model.CONFIRMASENHA)
+            @Html.ValidationMessageFor(model => Model.CONFIRMASENHA)
+        </div>
+
+        <p>
+            <input type="submit" class="button" value="Registrar-se" />
+        </p>
+    </fieldset>
+}

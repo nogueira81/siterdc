@@ -1,0 +1,98 @@
+﻿@model rdc.Models.Fornecedor
+@using rdc.Models
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+
+<fieldset>
+    <legend>Detalhes do Fornecedor</legend>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.auxativo) : 
+        @{
+            string selectedTextativo;
+            if (Model.auxativo)
+            {
+                selectedTextativo = "Sim";
+            }
+            else
+            {
+                selectedTextativo = "Não";
+            }
+        }
+        @selectedTextativo
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.razaosocial) : @Html.DisplayFor(model => model.razaosocial)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.nomefantasia) : @Html.DisplayFor(model => model.nomefantasia)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.cnpj) : @Html.DisplayFor(model => model.cnpj)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.ESTADO) : 
+        @{
+            SelectListItem[] items = new SelectList(EstadoRepositorio.ListaEstados(), "Value", "Text").ToArray();
+            SelectListItem selectedItem = items.FirstOrDefault(i => i.Value == Model.ESTADO)
+                ?? items[0];
+            string selectedTextestado = selectedItem.Text;    
+        }
+        @selectedTextestado
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.IDCIDADE) : 
+        @{
+            string selectedTextcidade = "";
+            if (Model.IDCIDADE != null)
+            {
+                SelectListItem[] itemscid = new SelectList(CidadeRepositorio.ListaCidades(), "Value", "Text").ToArray();
+                SelectListItem selectedItemcid = itemscid.FirstOrDefault(i => i.Value == Model.IDCIDADE.ToString())
+                    ?? itemscid[0];
+                selectedTextcidade = selectedItemcid.Text;
+            }
+        }
+        @selectedTextcidade
+
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.endereco) : @Html.DisplayFor(model => model.endereco)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.cep) : @Html.DisplayFor(model => model.cep)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.fonefixo) : @Html.DisplayFor(model => model.fonefixo)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.fonefixo2) : @Html.DisplayFor(model => model.fonefixo2)
+    </div>
+
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.email) : @Html.DisplayFor(model => model.email)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.homepage) : @Html.DisplayFor(model => model.homepage)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.informacoes) : @Html.DisplayFor(model => model.informacoes)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Editar Fornecedor", "Edit", new { id = Model.IDFORNECEDOR }) |
+    @Html.ActionLink("Voltar para Lista", "Index")
+</p>

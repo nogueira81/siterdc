@@ -1,0 +1,52 @@
+﻿@model IEnumerable<rdc.Models.reclamaco>
+@using rdc.Models
+@{
+    ViewBag.Title = "Bem vindo ao Reclame Agora!";
+    TempData["actionname"] = null;
+}
+
+
+    <div id="submenucontainer">
+        <ul id="submenu">
+            <li>@Html.ActionLink("Início", "Index", "Home")</li>
+            <li>@Html.ActionLink("Rancking", "Ranking", "Home")</li>
+        </ul>                
+    </div>
+    <img src="@Url.Content("~/Content/themes/base/images/ContribuaRA.jpg")" alt="ContribuaRA" id="imgcontrra"/>
+<br /><br />
+@using (Ajax.BeginForm("Index","Home/", 
+            new AjaxOptions {
+                HttpMethod = "get",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "HomeRec"
+            }
+        ))
+
+{
+    <fieldset>
+        <legend>Procurar Reclamações do Reclame Agora</legend>
+        @Html.Label("buscar", "Reclamação : ")
+        @Html.TextBox("buscar", null, new { title = "Entre com a Reclamação ou parte do Nome da Reclamação" })
+
+        @Html.Label("buscarEst", "Estado : ")
+        @Html.DropDownList("buscarEst", (SelectList)ViewBag.buscarEst, "[Todos os Estados]", new { title = "Escolha o Estado para refinar sua Busca" })
+
+        @Html.Label("buscarFor", "Fornecedor : ")
+        @Html.DropDownList("buscarFor", (SelectList)ViewBag.buscarFor, "[Todos os Fornecedores]", new { title = "Escolha o Fornecedor para refinar sua Busca" })
+
+        <input type="submit" class="button" value="Procurar"/>
+    </fieldset>
+}
+<table class="tableHomeRec">
+    <tr>
+        <td  class="tdHomeRec">
+        <h3>Últimas Reclamações:</h3>
+        @Html.Partial("HomePartial")
+        </td>
+        <td class="tdHomeGraRec">
+            <h3>Tempo Médio para Solução das Reclamações:</h3>
+            <img src="@Url.Content("~/Home/Grfavgdiasatend/?Tipo=pie")" alt="Grafico 2" />
+        </td>
+    </tr>
+</table>
+

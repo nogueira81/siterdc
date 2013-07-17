@@ -1,0 +1,114 @@
+﻿@model rdc.Models.SolFornecedor
+
+@{
+    ViewBag.Title = "Solicitar Fornecedor";
+}
+
+<h2>Para cadastrar um novo fornecedor é necessário:</h2>
+
+<script src="@Url.Content("~/Scripts/jquery-cep-rdc-1.0.0.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/CustomValidationCNPJ.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true,"Não é possível solicitar o cadastro desse Fornecedor pelo motivo:")
+    <fieldset>
+        <legend>Os campos marcados com (*) são de preenchimento obrigatório.</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.nomefantasia) <span class="success"><b>*</b></span>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.nomefantasia)
+            @Html.ValidationMessageFor(model => Model.nomefantasia)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.razaosocial) 
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.razaosocial)
+            @Html.ValidationMessageFor(model => Model.razaosocial)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.cnpj) <span class="success"><b>*</b></span>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.cnpj)
+            @Html.ValidationMessageFor(model => Model.cnpj)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.cep)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.cep)
+            <input class="button" type="button" value="Procurar Endereço" onclick="findcep();" />
+            <p id="produto" />
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.ESTADO)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ESTADO", "[Selecione o Estado]")
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.IDCIDADE)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IDCIDADE", "[Selecione o Estado para Buscar a Cidade]")
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.endereco)
+        </div>
+        <div class="editor-field"> 
+            @Html.EditorFor(model => Model.endereco)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.fonefixo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.fonefixo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.fonefixo2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.fonefixo2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.homepage)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => Model.homepage)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => Model.informacoes)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => Model.informacoes, new { style = "width: 100%", @rows = "8" })
+        </div>
+
+        <p>
+            <input type="submit" class="button" value="Solicitar Fornecedor" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index")
+</div>

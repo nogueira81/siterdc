@@ -1,0 +1,127 @@
+﻿@model rdc.Models.HomeModel
+@using rdc.Models
+@{
+    ViewBag.Title = "Ranking";
+}
+
+<section class="featured">
+    <div id="submenucontainer">
+        <ul id="submenu">
+            <li>@Html.ActionLink("Início", "Index", "Home")</li>
+            <li>@Html.ActionLink("Rancking", "Ranking", "Home")</li>
+        </ul>                
+    </div>
+</section>
+
+<h2>@ViewBag.Message</h2>
+
+@{	 
+    WebGrid grid = new WebGrid(source: Model.HomeModelCli, canPage: true, canSort: true, rowsPerPage: 8);
+    WebGrid grid2 = new WebGrid(source: Model.HomeModelFor, canPage: true, canSort: true, rowsPerPage: 8);    
+}
+<table class="tableRanking">
+    <tr>
+        <td class="tdRanking">
+        <h3>Fornecedores com mais Reclamações : </h3>
+@grid2.GetHtml(
+    tableStyle: "webgrid",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    selectedRowStyle: "webgrid-selected-row",
+    rowStyle: "webgrid-row-style",
+    displayHeader: true,
+    columns: grid.Columns(
+        grid.Column("nomefantasia",
+                    ModelMetadata.FromLambdaExpression(x => x.nomefantasia, new ViewDataDictionary<Fornecedor>(new Fornecedor())).DisplayName,
+                    style: "text-align-center"
+        ),
+        grid.Column("est_for",
+                    ModelMetadata.FromLambdaExpression(x => x.ESTADO, new ViewDataDictionary<Fornecedor>(new Fornecedor())).DisplayName,
+                    style: "text-align-center"
+        ),
+        grid.Column("qtderec",
+                    "Reclamações",
+                    style: "text-align-center"
+        ),
+        grid.Column("qtderecn",
+                    "Sem Solução",
+                    style: "text-align-center"
+        ),
+        grid.Column("qtderecs",
+                    "Solucionadas",
+                    style: "text-align-center"
+        )
+    )
+)
+        </td>    
+        <td class="tdRanking">
+        <h3>Situação das Reclamações dos Clientes : </h3>
+@grid.GetHtml(
+    tableStyle: "webgrid",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    selectedRowStyle: "webgrid-selected-row",
+    rowStyle: "webgrid-row-style",
+    displayHeader: true,
+    columns: grid.Columns(
+        grid.Column("login",
+                    ModelMetadata.FromLambdaExpression(x => x.LOGIN, new ViewDataDictionary<Cliente>(new Cliente())).DisplayName,
+                    style: "text-align-center"
+        ),
+        grid.Column("est_cli",
+                    ModelMetadata.FromLambdaExpression(x => x.ESTADO, new ViewDataDictionary<Cliente>(new Cliente())).DisplayName,
+                    style: "text-align-center"
+        ),
+        grid.Column("qtderec",
+                    "Reclamações",
+                    style: "text-align-center"
+        ),
+        grid.Column("qtderecn",
+                    "Sem Solução",
+                    style: "text-align-center"
+        ),
+        grid.Column("qtderecs",
+                    "Solucionadas",
+                    style: "text-align-center"
+        )
+    )
+)
+</td>
+</tr>
+<tr>
+    <td class="tdRanking">
+        <h3>Tempo Médio em Dias para solução de Reclamações pelos Fonecedores : </h3>
+        <div style="position:relative"><img src="@Url.Content("~/Home/Grfavgdiasatend/?Tipo=pie")" alt="Grafico 2" /></div>
+    </td>
+    <td class="tdRanking">
+        <h3>Ranking Tempo Médio em Dias para solução de Reclamações pelos Fonecedores : </h3>
+        <div style="position:relative"><img src="@Url.Content("~/Home/Grfavgdiasatend/?Tipo=stock")" alt="Grafico 5" /></div>
+    </td>
+</tr>
+<tr>
+    <td class="tdRanking">
+        <h3>Total de Reclamações por Fonecedores : </h3>
+        <div style="position:relative"><img src="@Url.Content("~/Home/Grafico/?Tipo=pie")" alt="Grafico 2" /></div>
+    </td>
+    <td class="tdRanking">
+        <h3>Ranking com total de Reclamações dos Clientes : </h3>
+        <div style="position:relative"><img src="@Url.Content("~/Home/Grafico/?Tipo=Column")" alt="Grafico 5" /></div>
+    </td>
+</tr>
+</table>
+<!--div style="position:relative">
+    <div style="float:left"><img src="@Url.Content("~/Home/Grafico/?Tipo=Line")" alt="Grafico 1" /></div>
+    <div style="float:left"><img src="@Url.Content("~/Home/Grafico/?Tipo=pie")" alt="Grafico 2" /></div>
+    <div style="float:left"><img src="@Url.Content("~/Home/Grafico/?Tipo=bar")" alt="Grafico 3" /></div>
+</div>
+ 
+<div style="clear:both;position:relative">
+    <div style="float:left"><img src="@Url.Content("~/Home/Grafico/?Tipo=Area")" alt="Grafico 4" /></div>
+    <div style="float:left"><img src="@Url.Content("~/Home/Grafico/?Tipo=Column")" alt="Grafico 5" /></div>
+    <div style="float:left"><img src="@Url.Content("~/Home/Grafico/?Tipo=stock")" alt="Grafico 6" /></div>
+</div-->
+<p>
+    Para pesquisar no Google visite <a href="http://www.google.com.br/" title="ReclameAgora"> http://www.google.com.br/</a>.
+</p>

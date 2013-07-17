@@ -1,0 +1,84 @@
+﻿@model rdc.Models.Reclamacao
+@using rdc.Models
+@{
+    ViewBag.Title = "Interacões da Reclamação";
+    if (TempData["msgIntReclamar"] == "True")
+    {
+        <div class="success">Nova Interação registrada na Reclamação com sucesso!</div><br />
+    }
+}
+
+<fieldset>
+    <legend>Interações da Reclamação</legend>
+    <br />
+    <table>
+        <tr>
+            <td class="tdinteracaoleft">
+                <b>@Html.DisplayFor(model => model.titulo)</b><br /><br />
+                Data da Compra : @string.Format("{0:dd/MM/yyyy}", Model.datacompra)<br /><br />
+                Interação do Login : @Html.DisplayFor(model => model.cliente.LOGIN)<br />
+                @{
+                    //Somente irá mostrar quando o Cliente for vinculado a um fornecedor
+                    sistemardcEntities dbCli = new sistemardcEntities();
+                    string Login = @Context.User.Identity.Name;
+                    if (!string.IsNullOrEmpty(Login))
+                    {
+                        var RecCli = from clientes in dbCli.clientes where clientes.LOGIN == Login select clientes;
+                        int? idforcli = RecCli.First().IDFORNECEDOR;
+                        dbCli.Dispose();
+                        if (idforcli != null)
+                        {
+                            if (Model.IDFORNECEDOR == idforcli)
+                            {
+                                @Html.LabelFor(modelItem => Model.fonecontato, "Contato : ")
+                                <b>@Html.LabelFor(modelItem => Model.fonecontato, Model.fonecontato)</b>
+                                <br />
+                                @Html.LabelFor(modelItem => Model.cliente.EMAIL, "E-mail : ")
+                                <b>@Html.LabelFor(modelItem => Model.cliente.EMAIL, Model.cliente.EMAIL)</b>
+                                <br />
+                            }
+                        }
+                    }
+                }
+                <br />
+                Fornecedor : <b>@Html.DisplayFor(model => model.fornecedore.razaosocial)</b><br /><br />
+                Reclamação se encontra : <br />
+                @{switch (Model.tiposolucao)
+                  {
+                      case "N": 
+                            <div class="error"><b>@Html.Label("Sem Solução do Fornecedor")</b></div>
+                                             break;
+                      case "I":
+                            <div class="insuccess"><b>@Html.Label("Resolvido e continuo Insatisfeito")</b></div>
+                            <br />  @Html.Label("Data da Solução :") @string.Format("{0:dd/MM/yyyy}", Model.datasolucao);
+                                                                                                                        break;
+                      case "C":
+                            <div class="success"><b>@Html.Label("Resolvido e estou Satisfeito")</b></div>
+                            <br />  @Html.Label("Data da Solução :") @string.Format("{0:dd/MM/yyyy}", Model.datasolucao);
+                                                                                                                        break;
+                  }
+                }
+            </td>
+            <td class="tdinteracaorigth">
+                @Html.TextAreaFor(model => model.descricao, new { style = "width: 100%", @rows = "8", @disabled = true })
+            </td>
+        </tr>
+    </table>
+    @Html.Partial("RecInteracoes", Model.Interacoes)
+</fieldset>
+
+@Html.ValidationSummary(true)
+<p>
+    @Html.Partial("CreateInteracao", Model.Interacao)
+</p>
+
+<p>
+    @if ((string)TempData["actionname"] == "RecInterIndex")
+    {//Controle para utilização do Controle "Minhas Reclamações" para passar o actionname dinamico a ser utilizado no "Voltar"
+        @Html.ActionLink("Voltar para Lista", (string)TempData["actionname"])
+    }
+    else
+    {
+        @Html.ActionLink("Voltar para Lista", "RecIndex")
+    }
+</p>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<rdc.Models.interaco>
+@using rdc.Models           
+
+<table>
+    @foreach (var item in Model)
+    {
+     <tr>
+        <td class="tdinteracaoleft">
+        @{
+            string selectedTextfornec = "Não é Fornecedor";
+            //Somente irá mostrar quando o Cliente for vinculado a um fornecedor
+            if (item.cliente.IDFORNECEDOR != null)
+            {
+                sistemardcEntities dbfor = new sistemardcEntities();
+                int? idfor = item.cliente.IDFORNECEDOR;
+                var RecFor = from fornecedores in dbfor.fornecedores where fornecedores.IDFORNECEDOR == idfor select fornecedores;
+                selectedTextfornec = RecFor.First().razaosocial;
+                dbfor.Dispose();
+                @Html.LabelFor(modelItem => item.cliente.IDFORNECEDOR, "Resposta do Fornecedor : ")
+                <br />
+                <b>@Html.LabelFor(modelItem => item.cliente.IDFORNECEDOR, selectedTextfornec)</b>
+                <br />
+                <br />
+            }
+        }
+
+            Registrado em :<br /> @string.Format("{0:dd/MM/yyyy}", item.DATAINTERACAO)<br /><br />
+            Interação do Login : @Html.DisplayFor(modelItem => item.cliente.LOGIN)<br /><br />
+            @{
+            if (Context.User.Identity.Name == item.reclamaco.cliente.LOGIN)
+            {//Se for o dono da Reclamação opção de excluir Interação é apresentada em todas as Interações
+                  @Html.ActionLink("Excluir", "DeleteInteracao", new { id = item.IDINTERACAO, actionname = (string)TempData["actionname"] }, new { @onClick = "javascript:return " + "confirm('Deseja realmente a exclusão dessa Interação?')" })
+            }
+            else if (Context.User.Identity.Name == item.cliente.LOGIN)
+            {//ou se for o dono da Interação da Reclamação opção de excluir Interação é apresentada
+                   @Html.ActionLink("Excluir", "DeleteInteracao", new { id = item.IDINTERACAO, actionname = (string)TempData["actionname"] }, new { @onClick = "javascript:return " + "confirm('Deseja realmente a exclusão dessa Interação?')" })
+            }
+            }
+        </td>
+        <td class="tdinteracaorigth">
+            @Html.TextAreaFor(modelItem => item.INFORMACOES, new { style="width: 100%", @rows = "8", @disabled = true })
+        </td>      
+    </tr>
+    }
+</table>
