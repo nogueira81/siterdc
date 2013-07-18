@@ -26,7 +26,7 @@
     <WarningLevel>4</WarningLevel>
     <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
     <PackageAsSingleFile>false</PackageAsSingleFile>
-    <DesktopBuildPackageLocation>..\..\siterdc</DesktopBuildPackageLocation>
+    <DesktopBuildPackageLocation>..\siterdc\</DesktopBuildPackageLocation>
     <DeployIisAppPath>Default Web Site/rdc</DeployIisAppPath>
     <IncludeIisSettings>false</IncludeIisSettings>
     <IncludeAppPool>false</IncludeAppPool>
