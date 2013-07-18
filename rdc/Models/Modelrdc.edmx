@@ -1,0 +1,596 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="sistemardcModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="sistemardcModelStoreContainer">
+          <EntitySet Name="cidades" EntityType="sistemardcModel.Store.cidades" store:Type="Tables" Schema="sistemardc" />
+          <EntitySet Name="clientes" EntityType="sistemardcModel.Store.clientes" store:Type="Tables" Schema="sistemardc" />
+          <EntitySet Name="fornecedores" EntityType="sistemardcModel.Store.fornecedores" store:Type="Tables" Schema="sistemardc" />
+          <EntitySet Name="interacoes" EntityType="sistemardcModel.Store.interacoes" store:Type="Tables" Schema="sistemardc" />
+          <EntitySet Name="reclamacoes" EntityType="sistemardcModel.Store.reclamacoes" store:Type="Tables" Schema="sistemardc" />
+          <AssociationSet Name="FKIDCIDADES" Association="sistemardcModel.Store.FKIDCIDADES">
+            <End Role="cidades" EntitySet="cidades" />
+            <End Role="clientes" EntitySet="clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FKIDCIDFOR" Association="sistemardcModel.Store.FKIDCIDFOR">
+            <End Role="cidades" EntitySet="cidades" />
+            <End Role="fornecedores" EntitySet="fornecedores" />
+          </AssociationSet>
+          <AssociationSet Name="FKIDCLIFOR" Association="sistemardcModel.Store.FKIDCLIFOR">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="fornecedores" EntitySet="fornecedores" />
+          </AssociationSet>
+          <AssociationSet Name="FKIDFONEC" Association="sistemardcModel.Store.FKIDFONEC">
+            <End Role="fornecedores" EntitySet="fornecedores" />
+            <End Role="clientes" EntitySet="clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FKINTIDCLI" Association="sistemardcModel.Store.FKINTIDCLI">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="interacoes" EntitySet="interacoes" />
+          </AssociationSet>
+          <AssociationSet Name="FKINTIDRECL" Association="sistemardcModel.Store.FKINTIDRECL">
+            <End Role="reclamacoes" EntitySet="reclamacoes" />
+            <End Role="interacoes" EntitySet="interacoes" />
+          </AssociationSet>
+          <AssociationSet Name="IDCLIENTE" Association="sistemardcModel.Store.IDCLIENTE">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="reclamacoes" EntitySet="reclamacoes" />
+          </AssociationSet>
+          <AssociationSet Name="IDFORNECEDOR" Association="sistemardcModel.Store.IDFORNECEDOR">
+            <End Role="fornecedores" EntitySet="fornecedores" />
+            <End Role="reclamacoes" EntitySet="reclamacoes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="cidades">
+          <Key>
+            <PropertyRef Name="IDCIDADE" />
+          </Key>
+          <Property Name="IDCIDADE" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NOMECIDADE" Type="varchar" MaxLength="80" />
+          <Property Name="IDESTADO" Type="char" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="IDCLIENTE" />
+          </Key>
+          <Property Name="IDCLIENTE" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NOME" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="CPF" Type="char" MaxLength="11" />
+          <Property Name="RG" Type="varchar" MaxLength="20" />
+          <Property Name="ENDERECO" Type="varchar" MaxLength="200" />
+          <Property Name="CEP" Type="char" MaxLength="8" />
+          <Property Name="FONEFIXO" Type="varchar" MaxLength="50" />
+          <Property Name="FONECELULAR" Type="varchar" MaxLength="50" />
+          <Property Name="NASCIMENTO" Type="date" />
+          <Property Name="EMAIL" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="INFORMACOES" Type="varchar" MaxLength="4000" />
+          <Property Name="TIPOCLIENTE" Type="char" MaxLength="3" />
+          <Property Name="LOGIN" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="SENHA" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="CONFIRMASENHA" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="ESTADO" Type="char" MaxLength="2" />
+          <Property Name="IDCIDADE" Type="int" />
+          <Property Name="IDFORNECEDOR" Type="int" />
+        </EntityType>
+        <EntityType Name="fornecedores">
+          <Key>
+            <PropertyRef Name="IDFORNECEDOR" />
+          </Key>
+          <Property Name="IDFORNECEDOR" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="razaosocial" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="nomefantasia" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="email" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="cnpj" Type="char" MaxLength="14" />
+          <Property Name="endereco" Type="varchar" MaxLength="200" />
+          <Property Name="cep" Type="char" MaxLength="8" />
+          <Property Name="fonefixo" Type="varchar" MaxLength="50" />
+          <Property Name="fonefixo2" Type="varchar" MaxLength="50" />
+          <Property Name="ESTADO" Type="char" MaxLength="2" />
+          <Property Name="informacoes" Type="varchar" MaxLength="4000" />
+          <Property Name="IDCIDADE" Type="int" />
+          <Property Name="ativo" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="homepage" Type="varchar" MaxLength="200" />
+          <Property Name="IDCLIENTE" Type="int" />
+          <Property Name="ENVEMAILCLISOL" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="interacoes">
+          <Key>
+            <PropertyRef Name="IDINTERACAO" />
+          </Key>
+          <Property Name="IDINTERACAO" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="INFORMACOES" Type="varchar" Nullable="false" MaxLength="4000" />
+          <Property Name="DATAINTERACAO" Type="date" Nullable="false" />
+          <Property Name="IDRECLAMACAO" Type="int" Nullable="false" />
+          <Property Name="IDCLIENTE" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="reclamacoes">
+          <Key>
+            <PropertyRef Name="idreclamacao" />
+          </Key>
+          <Property Name="idreclamacao" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="titulo" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="descricao" Type="varchar" Nullable="false" MaxLength="4000" />
+          <Property Name="tiposolucao" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="IDCLIENTE" Type="int" Nullable="false" />
+          <Property Name="IDFORNECEDOR" Type="int" Nullable="false" />
+          <Property Name="datacompra" Type="date" />
+          <Property Name="fonecontato" Type="varchar" MaxLength="50" />
+          <Property Name="datasolucao" Type="date" />
+        </EntityType>
+        <Association Name="FKIDCIDADES">
+          <End Role="cidades" Type="sistemardcModel.Store.cidades" Multiplicity="0..1" />
+          <End Role="clientes" Type="sistemardcModel.Store.clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cidades">
+              <PropertyRef Name="IDCIDADE" />
+            </Principal>
+            <Dependent Role="clientes">
+              <PropertyRef Name="IDCIDADE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKIDCIDFOR">
+          <End Role="cidades" Type="sistemardcModel.Store.cidades" Multiplicity="0..1" />
+          <End Role="fornecedores" Type="sistemardcModel.Store.fornecedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cidades">
+              <PropertyRef Name="IDCIDADE" />
+            </Principal>
+            <Dependent Role="fornecedores">
+              <PropertyRef Name="IDCIDADE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKIDCLIFOR">
+          <End Role="clientes" Type="sistemardcModel.Store.clientes" Multiplicity="0..1" />
+          <End Role="fornecedores" Type="sistemardcModel.Store.fornecedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="IDCLIENTE" />
+            </Principal>
+            <Dependent Role="fornecedores">
+              <PropertyRef Name="IDCLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKIDFONEC">
+          <End Role="fornecedores" Type="sistemardcModel.Store.fornecedores" Multiplicity="0..1" />
+          <End Role="clientes" Type="sistemardcModel.Store.clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fornecedores">
+              <PropertyRef Name="IDFORNECEDOR" />
+            </Principal>
+            <Dependent Role="clientes">
+              <PropertyRef Name="IDFORNECEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKINTIDCLI">
+          <End Role="clientes" Type="sistemardcModel.Store.clientes" Multiplicity="1" />
+          <End Role="interacoes" Type="sistemardcModel.Store.interacoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="IDCLIENTE" />
+            </Principal>
+            <Dependent Role="interacoes">
+              <PropertyRef Name="IDCLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKINTIDRECL">
+          <End Role="reclamacoes" Type="sistemardcModel.Store.reclamacoes" Multiplicity="1" />
+          <End Role="interacoes" Type="sistemardcModel.Store.interacoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reclamacoes">
+              <PropertyRef Name="idreclamacao" />
+            </Principal>
+            <Dependent Role="interacoes">
+              <PropertyRef Name="IDRECLAMACAO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IDCLIENTE">
+          <End Role="clientes" Type="sistemardcModel.Store.clientes" Multiplicity="1" />
+          <End Role="reclamacoes" Type="sistemardcModel.Store.reclamacoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="IDCLIENTE" />
+            </Principal>
+            <Dependent Role="reclamacoes">
+              <PropertyRef Name="IDCLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IDFORNECEDOR">
+          <End Role="fornecedores" Type="sistemardcModel.Store.fornecedores" Multiplicity="1" />
+          <End Role="reclamacoes" Type="sistemardcModel.Store.reclamacoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fornecedores">
+              <PropertyRef Name="IDFORNECEDOR" />
+            </Principal>
+            <Dependent Role="reclamacoes">
+              <PropertyRef Name="IDFORNECEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sistemardcModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="sistemardcEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="clientes" EntityType="sistemardcModel.cliente" />
+          <EntitySet Name="fornecedores" EntityType="sistemardcModel.fornecedore" />
+          <EntitySet Name="reclamacoes" EntityType="sistemardcModel.reclamaco" />
+          <AssociationSet Name="IDCLIENTE" Association="sistemardcModel.IDCLIENTE">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="reclamacoes" EntitySet="reclamacoes" />
+          </AssociationSet>
+          <AssociationSet Name="IDFORNECEDOR" Association="sistemardcModel.IDFORNECEDOR">
+            <End Role="fornecedores" EntitySet="fornecedores" />
+            <End Role="reclamacoes" EntitySet="reclamacoes" />
+          </AssociationSet>
+          <EntitySet Name="cidades" EntityType="sistemardcModel.cidade" />
+          <AssociationSet Name="FKIDCIDADES" Association="sistemardcModel.FKIDCIDADES">
+            <End Role="cidade" EntitySet="cidades" />
+            <End Role="cliente" EntitySet="clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FKIDCIDFOR" Association="sistemardcModel.FKIDCIDFOR">
+            <End Role="cidade" EntitySet="cidades" />
+            <End Role="fornecedore" EntitySet="fornecedores" />
+          </AssociationSet>
+          <EntitySet Name="interacoes" EntityType="sistemardcModel.interaco" />
+          <AssociationSet Name="FKINTIDCLI" Association="sistemardcModel.FKINTIDCLI">
+            <End Role="cliente" EntitySet="clientes" />
+            <End Role="interaco" EntitySet="interacoes" />
+          </AssociationSet>
+          <AssociationSet Name="FKINTIDRECL" Association="sistemardcModel.FKINTIDRECL">
+            <End Role="reclamaco" EntitySet="reclamacoes" />
+            <End Role="interaco" EntitySet="interacoes" />
+          </AssociationSet>
+          <AssociationSet Name="FKIDFONEC" Association="sistemardcModel.FKIDFONEC">
+            <End Role="fornecedore" EntitySet="fornecedores" />
+            <End Role="cliente" EntitySet="clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FKIDCLIFOR" Association="sistemardcModel.FKIDCLIFOR">
+            <End Role="cliente" EntitySet="clientes" />
+            <End Role="fornecedore" EntitySet="fornecedores" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="IDCLIENTE" />
+          </Key>
+          <Property Name="IDCLIENTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOME" Type="String" Nullable="false" MaxLength="90" Unicode="false" FixedLength="false" />
+          <Property Name="CPF" Type="String" />
+          <Property Name="RG" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="ENDERECO" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CEP" Type="String" />
+          <Property Name="FONEFIXO" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="FONECELULAR" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="NASCIMENTO" Type="DateTime" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="INFORMACOES" Type="String" MaxLength="4000" Unicode="false" FixedLength="false" />
+          <Property Name="TIPOCLIENTE" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="LOGIN" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="SENHA" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="CONFIRMASENHA" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="reclamacoes" Relationship="sistemardcModel.IDCLIENTE" FromRole="clientes" ToRole="reclamacoes" />
+          <Property Type="Int32" Name="IDCIDADE" />
+          <NavigationProperty Name="cidade" Relationship="sistemardcModel.FKIDCIDADES" FromRole="cliente" ToRole="cidade" />
+          <NavigationProperty Name="interacoes" Relationship="sistemardcModel.FKINTIDCLI" FromRole="cliente" ToRole="interaco" />
+          <Property Type="Int32" Name="IDFORNECEDOR" />
+          <NavigationProperty Name="fornecedore" Relationship="sistemardcModel.FKIDFONEC" FromRole="cliente" ToRole="fornecedore" />
+          <NavigationProperty Name="fornecedores" Relationship="sistemardcModel.FKIDCLIFOR" FromRole="cliente" ToRole="fornecedore" />
+        </EntityType>
+        <EntityType Name="fornecedore">
+          <Key>
+            <PropertyRef Name="IDFORNECEDOR" />
+          </Key>
+          <Property Name="IDFORNECEDOR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="razaosocial" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="nomefantasia" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="cnpj" Type="String" />
+          <Property Name="endereco" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="cep" Type="String" />
+          <Property Name="fonefixo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="fonefixo2" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="informacoes" Type="String" MaxLength="4000" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="reclamacoes" Relationship="sistemardcModel.IDFORNECEDOR" FromRole="fornecedores" ToRole="reclamacoes" />
+          <Property Type="Int32" Name="IDCIDADE" />
+          <NavigationProperty Name="cidade" Relationship="sistemardcModel.FKIDCIDFOR" FromRole="fornecedore" ToRole="cidade" />
+          <Property Type="String" Name="ativo" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="clientes" Relationship="sistemardcModel.FKIDFONEC" FromRole="fornecedore" ToRole="cliente" />
+          <Property Type="String" Name="homepage" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="IDCLIENTE" />
+          <Property Type="String" Name="ENVEMAILCLISOL" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cliente" Relationship="sistemardcModel.FKIDCLIFOR" FromRole="fornecedore" ToRole="cliente" />
+        </EntityType>
+        <EntityType Name="reclamaco">
+          <Key>
+            <PropertyRef Name="idreclamacao" />
+          </Key>
+          <Property Name="idreclamacao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titulo" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="descricao" Type="String" Nullable="false" MaxLength="4000" Unicode="false" FixedLength="false" />
+          <Property Name="tiposolucao" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="false" />
+          <Property Name="IDCLIENTE" Type="Int32" Nullable="false" />
+          <Property Name="IDFORNECEDOR" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="sistemardcModel.IDCLIENTE" FromRole="reclamacoes" ToRole="clientes" />
+          <NavigationProperty Name="fornecedore" Relationship="sistemardcModel.IDFORNECEDOR" FromRole="reclamacoes" ToRole="fornecedores" />
+          <Property Type="DateTime" Name="datacompra" />
+          <Property Type="String" Name="fonecontato" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="interacoes" Relationship="sistemardcModel.FKINTIDRECL" FromRole="reclamaco" ToRole="interaco" />
+          <Property Type="DateTime" Name="datasolucao" />
+        </EntityType>
+        <Association Name="IDCLIENTE">
+          <End Role="clientes" Type="sistemardcModel.cliente" Multiplicity="1" />
+          <End Role="reclamacoes" Type="sistemardcModel.reclamaco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="IDCLIENTE" />
+            </Principal>
+            <Dependent Role="reclamacoes">
+              <PropertyRef Name="IDCLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IDFORNECEDOR">
+          <End Role="fornecedores" Type="sistemardcModel.fornecedore" Multiplicity="1" />
+          <End Role="reclamacoes" Type="sistemardcModel.reclamaco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fornecedores">
+              <PropertyRef Name="IDFORNECEDOR" />
+            </Principal>
+            <Dependent Role="reclamacoes">
+              <PropertyRef Name="IDFORNECEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="cidade">
+          <Key>
+            <PropertyRef Name="IDCIDADE" />
+          </Key>
+          <Property Type="Int32" Name="IDCIDADE" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NOMECIDADE" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IDESTADO" MaxLength="2" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="clientes" Relationship="sistemardcModel.FKIDCIDADES" FromRole="cidade" ToRole="cliente" />
+          <NavigationProperty Name="fornecedores" Relationship="sistemardcModel.FKIDCIDFOR" FromRole="cidade" ToRole="fornecedore" />
+        </EntityType>
+        <Association Name="FKIDCIDADES">
+          <End Type="sistemardcModel.cidade" Role="cidade" Multiplicity="0..1" />
+          <End Type="sistemardcModel.cliente" Role="cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cidade">
+              <PropertyRef Name="IDCIDADE" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="IDCIDADE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKIDCIDFOR">
+          <End Type="sistemardcModel.cidade" Role="cidade" Multiplicity="0..1" />
+          <End Type="sistemardcModel.fornecedore" Role="fornecedore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cidade">
+              <PropertyRef Name="IDCIDADE" />
+            </Principal>
+            <Dependent Role="fornecedore">
+              <PropertyRef Name="IDCIDADE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="interaco">
+          <Key>
+            <PropertyRef Name="IDINTERACAO" />
+          </Key>
+          <Property Type="Int32" Name="IDINTERACAO" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="INFORMACOES" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DATAINTERACAO" Nullable="false" />
+          <Property Type="Int32" Name="IDRECLAMACAO" Nullable="false" />
+          <Property Type="Int32" Name="IDCLIENTE" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="sistemardcModel.FKINTIDCLI" FromRole="interaco" ToRole="cliente" />
+          <NavigationProperty Name="reclamaco" Relationship="sistemardcModel.FKINTIDRECL" FromRole="interaco" ToRole="reclamaco" />
+        </EntityType>
+        <Association Name="FKINTIDCLI">
+          <End Type="sistemardcModel.cliente" Role="cliente" Multiplicity="1" />
+          <End Type="sistemardcModel.interaco" Role="interaco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="IDCLIENTE" />
+            </Principal>
+            <Dependent Role="interaco">
+              <PropertyRef Name="IDCLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKINTIDRECL">
+          <End Type="sistemardcModel.reclamaco" Role="reclamaco" Multiplicity="1" />
+          <End Type="sistemardcModel.interaco" Role="interaco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reclamaco">
+              <PropertyRef Name="idreclamacao" />
+            </Principal>
+            <Dependent Role="interaco">
+              <PropertyRef Name="IDRECLAMACAO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKIDFONEC">
+          <End Type="sistemardcModel.fornecedore" Role="fornecedore" Multiplicity="0..1" />
+          <End Type="sistemardcModel.cliente" Role="cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fornecedore">
+              <PropertyRef Name="IDFORNECEDOR" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="IDFORNECEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKIDCLIFOR">
+          <End Type="sistemardcModel.cliente" Role="cliente" Multiplicity="0..1" />
+          <End Type="sistemardcModel.fornecedore" Role="fornecedore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="IDCLIENTE" />
+            </Principal>
+            <Dependent Role="fornecedore">
+              <PropertyRef Name="IDCLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sistemardcModelStoreContainer" CdmEntityContainer="sistemardcEntities">
+          <EntitySetMapping Name="clientes"><EntityTypeMapping TypeName="sistemardcModel.cliente"><MappingFragment StoreEntitySet="clientes">
+                <ScalarProperty Name="IDFORNECEDOR" ColumnName="IDFORNECEDOR" />
+                <ScalarProperty Name="IDCIDADE" ColumnName="IDCIDADE" />
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+                <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
+            <ScalarProperty Name="NOME" ColumnName="NOME" />
+            <ScalarProperty Name="RG" ColumnName="RG" />
+            <ScalarProperty Name="ENDERECO" ColumnName="ENDERECO" />
+            <ScalarProperty Name="CEP" ColumnName="CEP" />
+            <ScalarProperty Name="FONEFIXO" ColumnName="FONEFIXO" />
+            <ScalarProperty Name="FONECELULAR" ColumnName="FONECELULAR" />
+            <ScalarProperty Name="NASCIMENTO" ColumnName="NASCIMENTO" />
+            <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+            <ScalarProperty Name="INFORMACOES" ColumnName="INFORMACOES" />
+            <ScalarProperty Name="TIPOCLIENTE" ColumnName="TIPOCLIENTE" />
+            <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
+            <ScalarProperty Name="SENHA" ColumnName="SENHA" />
+            <ScalarProperty Name="CONFIRMASENHA" ColumnName="CONFIRMASENHA" />
+            <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="fornecedores"><EntityTypeMapping TypeName="sistemardcModel.fornecedore"><MappingFragment StoreEntitySet="fornecedores">
+            <ScalarProperty Name="ENVEMAILCLISOL" ColumnName="ENVEMAILCLISOL" />
+                <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
+                <ScalarProperty Name="homepage" ColumnName="homepage" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="IDCIDADE" ColumnName="IDCIDADE" />
+                <ScalarProperty Name="IDFORNECEDOR" ColumnName="IDFORNECEDOR" />
+            <ScalarProperty Name="razaosocial" ColumnName="razaosocial" />
+            <ScalarProperty Name="nomefantasia" ColumnName="nomefantasia" />
+            <ScalarProperty Name="email" ColumnName="email" />
+            <ScalarProperty Name="cnpj" ColumnName="cnpj" />
+            <ScalarProperty Name="endereco" ColumnName="endereco" />
+            <ScalarProperty Name="cep" ColumnName="cep" />
+            <ScalarProperty Name="fonefixo" ColumnName="fonefixo" />
+            <ScalarProperty Name="fonefixo2" ColumnName="fonefixo2" />
+            <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+            <ScalarProperty Name="informacoes" ColumnName="informacoes" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="reclamacoes"><EntityTypeMapping TypeName="sistemardcModel.reclamaco"><MappingFragment StoreEntitySet="reclamacoes">
+            <ScalarProperty Name="datasolucao" ColumnName="datasolucao" />
+                <ScalarProperty Name="fonecontato" ColumnName="fonecontato" />
+                <ScalarProperty Name="datacompra" ColumnName="datacompra" />
+                <ScalarProperty Name="idreclamacao" ColumnName="idreclamacao" />
+            <ScalarProperty Name="titulo" ColumnName="titulo" />
+            <ScalarProperty Name="descricao" ColumnName="descricao" />
+            <ScalarProperty Name="tiposolucao" ColumnName="tiposolucao" />
+            <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
+            <ScalarProperty Name="IDFORNECEDOR" ColumnName="IDFORNECEDOR" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="cidades">
+            <EntityTypeMapping TypeName="sistemardcModel.cidade">
+              <MappingFragment StoreEntitySet="cidades">
+                <ScalarProperty Name="IDESTADO" ColumnName="IDESTADO" />
+                <ScalarProperty Name="NOMECIDADE" ColumnName="NOMECIDADE" />
+                <ScalarProperty Name="IDCIDADE" ColumnName="IDCIDADE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="interacoes">
+            <EntityTypeMapping TypeName="sistemardcModel.interaco">
+              <MappingFragment StoreEntitySet="interacoes">
+                <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
+                <ScalarProperty Name="IDRECLAMACAO" ColumnName="IDRECLAMACAO" />
+                <ScalarProperty Name="DATAINTERACAO" ColumnName="DATAINTERACAO" />
+                <ScalarProperty Name="INFORMACOES" ColumnName="INFORMACOES" />
+                <ScalarProperty Name="IDINTERACAO" ColumnName="IDINTERACAO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Modelrdc" ZoomLevel="90">
+        <EntityTypeShape EntityType="sistemardcModel.cliente" Width="1.5" PointX="0.75" PointY="0.5" Height="3.8931689453124996" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemardcModel.fornecedore" Width="1.5" PointX="4.875" PointY="0.5" Height="2.9070849609375005" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemardcModel.reclamaco" Width="1.5" PointX="2.75" PointY="0.5" Height="2.2496956380208339" IsExpanded="true" />
+        <AssociationConnector Association="sistemardcModel.IDCLIENTE" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="1.9535424804687505" />
+          <ConnectorPoint PointX="2.75" PointY="1.9535424804687505" />
+        </AssociationConnector>
+        <AssociationConnector Association="sistemardcModel.IDFORNECEDOR" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.875" PointY="1.9535424804687502" />
+          <ConnectorPoint PointX="4.25" PointY="1.9535424804687502" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="sistemardcModel.cidade" Width="1.5" PointX="5" PointY="5.625" Height="1.7566536458333326" />
+        <AssociationConnector Association="sistemardcModel.FKIDCIDADES" >
+          <ConnectorPoint PointX="6.46875" PointY="5.625" />
+          <ConnectorPoint PointX="6.46875" PointY="4.9996346028645826" />
+          <ConnectorPoint PointX="5.770833333333333" PointY="4.9996346028645817" />
+          <ConnectorPoint PointX="5.604166666666667" PointY="4.9996346028645826" />
+          <ConnectorPoint PointX="3.5833333333333335" PointY="4.9996346028645817" />
+          <ConnectorPoint PointX="3.4166666666666665" PointY="4.9996346028645826" />
+          <ConnectorPoint PointX="2.25" PointY="4.9996346028645826" />
+        </AssociationConnector>
+        <AssociationConnector Association="sistemardcModel.FKIDCIDFOR" >
+          <ConnectorPoint PointX="5.6875" PointY="5.625" />
+          <ConnectorPoint PointX="5.6875" PointY="4.7218636067708326" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="sistemardcModel.interaco" Width="1.5" PointX="0.75" PointY="5.625" Height="2.0853483072916656" />
+        <AssociationConnector Association="sistemardcModel.FKINTIDCLI" >
+          <ConnectorPoint PointX="1.5" PointY="5.2149055989583326" />
+          <ConnectorPoint PointX="1.5" PointY="5.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="sistemardcModel.FKINTIDRECL" >
+          <ConnectorPoint PointX="3.5" PointY="3.4070849609375" />
+          <ConnectorPoint PointX="3.5" PointY="6.6676741536458328" />
+          <ConnectorPoint PointX="2.25" PointY="6.6676741536458328" />
+        </AssociationConnector>
+        <AssociationConnector Association="sistemardcModel.FKIDFONEC" >
+          <ConnectorPoint PointX="4.875" PointY="4.0957242838541674" />
+          <ConnectorPoint PointX="3.5833333333333335" PointY="4.0957242838541665" />
+          <ConnectorPoint PointX="3.4166666666666665" PointY="4.0957242838541674" />
+          <ConnectorPoint PointX="2.25" PointY="4.0957242838541674" />
+        </AssociationConnector>
+        <AssociationConnector Association="sistemardcModel.FKIDCLIFOR" >
+          <ConnectorPoint PointX="2.25" PointY="3.7201546223958339" />
+          <ConnectorPoint PointX="3.4166666666666665" PointY="3.7201546223958335" />
+          <ConnectorPoint PointX="3.5833333333333335" PointY="3.7201546223958339" />
+          <ConnectorPoint PointX="4.875" PointY="3.7201546223958339" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
