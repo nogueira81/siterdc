@@ -189,36 +189,40 @@ namespace rdc.Controllers
                 "group by r.idfornecedor, f.nomefantasia";
             HomeModel reclamacoes = new HomeModel();
             var data = db.ExecuteStoreQuery<HomeModelAvgtdFor>(commandFor).ToList();
-            string[] x = new string[data.Count];
-            string[] y = new string[data.Count];
-            int i = 0;
-            int maiorqtde = 0;
-            foreach (var item in data)
+            if (data.Count > 0)
             {
-                x[i] = item.nomefantasia.Trim() + "\r\n" + "Reclamações: " + item.qtderec.ToString() +
-                                                  "\r\n" + "Média Solução: " + "\r\n" + 
-                                                  item.avgdiasatend.ToString()+ " Dias";
-                y[i] = item.avgdiasatend.ToString();
-                if (maiorqtde <= item.avgdiasatend || maiorqtde == item.avgdiasatend)
+                string[] x = new string[data.Count];
+                string[] y = new string[data.Count];
+                int i = 0;
+                int maiorqtde = 0;
+                foreach (var item in data)
                 {
-                    maiorqtde = item.avgdiasatend;
+                    x[i] = item.nomefantasia.Trim() + "\r\n" + "Reclamações: " + item.qtderec.ToString() +
+                                                      "\r\n" + "Média Solução: " + "\r\n" +
+                                                      item.avgdiasatend.ToString() + " Dias";
+                    y[i] = item.avgdiasatend.ToString();
+                    if (maiorqtde <= item.avgdiasatend || maiorqtde == item.avgdiasatend)
+                    {
+                        maiorqtde = item.avgdiasatend;
+                    }
+                    i++;
                 }
-                i++;
-            }
 
-            var Grafico = new Chart(width: 500, height: 400, theme: ChartTheme.Blue)
-                    .SetYAxis("Média para Solucionar em Dias", 0)
-                    .SetXAxis("Fornecedores", 0)
-                    .AddSeries(
-                        markerStep: maiorqtde,
-                        axisLabel: "Media em Dias De Atendimento de Reclamações de compras por Fornecedores",
-                        chartType: Tipo,
-                        legend: "Relatório de Media em Dias de Reclamações",
-                        xField: "Fornecedor",
-                        yFields: "Total de Reclamações",
-                        xValue: x,
-                        yValues: y).GetBytes("png");
-            return File(Grafico, "image/png");
+                var Grafico = new Chart(width: 500, height: 400, theme: ChartTheme.Blue)
+                        .SetYAxis("Média para Solucionar em Dias", 0)
+                        .SetXAxis("Fornecedores", 0)
+                        .AddSeries(
+                            markerStep: maiorqtde,
+                            axisLabel: "Media em Dias De Atendimento de Reclamações de compras por Fornecedores",
+                            chartType: Tipo,
+                            legend: "Relatório de Media em Dias de Reclamações",
+                            xField: "Fornecedor",
+                            yFields: "Total de Reclamações",
+                            xValue: x,
+                            yValues: y).GetBytes("png");
+                return File(Grafico, "image/png");
+            }
+            return null;
 
         }
 
@@ -241,35 +245,39 @@ namespace rdc.Controllers
                 "group by c.estado,c.idfornecedor, c.nomefantasia,rn.qtderecn,rs.qtderecs";
             HomeModel reclamacoes = new HomeModel();
             var data = db.ExecuteStoreQuery<HomeModelFor>(commandFor).ToList();
-            string[] x = new string[data.Count];
-            string[] y = new string[data.Count];
-            int i = 0;
-            int maiorqtde = 0;
-            foreach (var item in data)
+            if (data.Count > 0)
             {
-                x[i] = item.nomefantasia.Trim() + "\r\n" + "Total: " + item.qtderec.ToString()+
-                                                  "\r\n" + "Solucionadas: " + item.qtderecs.ToString();
-                y[i] = item.qtderec.ToString();
-                if (maiorqtde <= item.qtderec || maiorqtde == item.qtderec)
+                string[] x = new string[data.Count];
+                string[] y = new string[data.Count];
+                int i = 0;
+                int maiorqtde = 0;
+                foreach (var item in data)
                 {
-                    maiorqtde = item.qtderec;
+                    x[i] = item.nomefantasia.Trim() + "\r\n" + "Total: " + item.qtderec.ToString() +
+                                                      "\r\n" + "Solucionadas: " + item.qtderecs.ToString();
+                    y[i] = item.qtderec.ToString();
+                    if (maiorqtde <= item.qtderec || maiorqtde == item.qtderec)
+                    {
+                        maiorqtde = item.qtderec;
+                    }
+                    i++;
                 }
-                i++;
-            }
-            var Grafico = new Chart(width: 500, height: 400, theme: ChartTheme.Vanilla3D)
-                    .SetYAxis("Total de Reclamações", 0)
-                    .SetXAxis("Fornecedores",0)
-                    .AddSeries(
-                        markerStep: maiorqtde,
-                        axisLabel: "Total de Reclamações de compras por Fornecedores",
-                        chartType: Tipo,
-                        legend: "Relatório de Reclamações",
-                        xField:"Fornecedor",
-                        yFields:"Total de Reclamações",
-                        xValue: x,
-                        yValues: y).GetBytes("png");
-            return File(Grafico, "image/png");
+                var Grafico = new Chart(width: 500, height: 400, theme: ChartTheme.Vanilla3D)
+                        .SetYAxis("Total de Reclamações", 0)
+                        .SetXAxis("Fornecedores", 0)
+                        .AddSeries(
+                            markerStep: maiorqtde,
+                            axisLabel: "Total de Reclamações de compras por Fornecedores",
+                            chartType: Tipo,
+                            legend: "Relatório de Reclamações",
+                            xField: "Fornecedor",
+                            yFields: "Total de Reclamações",
+                            xValue: x,
+                            yValues: y).GetBytes("png");
+                return File(Grafico, "image/png");
 
+            }
+            return null;
         }
 
         [ActionName("DeleteInteracao")]
