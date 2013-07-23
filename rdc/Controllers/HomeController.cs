@@ -189,12 +189,26 @@ namespace rdc.Controllers
                 "group by r.idfornecedor, f.nomefantasia";
             HomeModel reclamacoes = new HomeModel();
             var data = db.ExecuteStoreQuery<HomeModelAvgtdFor>(commandFor).ToList();
-            if (data.Count > 0)
+            if (data.Count >= 0)
             {
-                string[] x = new string[data.Count];
-                string[] y = new string[data.Count];
+                string[] x;
+                string[] y;
                 int i = 0;
                 int maiorqtde = 0;
+                if (data.Count == 0)
+                {
+                    //Essa condição é para retornar um Gráfico mesmo sem informação, para evitar erro na imagem
+                    x = new string[1];
+                    y = new string[1];
+                    x[0] = "Sem Dados no sistema";
+                    y[0] = "0";
+                    maiorqtde = 1;
+                }
+                else
+                {
+                    x = new string[data.Count];
+                    y = new string[data.Count];
+                }
                 foreach (var item in data)
                 {
                     x[i] = item.nomefantasia.Trim() + "\r\n" + "Reclamações: " + item.qtderec.ToString() +
@@ -245,12 +259,26 @@ namespace rdc.Controllers
                 "group by c.estado,c.idfornecedor, c.nomefantasia,rn.qtderecn,rs.qtderecs";
             HomeModel reclamacoes = new HomeModel();
             var data = db.ExecuteStoreQuery<HomeModelFor>(commandFor).ToList();
-            if (data.Count > 0)
+            if (data.Count >= 0)
             {
-                string[] x = new string[data.Count];
-                string[] y = new string[data.Count];
+                string[] x;
+                string[] y;
                 int i = 0;
                 int maiorqtde = 0;
+                if (data.Count == 0)
+                {
+                    //Essa condição é para retornar um Gráfico mesmo sem informação, para evitar erro na imagem
+                    x = new string[1];
+                    y = new string[1];
+                    x[0] = "Sem Dados no sistema";
+                    y[0] = "0";
+                    maiorqtde = 1;
+                }
+                else
+                {
+                    x = new string[data.Count];
+                    y = new string[data.Count];
+                }
                 foreach (var item in data)
                 {
                     x[i] = item.nomefantasia.Trim() + "\r\n" + "Total: " + item.qtderec.ToString() +
