@@ -45,6 +45,14 @@
       <HintPath>..\Microsoft ADO.NET Entity Framework 4.1\Binaries\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.6.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MySQL Connector Net 6.6.5\Assemblies\v4.0\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity, Version=6.6.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MySQL Connector Net 6.6.5\Assemblies\v4.0\MySql.Data.Entity.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Web, Version=6.6.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\MySQL Connector Net 6.6.5\Assemblies\v4.0\MySql.Web.dll</HintPath>
@@ -84,13 +92,13 @@
   <ItemGroup>
     <Content Include="App_Code\MySQLMembershipProvider.cs" />
     <Content Include="App_Code\MySQLRoleProvider.cs" />
-    <Compile Include="App_Code\BuscaCep.cs">
+    <Compile Include="Models\BuscaCep.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="App_Code\SendMail.cs">
+    <Compile Include="Models\SendMail.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="App_Code\Util.cs">
+    <Compile Include="Models\Util.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
