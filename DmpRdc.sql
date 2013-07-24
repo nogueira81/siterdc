@@ -1,24 +1,3 @@
--- MySQL dump 10.13  Distrib 5.5.16, for Win32 (x86)
---
--- Host: localhost    Database: sistemardc
--- ------------------------------------------------------
--- Server version	5.1.65-community
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `cidades`
---
-
 DROP TABLE IF EXISTS `cidades`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -32,7 +11,7 @@ CREATE TABLE `cidades` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9656 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
+
 -- Dumping data for table `cidades`
 --
 
@@ -72,8 +51,7 @@ CREATE TABLE `clientes` (
   UNIQUE KEY `LOGIN_UNIQUE` (`LOGIN`),
   KEY `FK_CIDADES_idx` (`IDCIDADE`),
   KEY `FKIDFONEC_idx` (`IDFORNECEDOR`),
-  CONSTRAINT `FKIDCIDADES` FOREIGN KEY (`IDCIDADE`) REFERENCES `cidades` (`IDCIDADE`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FKIDFONEC` FOREIGN KEY (`IDFORNECEDOR`) REFERENCES `fornecedores` (`IDFORNECEDOR`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FKIDCIDADES` FOREIGN KEY (`IDCIDADE`) REFERENCES `cidades` (`IDCIDADE`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -83,7 +61,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Thiago Nogueira','04066394698','MG1055696','Rua Marcelino Corradi, Centro','35680039',NULL,'(31) 9964-2826','1981-01-26','thino@ig.com.br','novo usuário teste login','ADM','Thiago','JuxanVhvRXm7FLbOPabQZA==','JuxanVhvRXm7FLbOPabQZA==','MG',3199,NULL),(2,'Fabiana Nogueira Mota e Britto','04066394698','nfjdn555','Rua Lagoa da Prata, 308','35680286',NULL,'(31) 8856-2365','1983-02-13','fabiana@gmail.com','Fabiana casou-se mesmo','NOR','Fabiana','gZ2nIJzOoziJ1ZbjMsRfoA==','gZ2nIJzOoziJ1ZbjMsRfoA==','MG',3199,NULL),(3,'Diego','04066394698','kj76546','Rua Estácio Rodrigues, Havaí','30570330','(37) 3242-1381','(37) 9622-5583','1987-10-16','diegonomot@hotmail.com','Funcionou edição com filtro de cep ao editar o cadastro após alterar maprout.','NOR','Diego','gZ2nIJzOoziJ1ZbjMsRfoA==','gZ2nIJzOoziJ1ZbjMsRfoA==','MG',2690,NULL),(6,'Rosângela Marinho Nogueira','08984868663','mg8899568','Rua Marcelino Corradi, Centro','35680039','(37) 3242-1352','(37) 8805-9596','1987-01-02','rosangela.marinho.nogueira@gmail.com',NULL,'NOR','Rosangela','4hdr7BMFmj7QscsRtNyCxw==','4hdr7BMFmj7QscsRtNyCxw==','MG',3199,NULL),(7,'João Fábio de Oliveira','04066394698','MG2424242','Avenida Lenhita - até 1710/1711, Padre Eustáquio','35680145',NULL,'(31) 8895-9698','1981-03-10','jfdeoliveira@gmail.com','alterado de novo','NOR','Joao','gZ2nIJzOoziJ1ZbjMsRfoA==','gZ2nIJzOoziJ1ZbjMsRfoA==','MG',3199,NULL),(8,'Flávia Mara','04066394698','54569','Rua Professor Benedito Alves, Belvedere','30320160',NULL,'(31) 8856-5555','1984-09-10','fmara@hotmail.com.br','Flávia Mara cadastrada','NOR','Flávia','gZ2nIJzOoziJ1ZbjMsRfoA==','gZ2nIJzOoziJ1ZbjMsRfoA==','MG',2690,NULL),(9,'Geraldo Magela','04066394698',NULL,NULL,NULL,NULL,NULL,NULL,'magela@servidor.com','Usuário marcou o check \"Li e estou de acordo com os termos de uso do Reclame Agora.\" em : 28/6/2013 16:12:12','NOR','Geraldo','gZ2nIJzOoziJ1ZbjMsRfoA==','gZ2nIJzOoziJ1ZbjMsRfoA==','RO',7091,1),(10,'Rosangela Marinho Nogueira','08984868663',NULL,NULL,NULL,NULL,'(37) 8805-9596','1987-01-02','rosangela.marinho.nogueira@gmail.com','Usuário marcou o check \"Li e estou de acordo com os termos de uso do Reclame Agora.\" em : 5/7/2013 17:01:51','NOR','marinho','gZ2nIJzOoziJ1ZbjMsRfoA==','gZ2nIJzOoziJ1ZbjMsRfoA==','MG',3199,NULL);
+-- INSERT INTO `clientes` VALUES (1,'Thiago Nogueira','04066394698','MG1055696','Rua Marcelino Corradi, Centro','35680039',NULL,'(31) 9964-2826','1981-01-26','thino@ig.com.br','novo usuário teste login','ADM','Thiago','JuxanVhvRXm7FLbOPabQZA==','JuxanVhvRXm7FLbOPabQZA==','MG',3199,NULL),(2,'Fabiana Nogueira Mota e Britto','04066394698','nfjdn555','Rua Lagoa da Prata, 308','35680286',NULL,'(31) 8856-2365','1983-02-13','fabiana@gmail.com','Fabiana casou-se mesmo','NOR','Fabiana','gZ2nIJzOoziJ1ZbjMsRfoA==','gZ2nIJzOoziJ1ZbjMsRfoA==','MG',3199,NULL),(3,'Diego','04066394698','kj76546','Rua Estácio Rodrigues, Havaí','30570330','(37) 3242-1381','(37) 9622-5583','1987-10-16','diegonomot@hotmail.com','Funcionou edição com filtro de cep ao editar o cadastro após alterar maprout.','NOR','Diego','gZ2nIJzOoziJ1ZbjMsRfoA==','gZ2nIJzOoziJ1ZbjMsRfoA==','MG',2690,NULL),(6,'Rosângela Marinho Nogueira','08984868663','mg8899568','Rua Marcelino Corradi, Centro','35680039','(37) 3242-1352','(37) 8805-9596','1987-01-02','rosangela.marinho.nogueira@gmail.com',NULL,'NOR','Rosangela','4hdr7BMFmj7QscsRtNyCxw==','4hdr7BMFmj7QscsRtNyCxw==','MG',3199,NULL),(7,'João Fábio de Oliveira','04066394698','MG2424242','Avenida Lenhita - até 1710/1711, Padre Eustáquio','35680145',NULL,'(31) 8895-9698','1981-03-10','jfdeoliveira@gmail.com','alterado de novo','NOR','Joao','gZ2nIJzOoziJ1ZbjMsRfoA==','gZ2nIJzOoziJ1ZbjMsRfoA==','MG',3199,NULL),(8,'Flávia Mara','04066394698','54569','Rua Professor Benedito Alves, Belvedere','30320160',NULL,'(31) 8856-5555','1984-09-10','fmara@hotmail.com.br','Flávia Mara cadastrada','NOR','Flávia','gZ2nIJzOoziJ1ZbjMsRfoA==','gZ2nIJzOoziJ1ZbjMsRfoA==','MG',2690,NULL),(9,'Geraldo Magela','04066394698',NULL,NULL,NULL,NULL,NULL,NULL,'magela@servidor.com','Usuário marcou o check \"Li e estou de acordo com os termos de uso do Reclame Agora.\" em : 28/6/2013 16:12:12','NOR','Geraldo','gZ2nIJzOoziJ1ZbjMsRfoA==','gZ2nIJzOoziJ1ZbjMsRfoA==','RO',7091,1),(10,'Rosangela Marinho Nogueira','08984868663',NULL,NULL,NULL,NULL,'(37) 8805-9596','1987-01-02','rosangela.marinho.nogueira@gmail.com','Usuário marcou o check \"Li e estou de acordo com os termos de uso do Reclame Agora.\" em : 5/7/2013 17:01:51','NOR','marinho','gZ2nIJzOoziJ1ZbjMsRfoA==','gZ2nIJzOoziJ1ZbjMsRfoA==','MG',3199,NULL)*/;
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,40 +103,11 @@ CREATE TABLE `fornecedores` (
 
 LOCK TABLES `fornecedores` WRITE;
 /*!40000 ALTER TABLE `fornecedores` DISABLE KEYS */;
-INSERT INTO `fornecedores` VALUES (1,'Americanas S.A. SP','Americanas S.A. SP','sac@americanas.com.br','33014556000196','Rua Frei Caneca - até 879 - lado ímpar, Consolação','01307001','(11) 3587-9262','(11) 3587-9262','SP','Americanas possui uma carteira muito extensa de produtos para atacado e varejo de todos os tipo e áreas. Essa empresa vende tanto pela internet quando em lojas físicas.',9365,'A','www.americanas.com.br',1,'S'),(2,'Submarino','Submarino','sacsubmarino@americanas.com','02930076000141','Lojas Americanas S/A, Saúde','20081902','(21) 4003-5544','(21) 4003-5544','RJ',NULL,6826,'A','www.submarino.com.br',1,'N'),(3,'ATM LTDA','ATM LTDA','atmltda@yahoo.com.br','00987486000101','Rua Lagoa da Prata, Residencial Morro do So','35680286','(37) 3241-1569','(37) 8896-5896','MG','EMPRESA NO RAMO DE PRESTAÇÃO DE SERVIÇO DE  ELÉTRICA E INSTRUMENTAÇÃO.',3199,'A',NULL,1,'N'),(4,'CTBC TELECOM','CTBC TELECOM','sac@ctbc.com.br','71208516000174','Avenida João Pinheiro - de 620/621 a 1146/11, Centro','38400126','(00) 0000-10312','(00) 0000-10312','MG','CTBC Telecom uma empresa do grupo Algar Telecom.\r\nAtua com Telefonia Fixa, Celular, Pacotes de TV, Internet Fixa e Móvel.',3974,'A','www.ctbc.com.br',1,'N'),(5,'Oi Telecomunicações','Oi Telecomunicações','atendimento@oi.com.br','04164616000159','Rua Engenheiro Niemeyer, Centro','89201130','(00) 0000-10331','(00) 0000-10331','SC','Oi Telecom atua em todo o território nacional comercializando produtos de telefonia, banda larga e tv por assinatura para pessoa física e jurídica.',8240,'A','www.oi.com.br',1,'N'),(6,'CLARO S.A','CLARO S.A','atendimento@claro.com.br','40432544000147','Rua Flórida, 1570 Brooklin','04665001','(00) 0000-10321','(00) 0000-10321','SP','Nova Claro SA aberta em São Paulo.',9365,'A','www.claro.com.br',1,'N'),(7,'Ricardo Eletro Divinópolis Ltda','Ricardo Eletro','sac@ricardoeletro.com','64282601020142','Rua Um, Arvoredo II','32113500','(00) 4002-2343','(00) 4002-2343','MG',NULL,2912,'A','www.ricardoeletro.com.br',1,'N'),(9,'Farmax','Farmax','sac@farmax.com.br','21759758000188','Rua Luiz Guilherme da Silva, Distrito Industrial Cor','35502284','(37) 3215-6598',NULL,'MG',NULL,2979,'A','www.farmax.com.br',1,'N'),(12,'INFORHOUSE','INFORHOUSE','suporte@inforhouseinformatica.com.br','24025496000116','Rua Gonçalves da Guia, Centro 192','35680009','(37) 3241-2910',NULL,'MG',NULL,3199,'A','http://www.inforhouseinformatica.com.br/',1,'S');
+-- INSERT INTO `fornecedores` VALUES (1,'Americanas S.A. SP','Americanas S.A. SP','sac@americanas.com.br','33014556000196','Rua Frei Caneca - até 879 - lado ímpar, Consolação','01307001','(11) 3587-9262','(11) 3587-9262','SP','Americanas possui uma carteira muito extensa de produtos para atacado e varejo de todos os tipo e áreas. Essa empresa vende tanto pela internet quando em lojas físicas.',9365,'A','www.americanas.com.br',1,'S'),(2,'Submarino','Submarino','sacsubmarino@americanas.com','02930076000141','Lojas Americanas S/A, Saúde','20081902','(21) 4003-5544','(21) 4003-5544','RJ',NULL,6826,'A','www.submarino.com.br',1,'N'),(3,'ATM LTDA','ATM LTDA','atmltda@yahoo.com.br','00987486000101','Rua Lagoa da Prata, Residencial Morro do So','35680286','(37) 3241-1569','(37) 8896-5896','MG','EMPRESA NO RAMO DE PRESTAÇÃO DE SERVIÇO DE  ELÉTRICA E INSTRUMENTAÇÃO.',3199,'A',NULL,1,'N'),(4,'CTBC TELECOM','CTBC TELECOM','sac@ctbc.com.br','71208516000174','Avenida João Pinheiro - de 620/621 a 1146/11, Centro','38400126','(00) 0000-10312','(00) 0000-10312','MG','CTBC Telecom uma empresa do grupo Algar Telecom.\r\nAtua com Telefonia Fixa, Celular, Pacotes de TV, Internet Fixa e Móvel.',3974,'A','www.ctbc.com.br',1,'N'),(5,'Oi Telecomunicações','Oi Telecomunicações','atendimento@oi.com.br','04164616000159','Rua Engenheiro Niemeyer, Centro','89201130','(00) 0000-10331','(00) 0000-10331','SC','Oi Telecom atua em todo o território nacional comercializando produtos de telefonia, banda larga e tv por assinatura para pessoa física e jurídica.',8240,'A','www.oi.com.br',1,'N'),(6,'CLARO S.A','CLARO S.A','atendimento@claro.com.br','40432544000147','Rua Flórida, 1570 Brooklin','04665001','(00) 0000-10321','(00) 0000-10321','SP','Nova Claro SA aberta em São Paulo.',9365,'A','www.claro.com.br',1,'N'),(7,'Ricardo Eletro Divinópolis Ltda','Ricardo Eletro','sac@ricardoeletro.com','64282601020142','Rua Um, Arvoredo II','32113500','(00) 4002-2343','(00) 4002-2343','MG',NULL,2912,'A','www.ricardoeletro.com.br',1,'N'),(9,'Farmax','Farmax','sac@farmax.com.br','21759758000188','Rua Luiz Guilherme da Silva, Distrito Industrial Cor','35502284','(37) 3215-6598',NULL,'MG',NULL,2979,'A','www.farmax.com.br',1,'N'),(12,'INFORHOUSE','INFORHOUSE','suporte@inforhouseinformatica.com.br','24025496000116','Rua Gonçalves da Guia, Centro 192','35680009','(37) 3241-2910',NULL,'MG',NULL,3199,'A','http://www.inforhouseinformatica.com.br/',1,'S')*/;
 /*!40000 ALTER TABLE `fornecedores` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `interacoes`
---
-
-DROP TABLE IF EXISTS `interacoes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `interacoes` (
-  `IDINTERACAO` int(11) NOT NULL AUTO_INCREMENT,
-  `INFORMACOES` varchar(4000) NOT NULL,
-  `DATAINTERACAO` date NOT NULL,
-  `IDRECLAMACAO` int(11) NOT NULL,
-  `IDCLIENTE` int(11) NOT NULL,
-  PRIMARY KEY (`IDINTERACAO`),
-  KEY `FKINTIDRECL_idx` (`IDRECLAMACAO`),
-  KEY `FKINTIDCLI_idx` (`IDCLIENTE`),
-  CONSTRAINT `FKINTIDCLI` FOREIGN KEY (`IDCLIENTE`) REFERENCES `clientes` (`IDCLIENTE`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FKINTIDRECL` FOREIGN KEY (`IDRECLAMACAO`) REFERENCES `reclamacoes` (`idreclamacao`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `interacoes`
---
-
-LOCK TABLES `interacoes` WRITE;
-/*!40000 ALTER TABLE `interacoes` DISABLE KEYS */;
-INSERT INTO `interacoes` VALUES (1,'Consegui Resolver esse problema através do Pequenas Causas.','2013-06-19',11,1),(2,'Meu problema ainda continua e ninguem me retornou das Americanas após abrir 5 chamados pelo SAC 4004-2030','2013-06-19',7,3),(3,'Mais um detalhe, tive que ir no Procom da minha cidade.','2013-06-20',7,3),(4,'Estou com o mesmo problema e fazer como você para solucionar','2013-06-20',7,1),(5,'As Americanas não tem nenhum respeito com o consumidor. Seu pós vendas é péssimo.','2013-06-20',1,3),(6,'Essa Geladeira é péssima mesmo.','2013-06-20',3,1),(10,'Favor informar mais detalhes do produto como modelo, série etc.','2013-06-25',3,6),(32,'Qual é a marca do mp3?','2013-06-26',8,1),(33,'A marca letssouns modelo vw13d com cartão de 2 gb','2013-06-26',8,6),(34,'Estou aguardando para tentar te ajudar.','2013-06-26',3,6),(35,'Empresa entrou em contato por telefone e realizou a troca do notebook','2013-06-26',2,1),(36,'Após arduos meses de reclamações a Empresa resolveu devolver o meu dinheiro no valor do produto na época da compra. Grato a Todos!','2013-06-28',7,3),(37,'Cara, resolvi meu problema e consegui meu dimdim de volta. Vai a luta!','2013-06-28',1,3),(38,'Prezado,\r\n\r\nVenho através desse comunicar iremos trocar seu produto por um novo en até 15 dias úteis.\r\nDesculpe o trantorno!\r\n\r\nAtt,\r\nAmericanas S.A.','2013-07-01',4,9),(39,'Ficarei no Aguardo do contato para realizar a troca.\r\nEspero que tudo ocorra bem desta vez.','2013-07-01',4,1),(40,'Entrarei em contato amanhã entre as 08:00 e 15:00hs','2013-07-01',4,9),(41,'Isso mesmo amiga....até mesmo das coisas que são consideradas de baixo custo, temos que procurar nossos direitos. Corra atrás e se for preciso vá no Procom.','2013-07-09',28,10),(42,'Prezado Cliente, \r\n\r\nRealizamos a troca conforme informado.\r\nFavor Concluir a Reclamação.\r\n\r\nObrigado e Agradecemos sua atenção.','2013-07-09',4,9),(58,'Consegui Resolver esse problema através do Pequenas Causas.','2013-07-10',8,1),(59,'Ainda sem retorno.','2013-07-15',31,1),(60,'Ola Thiago,\r\nVai no Procom no centro de Itaúna e procura a Maria Antônia que a mesma te apoia nesse assunto.\r\nAssim que eu fiz.\r\nAbraço.','2013-07-16',35,10);
-/*!40000 ALTER TABLE `interacoes` ENABLE KEYS */;
-UNLOCK TABLES;
+ALTER TABLE `clientes` ADD CONSTRAINT `FKIDFONEC` FOREIGN KEY (`IDFORNECEDOR`) REFERENCES `fornecedores` (`IDFORNECEDOR`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Table structure for table `reclamacoes`
@@ -191,18 +140,49 @@ CREATE TABLE `reclamacoes` (
 
 LOCK TABLES `reclamacoes` WRITE;
 /*!40000 ALTER TABLE `reclamacoes` DISABLE KEYS */;
-INSERT INTO `reclamacoes` VALUES (1,'Fogão Brastemp Timer ruim','Fogão Brastemp Timer ruim','N',1,1,'2013-01-01','(31) 9941-1381',NULL),(2,'Notebook Dell barulho ao gravar dvd','Notebook Dell Inspirion com barulho alto ao gravar dvd','I',1,2,'2013-02-15','(11) 9999-98565','2013-06-20'),(3,'Geladeira brastemp não liga','Geladeira brastemp não liga','N',2,1,'2012-10-05','(21) 9568-9874',NULL),(4,'Mouse wirelles com lentidão','Mouse wirelles com lentidão. Marca do mouse é Noteship série 3456.','C',1,1,'2013-04-23','(37) 9964-2826','2013-07-02'),(6,'refrigerador com barulho alto','refrigerador com barulho alto no motor em alguns intervalos durante o dia','N',1,1,'2012-10-10','(37) 8865-2398',NULL),(7,'Microondas Eletrolux','Comprei um microondas eletrolux e o mesmo veio com um amassado na porta.','C',3,1,'2013-03-21','(31) 4569-8745','2013-06-28'),(8,'mp3 descarrega rápido','Comprei um mp3 e o mesmo decarrega rápido.','I',6,2,'2012-07-09','(31) 4003-6598','2013-01-10'),(11,'Sansung novo nunca ligou','Celular Sansung Galaxy S3 não funciona.','C',1,2,'2013-06-01','(37) 9964-2826','2013-06-15'),(12,'Misteira Black Decker com Defeito','Comprei uma misteira na Ricardo Eletro da marca Black Decker modelo de Inox z23594pt.\r\nAcontece que quando ligo e coloco algo na misteira está cheirando queimado.\r\nVi na parte de trás dela que a borracha está derrentendo.\r\nEntrei em contato com a loja e fui informado que o problema é mau uso.\r\nE é claro que não é, pois o cabo está novo e somente a parte que derretei está gerando um mau contato.','N',7,7,'2013-03-19','(37) 8803-9052',NULL),(27,'manteiga de cacau estragada','manteiga de cacau gerou queimadura de grau 3 em mim.\r\nVou processar, pois fui parar no hospital.','N',10,9,'2013-06-01','(37) 8805-9596',NULL),(28,'Comprei um esmalte estragado','Comprei um esmalte estragado. Quando abri para fazer unha vi que o mesmo estava seco, porém na garantia. A vendedora não quiz trocar.','N',2,9,'2013-07-01','(37) 9922-5522',NULL),(29,'Bombom com bicho','Comprei ontem uma caixa de bombom nas e ao abrir a caixa vi que estava cheia de bichos.\r\nA atendente informou que poderia trocar e que eu deveria entrar em contato com o Fabricante do bombom.\r\nAbsurdo isso.','N',10,1,'2013-07-01','(31) 9984-5698',NULL),(31,'bombom recheado de bichos','Comprei ontem uma caixa de bombom Lacka e ao abrir a caixa vi que estava cheia de bichos.\r\nA atendente informou que poderia trocar e que eu deveria entrar em contato com o Fabricante do bombom.\r\nAbsurdo isso.','I',1,1,'2013-07-10','(37) 9987-4563','2013-07-15'),(35,'Teclado com tecla que não funcionam','Comprei um teclado da ibm no mês passado e as teclas do mesmo não funcionam.\r\nFui na loja para trocar e a vendedora informou que foi mau uso.\r\nAbsurdo, pois o mesmo não tem arranhão e nada quebrado.\r\nFui prejudicado.','N',1,12,'2013-07-10','(37) 9941-1381',NULL);
+-- INSERT INTO `reclamacoes` VALUES (1,'Fogão Brastemp Timer ruim','Fogão Brastemp Timer ruim','N',1,1,'2013-01-01','(31) 9941-1381',NULL),(2,'Notebook Dell barulho ao gravar dvd','Notebook Dell Inspirion com barulho alto ao gravar dvd','I',1,2,'2013-02-15','(11) 9999-98565','2013-06-20'),(3,'Geladeira brastemp não liga','Geladeira brastemp não liga','N',2,1,'2012-10-05','(21) 9568-9874',NULL),(4,'Mouse wirelles com lentidão','Mouse wirelles com lentidão. Marca do mouse é Noteship série 3456.','C',1,1,'2013-04-23','(37) 9964-2826','2013-07-02'),(6,'refrigerador com barulho alto','refrigerador com barulho alto no motor em alguns intervalos durante o dia','N',1,1,'2012-10-10','(37) 8865-2398',NULL),(7,'Microondas Eletrolux','Comprei um microondas eletrolux e o mesmo veio com um amassado na porta.','C',3,1,'2013-03-21','(31) 4569-8745','2013-06-28'),(8,'mp3 descarrega rápido','Comprei um mp3 e o mesmo decarrega rápido.','I',6,2,'2012-07-09','(31) 4003-6598','2013-01-10'),(11,'Sansung novo nunca ligou','Celular Sansung Galaxy S3 não funciona.','C',1,2,'2013-06-01','(37) 9964-2826','2013-06-15'),(12,'Misteira Black Decker com Defeito','Comprei uma misteira na Ricardo Eletro da marca Black Decker modelo de Inox z23594pt.\r\nAcontece que quando ligo e coloco algo na misteira está cheirando queimado.\r\nVi na parte de trás dela que a borracha está derrentendo.\r\nEntrei em contato com a loja e fui informado que o problema é mau uso.\r\nE é claro que não é, pois o cabo está novo e somente a parte que derretei está gerando um mau contato.','N',7,7,'2013-03-19','(37) 8803-9052',NULL),(27,'manteiga de cacau estragada','manteiga de cacau gerou queimadura de grau 3 em mim.\r\nVou processar, pois fui parar no hospital.','N',10,9,'2013-06-01','(37) 8805-9596',NULL),(28,'Comprei um esmalte estragado','Comprei um esmalte estragado. Quando abri para fazer unha vi que o mesmo estava seco, porém na garantia. A vendedora não quiz trocar.','N',2,9,'2013-07-01','(37) 9922-5522',NULL),(29,'Bombom com bicho','Comprei ontem uma caixa de bombom nas e ao abrir a caixa vi que estava cheia de bichos.\r\nA atendente informou que poderia trocar e que eu deveria entrar em contato com o Fabricante do bombom.\r\nAbsurdo isso.','N',10,1,'2013-07-01','(31) 9984-5698',NULL),(31,'bombom recheado de bichos','Comprei ontem uma caixa de bombom Lacka e ao abrir a caixa vi que estava cheia de bichos.\r\nA atendente informou que poderia trocar e que eu deveria entrar em contato com o Fabricante do bombom.\r\nAbsurdo isso.','I',1,1,'2013-07-10','(37) 9987-4563','2013-07-15'),(35,'Teclado com tecla que não funcionam','Comprei um teclado da ibm no mês passado e as teclas do mesmo não funcionam.\r\nFui na loja para trocar e a vendedora informou que foi mau uso.\r\nAbsurdo, pois o mesmo não tem arranhão e nada quebrado.\r\nFui prejudicado.','N',1,12,'2013-07-10','(37) 9941-1381',NULL)*/;
 /*!40000 ALTER TABLE `reclamacoes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `interacoes`
+--
+
+DROP TABLE IF EXISTS `interacoes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE interacoes (
+  IDINTERACAO int(11) NOT NULL AUTO_INCREMENT,
+  INFORMACOES varchar(4000) NOT NULL,
+  DATAINTERACAO date NOT NULL,
+  IDRECLAMACAO int(11) NOT NULL,
+  IDCLIENTE int(11) NOT NULL,
+  PRIMARY KEY (`IDINTERACAO`),
+  KEY FKINTIDRECL_idx (IDRECLAMACAO),
+  KEY FKINTIDCLI_idx (IDCLIENTE),
+  CONSTRAINT FKINTIDCLI FOREIGN KEY (IDCLIENTE) REFERENCES clientes (IDCLIENTE) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT FKINTIDRECL FOREIGN KEY (IDRECLAMACAO) REFERENCES reclamacoes (idreclamacao) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `interacoes`
+--
+
+LOCK TABLES `interacoes` WRITE;
+/*!40000 ALTER TABLE `interacoes` DISABLE KEYS */;
+-- INSERT INTO `interacoes` VALUES (1,'Consegui Resolver esse problema através do Pequenas Causas.','2013-06-19',11,1),(2,'Meu problema ainda continua e ninguem me retornou das Americanas após abrir 5 chamados pelo SAC 4004-2030','2013-06-19',7,3),(3,'Mais um detalhe, tive que ir no Procom da minha cidade.','2013-06-20',7,3),(4,'Estou com o mesmo problema e fazer como você para solucionar','2013-06-20',7,1),(5,'As Americanas não tem nenhum respeito com o consumidor. Seu pós vendas é péssimo.','2013-06-20',1,3),(6,'Essa Geladeira é péssima mesmo.','2013-06-20',3,1),(10,'Favor informar mais detalhes do produto como modelo, série etc.','2013-06-25',3,6),(32,'Qual é a marca do mp3?','2013-06-26',8,1),(33,'A marca letssouns modelo vw13d com cartão de 2 gb','2013-06-26',8,6),(34,'Estou aguardando para tentar te ajudar.','2013-06-26',3,6),(35,'Empresa entrou em contato por telefone e realizou a troca do notebook','2013-06-26',2,1),(36,'Após arduos meses de reclamações a Empresa resolveu devolver o meu dinheiro no valor do produto na época da compra. Grato a Todos!','2013-06-28',7,3),(37,'Cara, resolvi meu problema e consegui meu dimdim de volta. Vai a luta!','2013-06-28',1,3),(38,'Prezado,\r\n\r\nVenho através desse comunicar iremos trocar seu produto por um novo en até 15 dias úteis.\r\nDesculpe o trantorno!\r\n\r\nAtt,\r\nAmericanas S.A.','2013-07-01',4,9),(39,'Ficarei no Aguardo do contato para realizar a troca.\r\nEspero que tudo ocorra bem desta vez.','2013-07-01',4,1),(40,'Entrarei em contato amanhã entre as 08:00 e 15:00hs','2013-07-01',4,9),(41,'Isso mesmo amiga....até mesmo das coisas que são consideradas de baixo custo, temos que procurar nossos direitos. Corra atrás e se for preciso vá no Procom.','2013-07-09',28,10),(42,'Prezado Cliente, \r\n\r\nRealizamos a troca conforme informado.\r\nFavor Concluir a Reclamação.\r\n\r\nObrigado e Agradecemos sua atenção.','2013-07-09',4,9),(58,'Consegui Resolver esse problema através do Pequenas Causas.','2013-07-10',8,1),(59,'Ainda sem retorno.','2013-07-15',31,1),(60,'Ola Thiago,\r\nVai no Procom no centro de Itaúna e procura a Maria Antônia que a mesma te apoia nesse assunto.\r\nAssim que eu fiz.\r\nAbraço.','2013-07-16',35,10)*/;
+/*!40000 ALTER TABLE `interacoes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Table structure for table `roles`
 --
 
-DROP TABLE IF EXISTS `roles`;
+DROP TABLE IF EXISTS `Roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `roles` (
+CREATE TABLE `Roles` (
   `Rolename` varchar(255) NOT NULL,
   `ApplicationName` varchar(255) NOT NULL,
   KEY `idxroles` (`Rolename`,`ApplicationName`)
@@ -213,61 +193,20 @@ CREATE TABLE `roles` (
 -- Dumping data for table `roles`
 --
 
-LOCK TABLES `roles` WRITE;
-/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES ('ADM','/'),('NOR','/');
-/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `users`
---
-
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
-  `PKID` varchar(36) COLLATE latin1_general_ci NOT NULL DEFAULT '',
-  `Username` varchar(255) COLLATE latin1_general_ci NOT NULL DEFAULT '',
-  `ApplicationName` varchar(100) COLLATE latin1_general_ci NOT NULL DEFAULT '',
-  `Email` varchar(100) COLLATE latin1_general_ci NOT NULL DEFAULT '',
-  `Comment` varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
-  `Password` varchar(128) COLLATE latin1_general_ci NOT NULL DEFAULT '',
-  `PasswordQuestion` varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
-  `PasswordAnswer` varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
-  `IsApproved` tinyint(1) DEFAULT NULL,
-  `LastActivityDate` datetime DEFAULT NULL,
-  `LastLoginDate` datetime DEFAULT NULL,
-  `LastPasswordChangedDate` datetime DEFAULT NULL,
-  `CreationDate` datetime DEFAULT NULL,
-  `IsOnLine` tinyint(1) DEFAULT NULL,
-  `IsLockedOut` tinyint(1) DEFAULT NULL,
-  `LastLockedOutDate` datetime DEFAULT NULL,
-  `FailedPasswordAttemptCount` int(11) DEFAULT NULL,
-  `FailedPasswordAttemptWindowStart` datetime DEFAULT NULL,
-  `FailedPasswordAnswerAttemptCount` int(11) DEFAULT NULL,
-  `FailedPasswordAnswerAttemptWindowStart` datetime DEFAULT NULL,
-  PRIMARY KEY (`PKID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+LOCK TABLES `Roles` WRITE;
+/*!40000 ALTER TABLE `Roles` DISABLE KEYS */;
+-- INSERT INTO `Roles` VALUES ('ADM','/'),('NOR','/');
+/*!40000 ALTER TABLE `Roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Table structure for table `usersinroles`
 --
 
-DROP TABLE IF EXISTS `usersinroles`;
+DROP TABLE IF EXISTS `UsersInRoles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `usersinroles` (
+CREATE TABLE `UsersInRoles` (
   `Username` varchar(255) NOT NULL,
   `Rolename` varchar(255) NOT NULL,
   `ApplicationName` varchar(255) NOT NULL,
@@ -279,10 +218,10 @@ CREATE TABLE `usersinroles` (
 -- Dumping data for table `usersinroles`
 --
 
-LOCK TABLES `usersinroles` WRITE;
-/*!40000 ALTER TABLE `usersinroles` DISABLE KEYS */;
-INSERT INTO `usersinroles` VALUES ('Adolfo','ADM','/'),('Thiago','ADM','/'),('Atanagildo','NOR','/'),('Diego','NOR','/'),('Fabiana','NOR','/'),('Flávia','NOR','/'),('Geraldo','NOR','/'),('Joao','NOR','/'),('marinho','NOR','/'),('Morel','NOR','/'),('Murilo','NOR','/'),('paulo','NOR','/'),('Rosangela','NOR','/');
-/*!40000 ALTER TABLE `usersinroles` ENABLE KEYS */;
+LOCK TABLES `UsersInRoles` WRITE;
+/*!40000 ALTER TABLE `UsersInRoles` DISABLE KEYS */;
+-- INSERT INTO `UsersInRoles` VALUES ('Adolfo','ADM','/'),('Thiago','ADM','/'),('Atanagildo','NOR','/'),('Diego','NOR','/'),('Fabiana','NOR','/'),('Flávia','NOR','/'),('Geraldo','NOR','/'),('Joao','NOR','/'),('marinho','NOR','/'),('Morel','NOR','/'),('Murilo','NOR','/'),('paulo','NOR','/'),('Rosangela','NOR','/');
+/*!40000 ALTER TABLE `UsersInRoles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -293,5 +232,5 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
+COMMIT;
 -- Dump completed on 2013-07-18 11:09:15
