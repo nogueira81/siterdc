@@ -151,8 +151,6 @@ namespace rdc.Controllers
                     Cliente.SENHA, Cliente.CONFIRMASENHA, Cliente_CEP, Cliente_CPF, Cliente.RG,
                     Cliente.ENDERECO, Cliente.IDCIDADE, Cliente.ESTADO, Cliente.INFORMACOES,
                     Cliente.NASCIMENTO, Cliente.TIPOCLIENTE, Cliente.FONEFIXO, Cliente.FONECELULAR);
-                //Formatar data antes de inserir
-                string.Format("{0:dd/MM/yyyy}", novocliente.NASCIMENTO);
                 //Assim o objeto de banco de dados não gera erro ao adicionar o objeto no banco para salvar
                 db.clientes.AddObject(novocliente);
                 db.SaveChanges();
@@ -225,8 +223,6 @@ namespace rdc.Controllers
                     Cliente.SENHA, Cliente.CONFIRMASENHA, Cliente_CEP, Cliente_CPF, Cliente.RG,
                     Cliente.ENDERECO, Cliente.IDCIDADE, Cliente.ESTADO, Cliente.INFORMACOES,
                     Cliente.NASCIMENTO, Cliente.TIPOCLIENTE, Cliente.FONEFIXO, Cliente.FONECELULAR,Cliente.IDFORNECEDOR);
-                //Formatar data antes de inserir
-                string.Format("{0:dd/MM/yyyy}", novocliente.NASCIMENTO);
                 //Assim o objeto de banco de dados não gera erro ao adicionar o objeto no banco para salvar
                 db.clientes.Attach(novocliente);
                 db.ObjectStateManager.ChangeObjectState(novocliente, EntityState.Modified);
