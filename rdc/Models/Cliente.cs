@@ -113,7 +113,7 @@ namespace rdc.Models
             string polusorecagora = "" +
          "   Do Uso do Site ReclameAgora.com.br\r\n" +
          "\r\n" +
-         "                O Reclame Agora! convida-o a visitar o seu site (www.reclameAgora.com.br) e lhe informa os Termos e Condições que regem o uso do mesmo e de seus serviços disponíveis.\r\n" +
+         "                O Reclame Agora! convida-o a visitar o seu site (http://reclameagora.apphb.com/) e lhe informa os Termos e Condições que regem o uso do mesmo e de seus serviços disponíveis.\r\n" +
          "\r\n" +
          "                Por favor, leia atentamente as condições abaixo estipuladas para que você possa usufruir dos serviços prestados pelo site e lembre-se que ao utilizá-los, você estará declarando ter ciência do presente Termos e Condições de Uso do Site e estará concordando com todas as suas cláusulas e condições.\r\n" +
          "\r\n" +
@@ -121,7 +121,7 @@ namespace rdc.Models
          "\r\n" +
          "                1. Dos Serviços\r\n" +
          "\r\n" +
-         "                1.1 O Reclame Agora é proprietário e titular exclusivo dos direitos do site www.reclameAgora.com.br,e também do domínio www.reclameAgora.net site este que disponibiliza uma ferramenta de interação e intermediação de problemas entre o consumidor e fornecedor dentro do que prevê a legislação brasileira.\r\n" +
+         "                1.1 O Reclame Agora é proprietário e titular exclusivo dos direitos do site http://reclameagora.apphb.com/ ,e também do domínio http://reclameagora.apphb.com/ site este que disponibiliza uma ferramenta de interação e intermediação de problemas entre o consumidor e fornecedor dentro do que prevê a legislação brasileira.\r\n" +
          "\r\n" +
          "                1.1.1 A qualquer momento poderão ser incluídas novas ferramentas, serviços e atividades no site do Reclame Agora, bem como excluídas as já existentes, sem qualquer aviso prévio ao USUÁRIO.\r\n" +
          "\r\n" +
@@ -296,7 +296,7 @@ namespace rdc.Models
          "\r\n" +
          "                9.4 Qualquer reclamação judicial ou extrajudicial que venha a ser formulada em face do Reclame Agora, em razão de material enviado pelo USUÁRIO, ou descumprimento ou infringência de qualquer cláusula ou disposição constante do presente instrumento, obrigará o USUÁRIO a responder integralmente e, se for o caso, regressivamente, por todas as perdas e danos causados ao Reclame Agora! e/ou à terceiros, ficando autorizada, desde já a denunciação da lide do USUÁRIO, nos exatos termos do art. 70, III, do Código de Processo Civil.\r\n" +
          "\r\n" +
-         "                9.5 O domínio do site do Reclame Agora! é exclusivamente o www.reclameAgora.com.br e www.reclameAgora.net . Sendo assim, o Reclame Agora não se responsabilizará por quaisquer acessos do USUÁRIO à outros domínios, mesmo que tais se apresentem com as mesmas características do Reclame Agora.\r\n" +
+         "                9.5 O domínio do site do Reclame Agora! é exclusivamente o http://reclameagora.apphb.com/ e http://reclameagora.apphb.com/ . Sendo assim, o Reclame Agora não se responsabilizará por quaisquer acessos do USUÁRIO à outros domínios, mesmo que tais se apresentem com as mesmas características do Reclame Agora.\r\n" +
          "\r\n" +
          "                9.6 O Reclame Agora não se responsabiliza nem pelo conteúdo nem pelas políticas e práticas de privacidade dos sites que apontam para o Reclame Agora e daqueles para os quais apontamos.\r\n" +
          "\r\n" +

@@ -13,20 +13,13 @@ namespace rdc.Controllers
 {
     public class HomeController : Controller
     {
+
         private sistemardcEntities db = new sistemardcEntities();
 
         public ActionResult Index(string buscar = null, string buscarEst = null, string buscarFor = null)
         {
-            /*ViewBag.Message = "Bem vindo ao Reclame Agora!";
-            if (buscarEst == "[Todos os Estados]")
-            {
-                buscarEst = null;                
-            }
-            if (buscarFor == "[Todos os Fornecedores]")
-            {
-                buscarFor = null;
-            }*/
-            //criar filtros para Buscar na tela
+            //ViewBag.Message = "Bem vindo ao Reclame Agora!";
+            //Criar filtros para Buscar na tela Início
             string qry = "select * from reclamacoes where 0=0  ";
 
             qry = "select * from reclamacoes where 0=0 ";
@@ -48,7 +41,7 @@ namespace rdc.Controllers
             }
             if (!string.IsNullOrEmpty(buscarFor))
             {
-                qry = qry + " and upper(idfornecedor) like upper('%" + buscarFor + "%')";
+                qry = qry + " and idfornecedor = " + buscarFor;
                 //Retornar o filtro para a tela principal
                 ViewBag.buscarFor = new SelectList(db.fornecedores, "IDFORNECEDOR", "razaosocial", buscarFor);
             }
@@ -110,8 +103,9 @@ namespace rdc.Controllers
                 interaco.reclamaco = db.reclamacoes.First(x => x.idreclamacao == Interacao.IDRECLAMACAO);
                 //Recuperar dados do Cliente dono da Reclamação que originou essa interação
                 interaco.cliente = db.clientes.First(x => x.IDCLIENTE == interaco.reclamaco.IDCLIENTE);
-                SendMail.EnviaEmail(interaco.cliente.EMAIL, interaco.cliente.NOME,
-                    "Retorno da sua Reclamação no ReclameAgora",
+
+                string Subemailclifor = "Retorno da sua Reclamação no ReclameAgora";
+                string Bodmsemailclifor =
                     "Prezado(a) <span color:Blue><b>" + interaco.cliente.NOME.ToString() + "</b></span>,<br /><br />" +
                     "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
                     "Favor verificar sua Reclamação : <b>" + interaco.reclamaco.titulo.ToString() + "</b>.<br /><br />" +
@@ -120,11 +114,32 @@ namespace rdc.Controllers
                     "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
                     Interacao.INFORMACOES.ToString() + "<br /><br />" +
                     "Para verificar, acesse " +
-                    "<a href=\"http://www.reclameagora.com.br/\" title=\"ReclameAgora\"> http://www.reclameagora.com.br/</a> <br /><br />" +
+                    "<a href=\"http://reclameagora.apphb.com/\" title=\"ReclameAgora\"> http://reclameagora.apphb.com/</a> <br /><br />" +
                     "Atenciosamente,<br />" +
-                    "Equipe ReclameAgora");
+                    "Equipe ReclameAgora";
+                //Início Chamada Enviar E-mail ao Cliente dono da Reclamação informando haver nova Interação
+                //Envio ao Cliente
+                SendMail.EnviaEmail(interaco.cliente.EMAIL, interaco.cliente.NOME, Subemailclifor, Bodmsemailclifor);
+                //Envio ao Fornecedor informando havernova interação
+                //Recuperar dados do Cliente dono da Reclamação que originou essa interação
+                interaco.reclamaco.fornecedore = db.fornecedores.First(x => x.IDFORNECEDOR == interaco.reclamaco.IDFORNECEDOR);
+                string Subemailfor = "Retorno da sua Reclamação no ReclameAgora";
+                string Bodmsemailfor =
+                    "Prezado Fornecedor <span color:Blue><b>" + interaco.reclamaco.fornecedore.razaosocial.ToString() + "</b></span>,<br /><br />" +
+                    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                    "Favor verificar a Reclamação : <b>" + interaco.reclamaco.titulo.ToString() + "</b>" +
+                    " registrada pelo Cliente : <b>" + interaco.cliente.NOME.ToString() + "</b> sobre a sua Empresa.<br /><br />" +
+                    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                    "Foi inserida a seguinte Interação nessa Reclamação : <br /><br />" +
+                    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                    Interacao.INFORMACOES.ToString() + "<br /><br />" +
+                    "Para verificar, acesse " +
+                    "<a href=\"http://reclameagora.apphb.com/\" title=\"ReclameAgora\"> http://reclameagora.apphb.com/</a> <br /><br />" +
+                    "Atenciosamente,<br />" +
+                    "Equipe ReclameAgora";
+                SendMail.EnviaEmail(interaco.reclamaco.fornecedore.email, interaco.reclamaco.fornecedore.razaosocial,
+                    Subemailfor, Bodmsemailfor);
                 //Fim da Chamada Enviar E-mail
-
                 TempData["msgInteracao"] = "True";
             }
             return RedirectToAction("DetalheInteracao", new { id = Interacao.IDRECLAMACAO });

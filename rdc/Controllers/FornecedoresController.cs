@@ -144,7 +144,7 @@ namespace rdc.Controllers
                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
                         "A partir desse momento, você pode entrar no Reclame Agora e inserir sua(s) Reclamação(ões) e ainda Interagir quando necessário : <br /><br />" +
                         "Para verificar e reclamar, acesse " +
-                        "<a href=\"http://www.reclameagora.com.br/\" title=\"ReclameAgora\"> http://www.reclameagora.com.br/</a> <br /><br />" +
+                        "<a href=\"http://reclameagora.apphb.com/\" title=\"ReclameAgora\"> http://reclameagora.apphb.com/</a> <br /><br />" +
                         "Atenciosamente,<br />" +
                         "Equipe ReclameAgora";
                     //Início Chamada Enviar E-mail ao Cliente dono da Reclamação informando haver nova Interação
@@ -154,6 +154,23 @@ namespace rdc.Controllers
                         Fornecedor.ENVEMAILCLISOL = "S";
                     }
                     //Fim da Chamada Enviar E-mail
+                    //Avisar ao Fornecedor foi Ativado para Cliente Reclamarem
+                    string Sender = Fornecedor.email;
+                    string NameSender = Fornecedor.razaosocial;
+                    Subemailclifor = "Fornecedor Ativo para os Clientes do ReclameAgora Interagirem";
+                    Bodmsemailclifor =
+                        "Prezado Fornecedor <span color:Blue><b>" + NameSender.ToString() + "</b></span>,<br /><br />" +
+                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        "A partir desse momento informamos que seu registro se encontra <span color:Blue><b>Ativo</b></span>" +
+                        " para que os Clientes do ReclameAgora possam Interagir no sistema sobre Compras realizadas em sua Empresa.<br /><br />" +
+                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        "Fique atento para Interagir na(s) Reclamação(ões) quando necessário e para acompanhar o Tempo de Atendimento na(s) mesma(s). <br /><br />" +
+                        "Para verificar e reclamar, acesse " +
+                        "<a href=\"http://reclameagora.apphb.com/\" title=\"ReclameAgora\"> http://reclameagora.apphb.com/</a> <br /><br />" +
+                        "Atenciosamente,<br />" +
+                        "Equipe ReclameAgora";
+                    SendMail.EnviaEmail(Sender, NameSender, Subemailclifor, Bodmsemailclifor);
+
                 } 
                 fornecedore fornecedore = Fornecedor.Createfornecedore(Fornecedor.IDFORNECEDOR, Fornecedor.razaosocial,
                     Fornecedor.nomefantasia, Fornecedor.email, Fornecedor_CNPJ, Fornecedor.endereco, Fornecedor_CEP,
@@ -209,24 +226,43 @@ namespace rdc.Controllers
                 //por último marcar o campo ENVEMAILCLISOL com 'S'
                 if ((Fornecedor.auxativo) && (Fornecedor.ENVEMAILCLISOL == "N"))
                 {
+                    string Sender = CLIENTElOGIN.EMAIL;
+                    string NameSender = CLIENTElOGIN.NOME;
                     string Subemailclifor = "Novo Fornecedor Ativo no ReclameAgora";
                     string Bodmsemailclifor =
                         "Prezado(a) <span color:Blue><b>" + CLIENTElOGIN.NOME.ToString() + "</b></span>,<br /><br />" +
                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                        "Foi registrado Novo Fornecedor como Ativo : <b>" + Fornecedor.razaosocial.ToString() + "</b> solicitado por você.<br /><br />" +
+                        "Foi registrado Novo Fornecedor como <span color:Blue><b>Ativo</b></span> : <b>" + 
+                        Fornecedor.razaosocial.ToString() + "</b> solicitado por você.<br /><br />" +
                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                        "A partir desse momento, você pode entrar no Reclame Agora e inserir sua(s) Reclamação(ões) e ainda Interagir quando necessário. <br /><br />" +
+                        "A partir desse momento, você pode entrar no ReclameAgora e inserir sua(s) Reclamação(ões) e ainda Interagir quando necessário. <br /><br />" +
                         "Para verificar e reclamar, acesse " +
-                        "<a href=\"http://www.reclameagora.com.br/\" title=\"ReclameAgora\"> http://www.reclameagora.com.br/</a> <br /><br />" +
+                        "<a href=\"http://reclameagora.apphb.com/\" title=\"ReclameAgora\"> http://reclameagora.apphb.com/</a> <br /><br />" +
                         "Atenciosamente,<br />" +
                         "Equipe ReclameAgora";
                     //Início Chamada Enviar E-mail ao Cliente dono da Reclamação informando haver nova Interação
-                    string retornoemail = SendMail.EnviaEmail(CLIENTElOGIN.EMAIL, CLIENTElOGIN.NOME, Subemailclifor, Bodmsemailclifor);
+                    string retornoemail = SendMail.EnviaEmail(Sender, NameSender, Subemailclifor, Bodmsemailclifor);
                     if (retornoemail != "NAOENVIADO")
                     {
                         Fornecedor.ENVEMAILCLISOL = "S";
                     }
                     //Fim da Chamada Enviar E-mail
+                    //Avisar ao Fornecedor foi Ativado para Cliente Reclamarem
+                    Sender = Fornecedor.email;
+                    NameSender = Fornecedor.razaosocial;
+                    Subemailclifor = "Fornecedor Ativo para os Clientes do ReclameAgora Interagirem";
+                    Bodmsemailclifor =
+                        "Prezado Fornecedor <span color:Blue><b>" + NameSender.ToString() + "</b></span>,<br /><br />" +
+                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        "A partir desse momento informamos que seu registro se encontra Ativo" +
+                        " para que os Clientes do ReclameAgora possam Interagir no sistema sobre Compras realizadas em sua Empresa.<br /><br />" +
+                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        "Fique atento para Interagir na(s) Reclamação(ões) quando necessário e para acompanhar o Tempo de Atendimento na(s) mesma(s). <br /><br />" +
+                        "Para verificar e reclamar, acesse " +
+                        "<a href=\"http://reclameagora.apphb.com/\" title=\"ReclameAgora\"> http://reclameagora.apphb.com/</a> <br /><br />" +
+                        "Atenciosamente,<br />" +
+                        "Equipe ReclameAgora";
+                    SendMail.EnviaEmail(Sender, NameSender, Subemailclifor, Bodmsemailclifor);
                 }
                 fornecedore novofornecedore = Fornecedor.Createfornecedore(Fornecedor.IDFORNECEDOR, Fornecedor.razaosocial,
                     Fornecedor.nomefantasia, Fornecedor.email, Fornecedor_CNPJ, Fornecedor.endereco, Fornecedor_CEP,

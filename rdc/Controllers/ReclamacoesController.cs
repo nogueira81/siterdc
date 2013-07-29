@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using rdc.Models;
 using System.Data.Objects.DataClasses;
 using System.Data.Objects;
+using rdc.App_Code;
 
 namespace rdc.Controllers
 {
@@ -91,6 +92,7 @@ namespace rdc.Controllers
         {
             Reclamacao reclamaco = db.ExecuteStoreQuery<Reclamacao>("select * from reclamacoes" +
                                                                           " order by titulo").Single(c => c.idreclamacao == id);
+            TempData["TipSolRecdb"] = reclamaco.tiposolucao;
             //Recuperar o registro do Cliente
             reclamaco.cliente = db.clientes.First(c => c.IDCLIENTE == reclamaco.IDCLIENTE);
             //ViewBag.IDCLIENTE = new SelectList(db.clientes, "IDCLIENTE", "NOME", reclamaco.IDCLIENTE);
@@ -124,12 +126,78 @@ namespace rdc.Controllers
                 db.reclamacoes.Attach(novoreclamaco);
                 db.ObjectStateManager.ChangeObjectState(novoreclamaco, EntityState.Modified);
                 db.SaveChanges();
+                //Início Chamada Enviar E-mail ao Cliente dono da Reclamação informando haver alteração no Staus da Rec
+                //Recuperar Descrição do Tipo da Solução
+                string TipSolRecdb = TempData["TipSolRecdb"].ToString();
+                if (TipSolRecdb != Reclamacao.tiposolucao)
+                {
+                    string desctiposolucaodb = null;
+                    if (TipSolRecdb == "I")
+                        desctiposolucaodb = "Resolvido e Usuário Insatisfeito";
+                    else if (TipSolRecdb == "C")
+                        desctiposolucaodb = "Resolvido e Usuário Satisfeito";
+                    else
+                        desctiposolucaodb = "Sem Solução do Fornecedor";
+                    string desctiposolucao = null;
+                    if (Reclamacao.tiposolucao == "I")
+                        desctiposolucao = "Resolvido e Usuário Insatisfeito";
+                    else if (Reclamacao.tiposolucao == "C")
+                        desctiposolucao = "Resolvido e Usuário Satisfeito";
+                    else
+                        desctiposolucao = "Sem Solução do Fornecedor";
+                    //Recuperar dados do Cliente dono da Reclamação que originou essa interação
+                    Reclamacao.cliente = db.clientes.First(x => x.IDCLIENTE == Reclamacao.IDCLIENTE);
+                    //Chamada Enviar E-mail Cliente
+                    string Sender = Reclamacao.cliente.EMAIL;
+                    string NameSender = Reclamacao.cliente.NOME;
+                    string Subemailclifor = "Alteração do Tipo da Solução de sua Reclamação no ReclameAgora";
+                    string Bodmsemailclifor =
+                        "Prezado(a) <span color:Blue><b>" + NameSender.ToString() + "</b></span>,<br /><br />" +
+                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        "A Reclamação : <b>" + Reclamacao.titulo.ToString() + "</b>.<br /><br />" +
+                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        "Com a Interação principal dessa Reclamação : <br /><br />" +
+                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        Reclamacao.descricao.ToString() + "<br /><br />" +
+                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        "Teve seu Tipo de Solução alterado de <b>" + desctiposolucaodb +
+                        "</b> para <b>" + desctiposolucao + "</b>. <br /><br />" +
+                        "Para verificar, acesse " +
+                        "<a href=\"http://reclameagora.apphb.com/\" title=\"ReclameAgora\"> http://reclameagora.apphb.com/</a> <br /><br />" +
+                        "Atenciosamente,<br />" +
+                        "Equipe ReclameAgora";
+                    //Enviar para o Email do Web.config
+                    SendMail.EnviaEmail(Sender, NameSender, Subemailclifor, Bodmsemailclifor);
+                    //Avisar ao Fornecedor que a Reclamação teve seu Status Alterado
+                    Sender = novoreclamaco.fornecedore.email;
+                    NameSender = novoreclamaco.fornecedore.razaosocial;
+                    Bodmsemailclifor =
+                        "Prezado Fornecedor <span color:Blue><b>" + NameSender.ToString() + "</b></span>,<br /><br />" +
+                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        "A Reclamação : <b>" + Reclamacao.titulo.ToString() + "</b>.<br /><br />" +
+                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        "Com a Interação principal dessa Reclamação : <br /><br />" +
+                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        Reclamacao.descricao.ToString() + "<br /><br />" +
+                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        "Teve seu Tipo de Solução alterado de <b>" + desctiposolucaodb +
+                        "</b> para <b>" + desctiposolucao + "</b>. <br /><br />" +
+                        "Para verificar, acesse " +
+                        "<a href=\"http://reclameagora.apphb.com/\" title=\"ReclameAgora\"> http://reclameagora.apphb.com/</a> <br /><br />" +
+                        "Atenciosamente,<br />" +
+                        "Equipe ReclameAgora";
+                    SendMail.EnviaEmail(Sender, NameSender, Subemailclifor, Bodmsemailclifor);
+                    //Fim da Chamada Enviar E-mail
+                }
+                //Retornar com o valor nullo para essa variável
+                TempData["TipSolRecdb"] = null;
                 return RedirectToAction("Index");
             }
             //ViewBag.IDCLIENTE = new SelectList(db.clientes, "IDCLIENTE", "NOME", Reclamacao.IDCLIENTE);
             //Recuperar o registro do Cliente
             Reclamacao.cliente = db.clientes.First(c => c.IDCLIENTE == Reclamacao.IDCLIENTE);
             ViewBag.IDFORNECEDOR = new SelectList(db.fornecedores.ToList().FindAll(f => f.ativo != "N"), "IDFORNECEDOR", "razaosocial", Reclamacao.IDFORNECEDOR);
+            TempData["TipSolRecdb"] = null;
             return View(Reclamacao);
         }
 

@@ -499,7 +499,7 @@ namespace rdc.Controllers
                     "Login = <b>" + Cliente.LOGIN.ToString() + "</b>.<br /><br />" +
                     "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
                     "Senha = <b>" + senhaemail.ToString() + "</b>.<br /><br />" +
-                    "<a href=\"http://www.reclameagora.com.br/\" title=\"ReclameAgora\"> http://www.reclameagora.com.br/</a> <br /><br />" +
+                    "<a href=\"http://reclameagora.apphb.com/\" title=\"ReclameAgora\"> http://reclameagora.apphb.com/</a> <br /><br />" +
                     "Atenciosamente,<br />" +
                     "Equipe ReclameAgora");
                 //Fim da Chamada Enviar E-mail
