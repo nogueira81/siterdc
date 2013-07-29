@@ -15,9 +15,8 @@
 
     <div id="submenucontainer">
         <ul id="submenu">
-            <li>@Html.ActionLink("Minhas Reclamações", "RecIndex", "Reclamar")</li>
-            <li>@Html.ActionLink("Minhas Interações", "RecInterIndex", "Reclamar")</li>
-            <!--<li>@Html.ActionLink("Relatórios", "RelRankCli", "Reclamar")</li>-->
+            <li>@Html.ActionLink("Minhas Reclamações", "RecIndex", "Reclamar", null, new { title = "Ver Reclamações que cadastrei no Reclame Agora" })</li>
+            <li>@Html.ActionLink("Minhas Interações", "RecInterIndex", "Reclamar", null, new { title = "Ver Reclamações de outros Clientes que Interagi no Reclame Agora" })</li>
         </ul>                
     </div>
 
@@ -48,7 +47,7 @@
         <div class="editor-field">
             @Html.DropDownList("IDFORNECEDOR", "[Selecione]")
             @Html.ValidationMessageFor(model => model.IDFORNECEDOR)
-            <p>@Html.ActionLink("Solicitar o cadastramento de um Fornecedor", "CreateFor")</p>
+            <p>@Html.ActionLink("Solicitar o cadastramento de um Fornecedor", "CreateFor", null, new { title = "Caso não tenha encontrado seu Fornecedor na Listagem acima, clique aqui e solicite seu cadastro. É rápido e fácil!" })</p>
         </div>
     </fieldset>
     <fieldset>

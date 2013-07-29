@@ -148,7 +148,7 @@
             @Html.LabelFor(model => model.SENHA)
         </div>
         <div class="editor-field">
-            @Html.PasswordFor(model => model.SENHA)
+            @Html.PasswordFor(model => model.SENHA, new { value = Model.SENHA })
             @Html.ValidationMessageFor(model => model.SENHA)
         </div>
 
@@ -156,7 +156,7 @@
             @Html.LabelFor(model => model.CONFIRMASENHA)
         </div>
         <div class="editor-field">
-            @Html.PasswordFor(model => model.CONFIRMASENHA)
+            @Html.PasswordFor(model => model.CONFIRMASENHA, new { value = Model.SENHA })
             @Html.ValidationMessageFor(model => model.CONFIRMASENHA)
         </div>
 

@@ -23,17 +23,17 @@
 
             <div id="menucontainer">
                 <ul id="menu">
-                    <li>@Html.ActionLink("Início", "Index", "Home")
+                    <li>@Html.ActionLink("Início", "Index", "Home", null, new { title = "Ver Página Inicial do Reclame Agora!" })
                     <li id="lired">@Html.ActionLink("Reclamar e Ver Reclamações", "Index", "Reclamar", null, new { title = "Clique Aqui e faça sua Reclamação" })</li>
                     @{if (Roles.IsUserInRole(Context.User.Identity.Name, "ADM"))
                       {
-                          <li>@Html.ActionLink("Reclamações", "Index", "Reclamacoes")</li>
-                          <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
-                          <li>@Html.ActionLink("Fornecedores", "Index", "Fornecedores")</li>
+                          <li>@Html.ActionLink("Reclamações", "Index", "Reclamacoes", null, new { title = "Ver todas as Reclamações" })</li>
+                          <li>@Html.ActionLink("Clientes", "Index", "Clientes", null, new { title = "Ver todos os Clientes" })</li>
+                          <li>@Html.ActionLink("Fornecedores", "Index", "Fornecedores", null, new { title = "Ver todos os Fornecedores" })</li>
                       }
                     }
-                    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contato", "Contato", "Home")</li>
+                    <li>@Html.ActionLink("Sobre", "About", "Home", null, new { title = "Apoie o Reclame Agora com qualquer contribuição e assim ajudar outras pessoas a resolverem seus problemas!" })</li>
+                    <li>@Html.ActionLink("Contato", "Contato", "Home", null, new { title = "Contate-nos para dúvidas, sugestões, novos produtos, entre outros..." })</li>
                     @{if ((Roles.IsUserInRole(Context.User.Identity.Name, "NOR")) || (Roles.IsUserInRole(Context.User.Identity.Name, "ADM")))
                       {
                           <li>@Html.ActionLink("Área do Cliente", "AreaCliente", "Clientes", null, new { title = "Área do Cliente para Atualizar Cadastro, Alteração de Senha,..." })</li>

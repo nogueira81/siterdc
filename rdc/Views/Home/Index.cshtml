@@ -8,8 +8,8 @@
 
     <div id="submenucontainer">
         <ul id="submenu">
-            <li>@Html.ActionLink("Início", "Index", "Home")</li>
-            <li>@Html.ActionLink("Rancking", "Ranking", "Home")</li>
+            <li>@Html.ActionLink("Início", "Index", "Home", null, new { title = "Ver Página Inicial do Reclame Agora!" })</li>
+            <li>@Html.ActionLink("Rancking", "Ranking", "Home", null, new { title = "Ver Ranking dos Atendimentos dos Fornecedores nas Reclamações dos Clientes!" })</li>
         </ul>                
     </div>
     <img src="@Url.Content("~/Content/themes/base/images/ContribuaRA.jpg")" alt="ContribuaRA" id="imgcontrra"/>
