@@ -153,6 +153,43 @@ namespace rdc.Models
 
     }
 
+    public class FiltraFornec
+    {
+        public string IdFor { get; set; }
+        public string NomeFor { get; set; }
+
+        public FiltraFornec(string idfor, string nomefor)
+        {
+            this.IdFor = idfor;
+            this.NomeFor = nomefor;
+        }
+
+        public static IList<FiltraFornec> ListaFornec(string idlist)
+        {
+            sistemardcEntities db = new sistemardcEntities();
+            IEnumerable<fornecedore> fornecsfil;
+            //Se for vazio, preencher com todos os fornecedores Ativos, senão filtrar
+            if (string.IsNullOrEmpty(idlist))
+            {
+                fornecsfil = db.fornecedores.ToList().FindAll(f => f.ativo != "N").ToList();
+            } 
+            else 
+            {
+                idlist = idlist.ToUpper();
+                fornecsfil = db.fornecedores.ToList().FindAll(f => f.razaosocial.ToUpper().IndexOf(idlist) >= 0).ToList().FindAll(f => f.ativo != "N").ToList();
+            }
+            List<FiltraFornec> fornecs = new List<FiltraFornec>();
+            //Preencher o List com as cidades localizadas - ex: cidades.Add(new Cidade("7", "MG", "Belo Horizonte")); 
+            foreach (var item in fornecsfil)
+            {
+                fornecs.Add(new FiltraFornec(item.IDFORNECEDOR.ToString(), item.razaosocial.ToString()));
+            }
+            db.Dispose();
+            return fornecs.ToList(); //.Where(x => x.SiglaUf == SiglaUf).ToList(); 
+        }
+    }
+
+
     /// <summary> /// Validação customizada para CPF/// </summary> 
     public class CustomValidationCNPJAttribute : ValidationAttribute, IClientValidatable
     {

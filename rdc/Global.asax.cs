@@ -49,6 +49,12 @@ namespace rdc
             );
 
             routes.MapRoute(
+            "RegRecFor", // Route name
+            "{controller}/{action}/{id}", // URL with parameters
+            new { controller = "Reclamar/", action = "listaFornec", id = UrlParameter.Optional } // Parameter defaults
+            );
+
+            routes.MapRoute(
             "RegistroCEPLogin", // Route name
             "{controller}/{action}/{id}", // URL with parameters
             new { controller = "Login", action = "GetCep", id = UrlParameter.Optional } // Parameter defaults
@@ -65,6 +71,7 @@ namespace rdc
             "{controller}/Edit/{action}/{id}",
             new { controller = "Clientes", action = "GetCep", id = UrlParameter.Optional }
             );
+
         }
 
         protected void Application_Start()

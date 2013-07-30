@@ -24,7 +24,7 @@
             <div id="menucontainer">
                 <ul id="menu">
                     <li>@Html.ActionLink("Início", "Index", "Home", null, new { title = "Ver Página Inicial do Reclame Agora!" })
-                    <li id="lired">@Html.ActionLink("Reclamar e Ver Reclamações", "Index", "Reclamar", null, new { title = "Clique Aqui e faça sua Reclamação" })</li>
+                    <li id="lired">@Html.ActionLink("Reclamar e Ver Reclamações", "Index", "Reclamar/", null, new { title = "Clique Aqui e faça sua Reclamação" })</li>
                     @{if (Roles.IsUserInRole(Context.User.Identity.Name, "ADM"))
                       {
                           <li>@Html.ActionLink("Reclamações", "Index", "Reclamacoes", null, new { title = "Ver todas as Reclamações" })</li>

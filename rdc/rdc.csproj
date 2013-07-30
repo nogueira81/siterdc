@@ -133,6 +133,7 @@
   <ItemGroup>
     <Content Include="Content\themes\base\images\ContribuaRA.jpg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\CustomReclamacao.js" />
     <Content Include="Scripts\CustomValidation.js" />
     <Content Include="Scripts\CustomValidationCNPJ.js" />
     <Content Include="Scripts\jquery-1.6.2-vsdoc.js" />

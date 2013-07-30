@@ -14,6 +14,13 @@ namespace rdc.Controllers
     {
         private sistemardcEntities db = new sistemardcEntities();
 
+        //GET: Ajax - Função para retornar os fornecedores de acordo com o filtro do idfor
+        public ActionResult listaFornec(string id)
+        {
+            return Json(FiltraFornec.ListaFornec(id), JsonRequestBehavior.AllowGet);
+        }
+
+
         //
         // GET: /Reclamar/
 
