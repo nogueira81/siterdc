@@ -63,12 +63,12 @@
                     return Html.Raw("<b>"+
                         Html.ActionLink((string)item.titulo, "DetalheInteracao", new { id = item.idreclamacao }, new { title = "Ver Interações dessa Reclamação" })+"</b>"+
                         "</br></br><span class=\"black\">Comprador <b>" + clientehome + "</b>&nbsp;&nbsp;(" + selectedTextestado + ")</span>" +
-                        "</br><span class=\"black\">Fornecedor <b>" + fornecedorhome + "</b>&nbsp;&nbsp;" + tiposolucao +
-                        "</br><span class=\"black\">Comprado em " + datacompra + "</span>");
+                        "</br><span class=\"black\">Fornecedor <b>" + fornecedorhome + "</b></span>" +
+                        "</br><span class=\"black\">Comprado em " + datacompra + "</span>"+ "&nbsp;&nbsp;" + tiposolucao);
 
                 }
     ))
-)
+    )
 <!--
 grid.GetHtml(
     tableStyle: "webgrid",
