@@ -222,6 +222,14 @@ namespace rdc.Controllers
                 //OBS: Quando se cria na Action Create, é o Login e nas demais Actions serão o IDCLIENTE como nesse caso.
                 int for_idcliente = Fornecedor.IDCLIENTE.GetValueOrDefault(0);
                 cliente CLIENTElOGIN = db.clientes.ToList().Find(x => x.IDCLIENTE == for_idcliente);
+                fornecedore novofornecedore = Fornecedor.Createfornecedore(Fornecedor.IDFORNECEDOR, Fornecedor.razaosocial,
+                    Fornecedor.nomefantasia, Fornecedor.email, Fornecedor_CNPJ, Fornecedor.endereco, Fornecedor_CEP,
+                    Fornecedor.fonefixo, Fornecedor.fonefixo2, Fornecedor.ESTADO, Fornecedor.informacoes, 
+                    Fornecedor.IDCIDADE, Fornecedor.ativo, Fornecedor.homepage,
+                    Fornecedor.IDCLIENTE,Fornecedor.ENVEMAILCLISOL);
+                db.fornecedores.Attach(novofornecedore);
+                db.ObjectStateManager.ChangeObjectState(novofornecedore, EntityState.Modified);
+                db.SaveChanges();
                 //Verificar se Fornecedor é Ativo e ENVEMAILCLISOL == "N" para montar Email e enviá-lo, armazenar em informações e 
                 //por último marcar o campo ENVEMAILCLISOL com 'S'
                 if ((Fornecedor.auxativo) && (Fornecedor.ENVEMAILCLISOL == "N"))
@@ -232,7 +240,7 @@ namespace rdc.Controllers
                     string Bodmsemailclifor =
                         "Prezado(a) <span color:Blue><b>" + CLIENTElOGIN.NOME.ToString() + "</b></span>,<br /><br />" +
                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                        "Foi registrado Novo Fornecedor como <span color:Blue><b>Ativo</b></span> : <b>" + 
+                        "Foi registrado Novo Fornecedor como <span color:Blue><b>Ativo</b></span> : <b>" +
                         Fornecedor.razaosocial.ToString() + "</b> solicitado por você.<br /><br />" +
                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
                         "A partir desse momento, você pode entrar no ReclameAgora e inserir sua(s) Reclamação(ões) e ainda Interagir quando necessário. <br /><br />" +
@@ -264,14 +272,6 @@ namespace rdc.Controllers
                         "Equipe ReclameAgora";
                     SendMail.EnviaEmail(Sender, NameSender, Subemailclifor, Bodmsemailclifor);
                 }
-                fornecedore novofornecedore = Fornecedor.Createfornecedore(Fornecedor.IDFORNECEDOR, Fornecedor.razaosocial,
-                    Fornecedor.nomefantasia, Fornecedor.email, Fornecedor_CNPJ, Fornecedor.endereco, Fornecedor_CEP,
-                    Fornecedor.fonefixo, Fornecedor.fonefixo2, Fornecedor.ESTADO, Fornecedor.informacoes, 
-                    Fornecedor.IDCIDADE, Fornecedor.ativo, Fornecedor.homepage,
-                    Fornecedor.IDCLIENTE,Fornecedor.ENVEMAILCLISOL);
-                db.fornecedores.Attach(novofornecedore);
-                db.ObjectStateManager.ChangeObjectState(novofornecedore, EntityState.Modified);
-                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.ESTADO = new SelectList(EstadoRepositorio.ListaEstados(), "Value", "Text", Fornecedor.ESTADO);
