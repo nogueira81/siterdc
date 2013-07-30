@@ -316,6 +316,20 @@ namespace rdc.Controllers
                 //Agora, enviar E-Mail para o Cliente
                 Sender = CLIENTElOGIN.EMAIL;
                 NameSender = CLIENTElOGIN.NOME;
+                Bodmsemailclifor =
+                    "Prezado(a) <span color:Blue><b>" + NameSender + "</b></span>,<br /><br />" +
+                    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                    "Foi solicitado a criação de um novo Fornecedor : <b>" + Fornecedor.razaosocial.ToString() +
+                    "</b> para inserir uma nova Reclamação. <br /><br />" +
+                    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                    "O CNPJ informado é : <b>" + Fornecedor.cnpj.ToString() + "</b>.<br /><br />" +
+                    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                    "O Fornecedor ficará ATIVO após seu processamento pela Equipe do ReclameAgora e então será lhe enviado um novo E-Mail para realizar sua Reclamação. <b><br /><br />" +
+                    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                    "Para verificar, acesse " +
+                    "<a href=\"http://reclameagora.apphb.com/\" title=\"ReclameAgora\"> http://reclameagora.apphb.com/</a> <br /><br />" +
+                    "Atenciosamente,<br />" +
+                    "Equipe ReclameAgora";
                 SendMail.EnviaEmail(Sender, NameSender, Subemailclifor, Bodmsemailclifor);
                 //Fim da Chamada Enviar E-mail
                 TempData["msgsolfor"] = "Solicitação de Cadastro de Fornecedor relizada com sucesso!\r\n"+
