@@ -64,15 +64,18 @@
                   {
                       case "N": 
                             <div class="error"><b>@Html.Label("Sem Solução do Fornecedor")</b></div>
-                                             break;
+                            <img src="@Url.Content("~/Content/themes/base/images/naorecomendada.png")" alt="naorecomendada"/>
+                            break;
                       case "I":
                             <div class="insuccess"><b>@Html.Label("Resolvido e continuo Insatisfeito")</b></div>
                             <br />  @Html.Label("Data da Solução :") @string.Format("{0:dd/MM/yyyy}", Model.datasolucao);
-                                                                                                                        break;
+                            <br /><img src="@Url.Content("~/Content/themes/base/images/regularrecomendado.png")" alt="naorecomendada"/>
+                            break;
                       case "C":
                             <div class="success"><b>@Html.Label("Resolvido e estou Satisfeito")</b></div>
                             <br />  @Html.Label("Data da Solução :") @string.Format("{0:dd/MM/yyyy}", Model.datasolucao);
-                                                                                                                        break;
+                            <br /><img src="@Url.Content("~/Content/themes/base/images/positivorecomendado.png")" alt="naorecomendada"/>
+                            break;
                   }
                 }
             </td>

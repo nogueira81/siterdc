@@ -132,6 +132,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ContribuaRA.jpg" />
+    <Content Include="Content\themes\base\images\naorecomendada.png" />
+    <Content Include="Content\themes\base\images\positivorecomendado.PNG" />
+    <Content Include="Content\themes\base\images\regularrecomendado.png" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\CustomReclamacao.js" />
     <Content Include="Scripts\CustomValidation.js" />
