@@ -23,18 +23,18 @@
     rowStyle: "webgrid-row-style",
     displayHeader: true,
     columns: grid.Columns(
-        grid.Column("datacompra",
-                    ModelMetadata.FromLambdaExpression(x => x.datacompra, new ViewDataDictionary<Reclamacao>(new Reclamacao())).DisplayName,
+        grid.Column("datareclamacao",
+                    ModelMetadata.FromLambdaExpression(x => x.datareclamacao, new ViewDataDictionary<Reclamacao>(new Reclamacao())).DisplayName,
                     style: "text-align-center",
                     format: (item) =>
                     {
-                        if (item.datacompra == null)
+                        if (item.datareclamacao == null)
                         {
                             return string.Format("{0:dd/MM/yyyy}", "");
                         }
                         else
                         {
-                            return string.Format("{0:dd/MM/yyyy}", item.datacompra);
+                            return string.Format("{0:dd/MM/yyyy}", item.datareclamacao);
                         }
                     }
         ),
@@ -93,7 +93,6 @@
                         return selectedTextfornec;
                     }
         ),
-        grid.Column("fonecontato", ModelMetadata.FromLambdaExpression(x => x.fonecontato, new ViewDataDictionary<Reclamacao>(new Reclamacao())).DisplayName),
         grid.Column(columnName: "idreclamacao", header: "Acões",
                     format: (item) =>
                     {

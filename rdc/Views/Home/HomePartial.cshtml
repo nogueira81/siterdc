@@ -19,14 +19,14 @@
                 style: "text-align: center",
                 format: (item) =>
                 {
-                    string datacompra;
-                    if (item.datacompra == null)
+                    string datareclamacao;
+                    if (item.datareclamacao == null)
                     {
-                        datacompra = string.Format("{0:dd/MM/yyyy}", "");
+                        datareclamacao = string.Format("{0:dd/MM/yyyy}", "");
                     }
                     else
                     {
-                        datacompra = string.Format("{0:dd/MM/yyyy}", item.datacompra);
+                        datareclamacao = string.Format("{0:dd/MM/yyyy}", item.datareclamacao);
                     }
                     
                     string tiposolucao;
@@ -64,7 +64,7 @@
                         Html.ActionLink((string)item.titulo, "DetalheInteracao", new { id = item.idreclamacao }, new { title = "Ver Interações dessa Reclamação" })+"</b>"+
                         "</br></br><span class=\"black\">Comprador <b>" + clientehome + "</b>&nbsp;&nbsp;(" + selectedTextestado + ")</span>" +
                         "</br><span class=\"black\">Fornecedor <b>" + fornecedorhome + "</b></span>" +
-                        "</br><span class=\"black\">Comprado em " + datacompra + "</span>"+ "&nbsp;&nbsp;" + tiposolucao);
+                        "</br><span class=\"black\">Registrado em " + datareclamacao + "</span>" + "&nbsp;&nbsp;" + tiposolucao);
 
                 }
     ))
@@ -79,18 +79,18 @@ grid.GetHtml(
     rowStyle: "webgrid-row-style",
     displayHeader: true,
     columns: grid.Columns(
-        grid.Column("datacompra",
-                    ModelMetadata.FromLambdaExpression(x => x.datacompra, new ViewDataDictionary<Reclamacao>(new Reclamacao())).DisplayName,
+        grid.Column("datareclamacao",
+                    ModelMetadata.FromLambdaExpression(x => x.datareclamacao, new ViewDataDictionary<Reclamacao>(new Reclamacao())).DisplayName,
                     style: "text-align-center",
                     format: (item) =>
                         {
-                            if (item.datacompra == null)
+                            if (item.datareclamacao == null)
                             {
                                 return string.Format("{0:dd/MM/yyyy}", "");
                             }
                             else
                             {
-                                return string.Format("{0:dd/MM/yyyy}", item.datacompra);
+                                return string.Format("{0:dd/MM/yyyy}", item.datareclamacao);
                             }
                         }
         ),

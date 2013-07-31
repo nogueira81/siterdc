@@ -51,7 +51,7 @@ namespace rdc.Controllers
                 ViewBag.buscarFor = new SelectList(db.fornecedores, "IDFORNECEDOR", "razaosocial");
             }
 
-            qry = qry + " order by datacompra desc";
+            qry = qry + " order by datareclamacao desc";
             IEnumerable<reclamaco> reclamadetalhes = db.ExecuteStoreQuery<reclamaco>(qry);
             //var reclamadetalhes =  db.reclamacoes.Include("cliente").Include("fornecedore");
             if (Request.IsAjaxRequest())
@@ -187,9 +187,9 @@ namespace rdc.Controllers
 
         /*Grafico Tempo de Atendimento das Reclamações por Fornecedores
          SELECT idfornecedor, count(*) qtderec,
-        round(avg((case (datasolucao-datacompra) > 0
-        when 1 then DATEDIFF( DATE( datasolucao ) ,DATE( datacompra ))
-        else DATEDIFF( DATE( NOW( ) ) ,DATE( datacompra ))
+        round(avg((case (datasolucao-datareclamacao) > 0
+        when 1 then DATEDIFF( DATE( datasolucao ) ,DATE( datareclamacao ))
+        else DATEDIFF( DATE( NOW( ) ) ,DATE( datareclamacao ))
         end))) as avgdiasatend FROM reclamacoes
         group by idfornecedor
          */
@@ -197,9 +197,9 @@ namespace rdc.Controllers
         public ActionResult Grfavgdiasatend(string Tipo, string thema)
         {
             string commandFor = "SELECT r.idfornecedor, f.nomefantasia, count(*) qtderec, " +
-                "round(avg((case (datasolucao-datacompra) > 0 " +
-                "when 1 then DATEDIFF( DATE( datasolucao ) ,DATE( datacompra )) " +
-                "else DATEDIFF( DATE( NOW( ) ) ,DATE( datacompra )) " +
+                "round(avg((case (datasolucao-datareclamacao) > 0 " +
+                "when 1 then DATEDIFF( DATE( datasolucao ) ,DATE( datareclamacao )) " +
+                "else DATEDIFF( DATE( NOW( ) ) ,DATE( datareclamacao )) " +
                 "end))) as avgdiasatend FROM reclamacoes r inner join fornecedores f on r.idfornecedor = f.idfornecedor " +
                 "group by r.idfornecedor, f.nomefantasia";
             HomeModel reclamacoes = new HomeModel();

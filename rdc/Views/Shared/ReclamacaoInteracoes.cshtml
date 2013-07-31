@@ -31,6 +31,7 @@
         <tr>
             <td class="tdinteracaoleft">
                 <b>@Html.DisplayFor(model => model.titulo)</b><br /><br />
+                Data da Reclamação : @string.Format("{0:dd/MM/yyyy}", Model.datareclamacao)<br /><br />
                 Data da Compra : @string.Format("{0:dd/MM/yyyy}", Model.datacompra)<br /><br />
                 Reclamação do Login : <b>@Html.DisplayFor(model => model.cliente.LOGIN)</b><br />
                 @{

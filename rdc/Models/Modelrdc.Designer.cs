@@ -2014,6 +2014,30 @@ namespace rdc.Models
         private Nullable<global::System.DateTime> _datasolucao;
         partial void OndatasolucaoChanging(Nullable<global::System.DateTime> value);
         partial void OndatasolucaoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> datareclamacao
+        {
+            get
+            {
+                return _datareclamacao;
+            }
+            set
+            {
+                OndatareclamacaoChanging(value);
+                ReportPropertyChanging("datareclamacao");
+                _datareclamacao = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("datareclamacao");
+                OndatareclamacaoChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _datareclamacao;
+        partial void OndatareclamacaoChanging(Nullable<global::System.DateTime> value);
+        partial void OndatareclamacaoChanged();
 
         #endregion
     

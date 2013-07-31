@@ -119,6 +119,7 @@
           <Property Name="datacompra" Type="date" />
           <Property Name="fonecontato" Type="varchar" MaxLength="50" />
           <Property Name="datasolucao" Type="date" />
+          <Property Name="datareclamacao" Type="date" />
         </EntityType>
         <Association Name="FKIDCIDADES">
           <End Role="cidades" Type="sistemardcModel.Store.cidades" Multiplicity="0..1" />
@@ -328,6 +329,7 @@
           <Property Type="String" Name="fonecontato" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="interacoes" Relationship="sistemardcModel.FKINTIDRECL" FromRole="reclamaco" ToRole="interaco" />
           <Property Type="DateTime" Name="datasolucao" />
+          <Property Type="DateTime" Name="datareclamacao" />
         </EntityType>
         <Association Name="IDCLIENTE">
           <End Role="clientes" Type="sistemardcModel.cliente" Multiplicity="1" />
@@ -492,7 +494,8 @@
             <ScalarProperty Name="informacoes" ColumnName="informacoes" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="reclamacoes"><EntityTypeMapping TypeName="sistemardcModel.reclamaco"><MappingFragment StoreEntitySet="reclamacoes">
-            <ScalarProperty Name="datasolucao" ColumnName="datasolucao" />
+            <ScalarProperty Name="datareclamacao" ColumnName="datareclamacao" />
+                <ScalarProperty Name="datasolucao" ColumnName="datasolucao" />
                 <ScalarProperty Name="fonecontato" ColumnName="fonecontato" />
                 <ScalarProperty Name="datacompra" ColumnName="datacompra" />
                 <ScalarProperty Name="idreclamacao" ColumnName="idreclamacao" />

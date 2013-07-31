@@ -45,6 +45,9 @@ namespace rdc.Models
         [Display(Name = "Data da Solução")]
         public Nullable<DateTime> datasolucao { get; set; }
 
+        [Display(Name = "Data da Reclamação")]
+        public DateTime datareclamacao { get; set; }
+
         [Display(Name = "Telefone de Contato")]
         [Required(ErrorMessage = "Campo Telefone de Contato Obrigatório")]
         public string fonecontato { get; set; }
@@ -58,7 +61,8 @@ namespace rdc.Models
         public static reclamaco Createreclamaco(global::System.Int32 idreclamacao, global::System.String titulo,
             global::System.String descricao, global::System.String tiposolucao, global::System.Int32 iDCLIENTE,
             global::System.Int32 iDFORNECEDOR, global::System.Nullable<DateTime> datacompra,
-            global::System.String fonecontato, global::System.Nullable<DateTime> datasolucao = null)
+            global::System.String fonecontato, global::System.DateTime datareclamacao,
+            global::System.Nullable<DateTime> datasolucao = null)
         {
             reclamaco reclamaco = new reclamaco();
             reclamaco.idreclamacao = idreclamacao;
@@ -69,6 +73,8 @@ namespace rdc.Models
             reclamaco.IDFORNECEDOR = iDFORNECEDOR;
             reclamaco.datacompra = datacompra;
             reclamaco.fonecontato = fonecontato;
+            //DateTime.Parse(string.Format("{0:dd/MM/yyyy}", DateTime.Now));
+            reclamaco.datareclamacao = datareclamacao;
             reclamaco.datasolucao = datasolucao;
             return reclamaco;
         }

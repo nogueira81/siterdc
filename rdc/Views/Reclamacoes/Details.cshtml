@@ -12,6 +12,10 @@
     </div>
 
     <div class="display-label">
+        @Html.LabelFor(model => model.datareclamacao) : @string.Format("{0:dd/MM/yyyy}", Model.datareclamacao)
+    </div>
+
+    <div class="display-label">
         @Html.LabelFor(model => model.titulo) : @Html.DisplayFor(model => model.titulo)
     </div>
 

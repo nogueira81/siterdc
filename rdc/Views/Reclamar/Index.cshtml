@@ -100,9 +100,10 @@
             @Html.TextAreaFor(model => model.descricao, new { style = "width: 100%", @rows = "8" })
             @Html.ValidationMessageFor(model => model.descricao)
         </div>
-
+          
         <div class="editor-label">
             @Html.LabelFor(model => model.fonecontato)
+            <span class="success">(Somente o Fornecedor irá visualizar seu Contato)</span>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.fonecontato)

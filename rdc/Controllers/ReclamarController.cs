@@ -47,10 +47,12 @@ namespace rdc.Controllers
             {
                 //Selecionar o Cliente Logado no sistema
                 Reclamacao.IDCLIENTE = db.clientes.ToList().Find(x => x.LOGIN == User.Identity.Name).IDCLIENTE;
+                //Setar a Data da reclamação para a Data Atual no Create
+                Reclamacao.datareclamacao = DateTime.Parse(string.Format("{0:dd/MM/yyyy}", DateTime.Now));
                 //Realizar a conversão para o objeto do modelrdc.Designer.cs antes de gravar no banco
                 reclamaco novoreclamaco = Reclamacao.Createreclamaco(Reclamacao.idreclamacao, Reclamacao.titulo,
                     Reclamacao.descricao, Reclamacao.tiposolucao, Reclamacao.IDCLIENTE, Reclamacao.IDFORNECEDOR,
-                    Reclamacao.datacompra, Reclamacao.fonecontato);
+                    Reclamacao.datacompra, Reclamacao.fonecontato,Reclamacao.datareclamacao);
                 db.reclamacoes.AddObject(novoreclamaco);
                 db.SaveChanges();
                 TempData["msgcadrec"] = "Reclamação registrada com sucesso e enviada ao seu e-mail!\r\n" +
@@ -125,7 +127,7 @@ namespace rdc.Controllers
         {
             TempData["actionname"] = "RecIndex";
             cliente cliente = db.clientes.ToList().Find(x => x.LOGIN == User.Identity.Name);
-            string qry = "select * from reclamacoes order by datacompra desc";
+            string qry = "select * from reclamacoes order by datareclamacao desc";
             IEnumerable<Reclamacao> Reclamacao = db.ExecuteStoreQuery<Reclamacao>(qry).ToList().FindAll(x => x.IDCLIENTE==cliente.IDCLIENTE);
             //var reclamacoes = db.reclamacoes.Include("cliente").Include("fornecedore").ToList().FindAll(x => x.IDCLIENTE==cliente.IDCLIENTE);
             //.Include("cliente").Include("fornecedore");
@@ -440,7 +442,7 @@ namespace rdc.Controllers
                 }
                 reclamaco novoreclamaco = Reclamacao.Createreclamaco(Reclamacao.idreclamacao, Reclamacao.titulo,
                     Reclamacao.descricao, Reclamacao.tiposolucao, Reclamacao.IDCLIENTE, Reclamacao.IDFORNECEDOR,
-                    Reclamacao.datacompra, Reclamacao.fonecontato, Reclamacao.datasolucao);
+                    Reclamacao.datacompra, Reclamacao.fonecontato, Reclamacao.datareclamacao ,Reclamacao.datasolucao);
                 db.reclamacoes.Attach(novoreclamaco);
                 db.ObjectStateManager.ChangeObjectState(novoreclamaco, EntityState.Modified);
                 db.SaveChanges();
