@@ -10,8 +10,11 @@
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 </head>
 <body>
-    <div class="page">
-
+    <div id="header_b">
+        <div>
+        <img src="@Url.Content("~/Content/themes/base/images/rdc_bg_header.jpg")" alt="imgheader" id="imgcontrra"/>
+        </div>
+            
         <div id="header">
             <div id="title">
                 <h1>Reclame Agora</h1>
@@ -26,33 +29,45 @@
                     <li>@Html.ActionLink("Início", "Index", "Home", null, new { title = "Ver Página Inicial do Reclame Agora!" })
                     <li id="lired">@Html.ActionLink("Reclamar e Ver Reclamações", "Index", "Reclamar/", null, new { title = "Clique Aqui e faça sua Reclamação" })</li>
                     @{if (Roles.IsUserInRole(Context.User.Identity.Name, "ADM"))
-                      {
-                          <li>@Html.ActionLink("Reclamações", "Index", "Reclamacoes", null, new { title = "Ver todas as Reclamações" })</li>
-                          <li>@Html.ActionLink("Clientes", "Index", "Clientes", null, new { title = "Ver todos os Clientes" })</li>
-                          <li>@Html.ActionLink("Fornecedores", "Index", "Fornecedores", null, new { title = "Ver todos os Fornecedores" })</li>
-                      }
+                        {
+                            <li>@Html.ActionLink("Reclamações", "Index", "Reclamacoes", null, new { title = "Ver todas as Reclamações" })</li>
+                            <li>@Html.ActionLink("Clientes", "Index", "Clientes", null, new { title = "Ver todos os Clientes" })</li>
+                            <li>@Html.ActionLink("Fornecedores", "Index", "Fornecedores", null, new { title = "Ver todos os Fornecedores" })</li>
+                        }
                     }
                     <li>@Html.ActionLink("Sobre", "About", "Home", null, new { title = "Apoie o Reclame Agora com qualquer contribuição e assim ajudar outras pessoas a resolverem seus problemas!" })</li>
                     <li>@Html.ActionLink("Contato", "Contato", "Home", null, new { title = "Contate-nos para dúvidas, sugestões, novos produtos, entre outros..." })</li>
                     @{if ((Roles.IsUserInRole(Context.User.Identity.Name, "NOR")) || (Roles.IsUserInRole(Context.User.Identity.Name, "ADM")))
-                      {
-                          <li>@Html.ActionLink("Área do Cliente", "AreaCliente", "Clientes", null, new { title = "Área do Cliente para Atualizar Cadastro, Alteração de Senha,..." })</li>
-                      }
+                        {
+                            <li>@Html.ActionLink("Área do Cliente", "AreaCliente", "Clientes", null, new { title = "Área do Cliente para Atualizar Cadastro, Alteração de Senha,..." })</li>
+                        }
                     }
                 </ul>
             </div>
 
         </div>
-
-        <div id="main">
-
-            @RenderBody()
+    </div>
+    <div class="page">
+            <img src="@Url.Content("~/Content/themes/base/images/boxtop_home_white.jpg")" alt="imgboxtop" id="imgboxtop" />
+            <table class="tablelayout">
+                <tr>
+                    <td class="tdlayoutleft">
+                    </td>
+                    <td class="tdlayoutcenter">
+                        <div id="main">
+                            @RenderBody()
+                        </div>
+                    </td>
+                    <td class="tdlayoutrigth">
+                    </td>
+                </tr>
+            </table>
+            <img src="@Url.Content("~/Content/themes/base/images/boxbottom_home_white.jpg")" alt="imgboxbottom" id="imgboxbottom" />
             <div id="footer">
                 <p>
                 Para pesquisar no Google visite <a href="http://www.google.com.br/" title="ReclameAgora"> http://www.google.com.br/</a>.
                 </p>
             </div>
-        </div>
     </div>
 </body>
 </html>

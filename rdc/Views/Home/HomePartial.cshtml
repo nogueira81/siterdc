@@ -59,13 +59,18 @@
                         ?? items[0];
                     string selectedTextestado = selectedItem.Text;
                     dbest.Dispose();
-                    
+
+                    return Html.Raw("<b>" +
+                        Html.ActionLink(datareclamacao + " - " + (string)item.titulo, "DetalheInteracao", new { id = item.idreclamacao }, new { title = "Ver Interações dessa Reclamação" }) + "</b>" +
+                        "</br><span class=\"black\"> <b>" + fornecedorhome + "</b></span>" + "&nbsp;&nbsp;" + tiposolucao);
+
+                    /*
                     return Html.Raw("<b>"+
                         Html.ActionLink((string)item.titulo, "DetalheInteracao", new { id = item.idreclamacao }, new { title = "Ver Interações dessa Reclamação" })+"</b>"+
                         "</br></br><span class=\"black\">Comprador <b>" + clientehome + "</b>&nbsp;&nbsp;(" + selectedTextestado + ")</span>" +
                         "</br><span class=\"black\">Fornecedor <b>" + fornecedorhome + "</b></span>" +
                         "</br><span class=\"black\">Registrado em " + datareclamacao + "</span>" + "&nbsp;&nbsp;" + tiposolucao);
-
+                    */
                 }
     ))
     )

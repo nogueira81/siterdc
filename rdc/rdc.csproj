@@ -131,9 +131,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\themes\base\images\boxbody_home_white.JPG" />
+    <Content Include="Content\themes\base\images\boxborder_home_white.JPG" />
+    <Content Include="Content\themes\base\images\boxborder_rigth_home_white.JPG" />
+    <Content Include="Content\themes\base\images\boxbottom_home_white.jpg" />
+    <Content Include="Content\themes\base\images\boxtop_home_white.jpg" />
+    <Content Include="Content\themes\base\images\box_home_white.JPG" />
     <Content Include="Content\themes\base\images\ContribuaRA.jpg" />
     <Content Include="Content\themes\base\images\naorecomendada.png" />
     <Content Include="Content\themes\base\images\positivorecomendado.PNG" />
+    <Content Include="Content\themes\base\images\rdc_bg_header.jpg" />
     <Content Include="Content\themes\base\images\regularrecomendado.png" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\CustomReclamacao.js" />

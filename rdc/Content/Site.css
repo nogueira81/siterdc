@@ -2,12 +2,22 @@
 The base color for this template is #5c87b2. If you'd like
 to use a different color start by replacing all instances of
 #5c87b2 with your new color.
-----------------------------------------------------------*/
+
 body
 {
     background-color: #5c87b2;
     font-size: 75%;
     font-family: Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+    color: #696969;
+}
+----------------------------------------------------------*/
+body
+{
+    background-color: #e8eef4;
+    font-size: 75%;
+    font-family: Verdana, Tahoma, Arial, "Helvetica Neue" , Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
     color: #696969;
@@ -81,38 +91,106 @@ first child of the left and right table columns */
 
 /* you can specify a greater or lesser percentage for the 
 page width. Or, you can specify an exact pixel width. */
-.page
+
+#imgcontrra
 {
+    width: 100%;
+    height:auto;
+    background-repeat: no-repeat;
+}
+
+#header_b
+{
+    margin-top: -10px;
+    position: fixed;
+    color: #000;
+    padding: 0px 0px 0px 66px;
     width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+
 }
 
 #header
 {
+    margin-top: -10px;
     position: relative;
-    margin-bottom: 0px;
-    color: #000;
-    padding: 0;
+    width: 100%;
+    padding: 0 0 0 0;
+    margin: -120px auto;
+    z-index: 1; /* Ensure div tag stays behind content; -999 might work, too. */
+}
+
+.stretch {
+    width:100%;
+    height:100%;
 }
 
 #header h1
 {
+    font-family: "Trebuchet MS";
     font-weight: bold;
-    padding: 5px 0;
+    padding: 0px 0px 0px 50px;
     margin: 0;
-    color: #fff;
+    color: #034af3;
     border: none;
     line-height: 2em;
     font-size: 32px !important;
+    font-style: oblique;
 }
+
+.page
+{
+    width: 90%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -70px;
+    padding: 120px 0 0 0;
+    height: auto;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#imgbody
+{
+    width: 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: -1;
+    height: 1500px !important;
+    margin: -30px auto;
+}
+
+#imgboxtop
+{
+    width: 100%;
+    height:auto;
+    background-repeat: no-repeat;
+}
+
+#imgboxbottom
+{
+    width: 100%;
+    height:auto;
+    background-repeat: no-repeat;
+    margin: -14px auto;
+}
+
+#imgboxbody
+{
+    width: 100%;
+    height:auto;
+    background-repeat: no-repeat;    
+}
+
 
 #main
 {
+    width: 90%;
+    margin: -35px auto;
     padding: 30px 30px 15px 30px;
     background-color: #fff;
     margin-bottom: 30px;
-    _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
+    _height: 1px;
 }
 
 #footer
@@ -134,8 +212,9 @@ ul#menu
     position: relative;
     margin: 0;
     text-align: right;
-    left: -10%;
-    width:110%;
+    left: -15%;
+    width: 110%;
+    border-bottom-width: 0px;
 }
 
 ul#menu li
@@ -199,13 +278,13 @@ ul#menu li.selected a
  
 /* SUB TAB MENU    
 ----------------------------------------------------------*/ 
-ul#submenu 
-{ 
+ul#submenu
+{
     border-bottom: 1px #5C87B2 solid;
-    padding: 0 0 2px;
-    position: relative;
+    padding: 0;
     margin: 0;
-    text-align: left;    
+    text-align: left;
+    border-bottom-width: 0px;
 } 
  
 ul#submenu li 
@@ -213,10 +292,10 @@ ul#submenu li
     display: inline; 
     list-style: none; 
 } 
- 
+
 ul#submenu li a 
 { 
-    padding: 10px 20px;
+    padding: 10px 8px;
     font-weight: bold;
     text-decoration: none;
     line-height: 2.8em;
@@ -252,6 +331,15 @@ ul#submenu li.selected a
     color: #000; 
 }
 
+.submenuhome
+{ 
+    padding: 10px 39px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #e8eef4;
+    color: #034af3;
+}
 /* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
 
@@ -307,6 +395,46 @@ table th
   text-align: left;
   background-color: #e8eef4; 
   border: solid 1px #e8eef4;   
+}
+
+/* table customizada para layout do sistema
+----------------------------------------------------------*/
+.tablelayout
+{
+    border: 0px none #FFFFFF;
+    background-color: #FFFFFF;
+    width: 100%;
+    margin: -30px auto;
+}
+
+.tdlayoutleft
+{
+    background-position: 4.5px;
+    background-color: #FFFFFF;
+    width: 5%;
+    border: 0px;
+    background-image: url('themes/base/images/boxborder_home_white.JPG');
+    background-repeat: repeat-y;
+}
+
+.tdlayoutcenter
+{
+    background-color: #FFFFFF;
+    width: 90%;
+    margin: 0px;
+    text-align: center;
+    vertical-align: text-top;
+    border: 0px;
+}
+
+.tdlayoutrigth
+{
+    background-color: #FFFFFF;
+    background-position: 33.5px;
+    width: 5%;
+    border: 0px;
+    background-image: url('themes/base/images/boxborder_rigth_home_white.JPG');
+    background-repeat: repeat-y;
 }
 
 /* TABLE
@@ -427,7 +555,8 @@ table th
 
 #submenucontainer
 {
-    margin-top:-25px;
+    margin-top: -33px;
+    margin-left: -50px;
 }
 
 div#title
@@ -439,28 +568,28 @@ div#title
 
 #logindisplay
 {
-    font-size:1.1em;
-    display:block;
-    text-align:right;
-    margin:10px;
-    color:White;
+    font-size: 1.1em;
+    display: block;
+    text-align: right;
+    margin: 10px 50px 10px 10px;
+    color: #034af3;
 }
 
 #logindisplay a:link
 {
-    color: white;
+    color: #034af3;
     text-decoration: underline;
 }
 
 #logindisplay a:visited
 {
-    color: white;
+    color: #034af3;
     text-decoration: underline;
 }
 
 #logindisplay a:hover
 {
-    color: white;
+    color: #034af3;
     text-decoration: none;
 }
 
@@ -662,11 +791,3 @@ div#title
 /* Customizando grid Home como Relatório
 -------------------------------------------------*/
 div.ct {width:100%; height:auto; background:#fff; clear:both; float:left; margin:0;  padding:0; display:block;}
-
-
-/*Tratamento imagens*/
-#imgcontrra
-{
-    position: relative;
-    width: 100%;
-}

@@ -7,8 +7,8 @@
 <section class="featured">
     <div id="submenucontainer">
         <ul id="submenu">
-            <li>@Html.ActionLink("Início", "Index", "Home")</li>
-            <li>@Html.ActionLink("Rancking", "Ranking", "Home")</li>
+            <li class="submenuhome">@Html.ActionLink("Início", "Index", "Home")</li>
+            <li class="submenuhome">@Html.ActionLink("Rancking", "Ranking", "Home")</li>
         </ul>                
     </div>
 </section>
@@ -93,21 +93,21 @@
 <tr>
     <td class="tdRanking">
         <h3>Tempo Médio em Dias para solução de Reclamações pelos Fonecedores : </h3>
-        <div style="position:relative"><img src="@Url.Content("~/Home/Grfavgdiasatend/?Tipo=pie")" alt="Grafico 2" /></div>
+        <img src="@Url.Content("~/Home/Grfavgdiasatend/?Tipo=pie")" alt="Grafico 2" />
     </td>
     <td class="tdRanking">
         <h3>Ranking Tempo Médio em Dias para solução de Reclamações pelos Fonecedores : </h3>
-        <div style="position:relative"><img src="@Url.Content("~/Home/Grfavgdiasatend/?Tipo=stock")" alt="Grafico 5" /></div>
+        <img src="@Url.Content("~/Home/Grfavgdiasatend/?Tipo=stock")" alt="Grafico 5" />
     </td>
 </tr>
 <tr>
     <td class="tdRanking">
         <h3>Total de Reclamações por Fonecedores : </h3>
-        <div style="position:relative"><img src="@Url.Content("~/Home/Grafico/?Tipo=pie")" alt="Grafico 2" /></div>
+        <img src="@Url.Content("~/Home/Grafico/?Tipo=pie")" alt="Grafico 2" />
     </td>
     <td class="tdRanking">
         <h3>Ranking com total de Reclamações dos Clientes : </h3>
-        <div style="position:relative"><img src="@Url.Content("~/Home/Grafico/?Tipo=Column")" alt="Grafico 5" /></div>
+        <img src="@Url.Content("~/Home/Grafico/?Tipo=Column")" alt="Grafico 5" />
     </td>
 </tr>
 </table>
@@ -122,6 +122,3 @@
     <div style="float:left"><img src="@Url.Content("~/Home/Grafico/?Tipo=Column")" alt="Grafico 5" /></div>
     <div style="float:left"><img src="@Url.Content("~/Home/Grafico/?Tipo=stock")" alt="Grafico 6" /></div>
 </div-->
-<p>
-    Para pesquisar no Google visite <a href="http://www.google.com.br/" title="ReclameAgora"> http://www.google.com.br/</a>.
-</p>
