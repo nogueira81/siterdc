@@ -561,6 +561,7 @@ table th
 
 div#title
 {
+    margin-top: -20px;
     display:block;
     float:left;
     text-align:left;
@@ -571,7 +572,7 @@ div#title
     font-size: 1.1em;
     display: block;
     text-align: right;
-    margin: 10px 50px 10px 10px;
+    margin: 25px 60px -20px 10px;
     color: #034af3;
 }
 
